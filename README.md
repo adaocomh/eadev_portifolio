@@ -1,3 +1,11 @@
+## Licença
+
+Este projeto está licenciado sob a **Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International Public License (CC BY-NC-ND 4.0)**.
+
+Você pode compartilhar este projeto, mas **não pode usá-lo comercialmente, nem modificá-lo ou criar derivados** sem permissão. Para mais detalhes, consulte a [licença completa](https://creativecommons.org/licenses/by-nc-nd/4.0/deed.pt_BR).
+
+![CC BY-NC-ND 4.0](https://i.creativecommons.org/l/by-nc-nd/4.0/88x31.png)
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
