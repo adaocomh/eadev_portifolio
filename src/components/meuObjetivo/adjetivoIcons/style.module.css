@@ -1,0 +1,75 @@
+.adjetivos{
+    position: relative;
+    transition: all 1.2s;
+    opacity: 0.8;
+}
+.pngSetting{
+    top: 0vh;
+    right: 15vw;
+}
+.pngWork{
+    top: 40vh;
+    left: 8vw;
+}
+.pngGoal{
+    bottom: 5vh;
+    left: 1vw;
+}
+.pngGoal2{
+    display: none;
+}
+.circles{
+    opacity: 0;
+    transition: all 1.2s;
+    transform: translateX(100%);
+}
+.circles.ativo {
+    opacity: 1;
+    transform: translateX(0);
+}
+@media (max-width: 1400px){
+.pngSetting{
+    top: -16vh;
+    right: 13vw;
+    width: 40px;
+}
+.pngWork{
+    top: 9vh;
+    left: 10vw;
+    width: 100px;
+    height: 100px;
+}
+.pngGoal{
+    bottom: 17vh;
+    left: 0vw;
+    width: 170px;
+    height: 170px;
+}
+}
+@media (max-width: 800px){
+.adjetivos{
+    position: absolute;
+}
+.pngSetting{
+    top: 3vh;
+    right: 60vw;
+    width: 30px;
+    height: 30px;
+}
+.pngWork{
+    top: 0px;
+    left: 55vw;
+    width: 80px;
+    height: 80px;
+}
+.pngGoal2{
+    display: block;
+    bottom: 34vh;
+    left: 60vw;
+    width: 60px;
+    height: 60px;
+}
+.pngGoal{
+    display: none;
+}
+}

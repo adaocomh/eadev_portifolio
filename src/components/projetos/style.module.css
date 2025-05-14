@@ -1,0 +1,74 @@
+.prjComp{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 70vh;
+    padding: 80px 80px 60px 80px;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.020) 1%, rgba(245, 236, 219, 1)) 99%;
+}
+.prjConteudo{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5vh;
+    max-width: 80vw;
+    max-height: 80vh;
+}
+.prjImg{
+    min-width: 70vw;
+    min-height: 70vh;
+    background: url('../../../public/imgs/dispoPrj/D3999491-472D-4DA0-8B15-BBD1F7683619_1_201_a-removebg-preview.png') no-repeat;
+    background-position: center center;
+    background-size: contain;
+
+}
+.prjHeader h2{
+    width: 25vw;
+    border-bottom: 1px solid black;
+    padding-bottom: 5px;
+    margin: 2vh 0;
+    font-weight: 400;
+    font-size: 2.5vw;
+    font-family: var(--font-primaria);
+    text-shadow: 0px 3px 8px rgba(0, 0, 0, 0.3);
+}
+.prjHeader p{
+    font-family: var(--font-primaria);
+    font-weight: lighter;
+    text-shadow: 0px 3px 8px rgba(0, 0, 0, 0.3);
+}
+.prjSlide{
+    transition: all 1.2s;
+    transform: translateX(-100%);
+    opacity: 0;
+}
+.prjSlide.ativo{
+    transform: translateX(0);
+    opacity: 1;
+}
+@media (max-width: 1400px){
+.prjConteudo{
+    gap: 2vh;
+    max-height: 80vh;
+}
+.prjImg{
+    min-width: 60vw;
+    min-height: 60vh;
+}
+}
+@media (max-width: 800px){
+.prjComp{
+    padding: 40px 40px 0px 40px;
+}
+.prjHeader h2{
+    width: 60vw;
+    font-size: 9vw;
+}
+.prjHeader p{
+    font-size: 3vh;
+}
+.prjConteudo{
+    gap: none;
+    max-height: 100vh;
+}
+}
