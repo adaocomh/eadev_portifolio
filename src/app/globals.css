@@ -1,7 +1,7 @@
 @import "tailwindcss";
 @font-face {
   font-family: 'Radio Canada';
-  src: url('../../public/fonts/radio-canada-big/RadioCanadaBig-VariableFont_wght.ttf') format('opentype');
+  src: url('../../public/fonts/RadioCanadaBig-VariableFont_wght.ttf') format('opentype');
 }
 @font-face {
   font-family: 'Barriecito';
