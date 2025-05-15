@@ -6,7 +6,7 @@
     transition: all 1.2s;
     transform: translateX(-100%);
     opacity: 0;
-    background-color: var(--cor-primari);
+    background-color: var(--cor-primaria);
 }
 .logoContato.ativo{
     transform: translateX(0);

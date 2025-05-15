@@ -27,7 +27,7 @@
     justify-content:center;
     align-items: center;
     background: url('../../../public/imgs/self/IMG_2414\ 1.png') no-repeat;
-    background-color: var(--cor-primari);
+    background-color: var(--cor-primaria);
     background-position: center center;
     border-radius: 50%;
 }
@@ -39,7 +39,7 @@
 }
 .linhaDiv{
     width: 88%;
-    border-bottom: 0.1px solid var(--cor-primari);
+    border-bottom: 0.1px solid var(--cor-primaria);
 }
 .contatos{
     display: flex;
@@ -55,8 +55,8 @@
     opacity: 1;
 }
 .linkContato{
-    color: var(--cor-primari);
-    border: 0.3px solid var(--cor-primari);
+    color: var(--cor-primaria);
+    border: 0.3px solid var(--cor-primaria);
     border-radius: 50px;
     font-family: var(--font-primaria);
     font-weight: lighter;

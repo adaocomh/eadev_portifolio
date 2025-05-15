@@ -35,7 +35,7 @@
 }
 .titleForm{
     font-family: var(--font-primaria);
-    color: var(--cor-primari);
+    color: var(--cor-primaria);
     font-weight: 400;
     font-size: 3vw;
     margin-bottom: 3vh;
@@ -46,7 +46,7 @@
     padding: 5px;
     border: none;
     background-color: #737156;
-    color: var(--cor-primari);
+    color: var(--cor-primaria);
 }
 .input::placeholder{
     color: #3F4030;
@@ -70,7 +70,7 @@
 .label{
     font-family: var(--font-primaria);
     font-weight: lighter;
-    color: var(--cor-primari);
+    color: var(--cor-primaria);
     font-size: 18px;
 }
 @media (max-width: 1400px){
