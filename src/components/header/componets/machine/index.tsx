@@ -1,5 +1,4 @@
 'use client'
-import style from '../title/title.module.css'
 import React, { useState, useEffect } from "react";
 
 interface MachineProps{
@@ -34,10 +33,10 @@ export function Machine({ text: fullText }: MachineProps) {
     }, [])
     return (
     <>
-        <h1 className={style.titleComp}>
-            {text[0]}<span>{text[1]}</span>{text.slice(2, 7)}
-            <span>{text[7]}</span>{text.slice(8, 12)}
-            {mostrarCursor && <span>|</span>}
+        <h1 className='text-[13vw] text-[rgba(0,0,0,0.9)]  text-shadow-[0px_10px_15pxrgba(0,0,0,0.1)]'>
+            {text[0]}<span className='text-[var(--cor-secundaria)]'>{text[1]}</span>{text.slice(2, 7)}
+            <span className='text-[var(--cor-secundaria)]'>{text[7]}</span>{text.slice(8, 12)}
+            {mostrarCursor && <span className='text-[var(--cor-secundaria)]'>|</span>}
         </h1>
     </>
     );

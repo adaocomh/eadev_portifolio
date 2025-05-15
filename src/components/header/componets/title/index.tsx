@@ -1,10 +1,9 @@
 import { Machine } from '../machine'
-import style from './title.module.css'
 
 export function TitleComp(){
     return (
-            <div className={style.ContPaiTitle}>
-                <div className={style.conTitle}>
+            <div className='flex justify-center mr-[35px]'>
+                <div className='flex justify-start max-w-[78vw] min-w-[78vw] m-[35px] font-[Barriecito]'>
                     <Machine text="Éverton_Adão"/>
                 </div>
             </div>
