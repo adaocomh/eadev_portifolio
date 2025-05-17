@@ -19,7 +19,7 @@ export default function AreaPrj(){
                 )
                 }</SlideEffect>
                 <div className='flex justify-center'>
-                    <Image src='/imgs/dispoPrj/exposiPrj.png' alt='' width={500} height={500}/>
+                    <Image src='/imgs/dispoPrj/exposiPrj.png' alt='' width={800} height={800}/>
                 </div>
             </div>
         </div>
