@@ -41,7 +41,7 @@ export function ConteudoForm(){
 
                 <button type="submit" className='h-[5vh] col-[1/5] row-[7] font-normal text-[2.3vh] p-[5px] border-none bg-[#737156] text-[var(--cor-primaria)] rounded-[10px]
                 md:font-extralight md:text-[15px] 
-                hover:bg-[#68674e] hover:translate-y-[-1px] hover:transition-all hover:duration-300 
+                hover:bg-[#7c7a5d] hover:translate-y-[-1px] hover:transition-all hover:duration-300 
                 hover:shadow-[0px_3px_8px_rgba(0,0,0,0.3)]'>Enviar</button>
             </form>
         </div>

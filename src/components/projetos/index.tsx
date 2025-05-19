@@ -12,7 +12,7 @@ export default function AreaPrj(){
                     (ref, visivel)=>(
                 <div ref={ref} className={`${visivel ? 'translate-x-[0%] transition-all duration-1200 opacity-100' : 'translate-x-[-95%] transition-all duration-1200 opacity-0'}`}>
                     <div>
-                        <h2 className='w-[60vw] text-[9vw] font-medium text-[var(--cor-font)] text-shadow-[0px_3px_8px_rgba(0,0,0,0.3)] border-b-1 pb-[5px] m-[2vh_0] md:w-[25vw] md:text-[2.5vw]'>Atlas API</h2>
+                        <h2 className='w-[75vw] text-[9vw] font-medium text-[var(--cor-font)] text-shadow-[0px_3px_8px_rgba(0,0,0,0.3)] border-b-1 pb-[5px] m-[2vh_0] md:w-[25vw] md:text-[2.5vw]'>Atlas API <span className='text-[12px] text-[rgba(0,0,0,0.6)]'>(projeto ilustrativo)</span></h2>
                         <p className='text-[3vh] font-extralight text-[var(--cor-font)] text-shadow-[0px_3px_8px_rgba(0,0,0,0.3)] md:max-w-[500px] xl:max-w-[800px]'>Aplicação web que consome a REST Countries API para exibir informações sobre países do mundo, com funcionalidades de busca, filtro por região, visualização de detalhes e alternância entre temas claro e escuro. O projeto foi desenvolvido com foco em responsividade, usabilidade e boas práticas de desenvolvimento front-end moderno, simulando um cenário real de integração com API pública e interface dinâmica.</p>
                     </div>
                 </div>

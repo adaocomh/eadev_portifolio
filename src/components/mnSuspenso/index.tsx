@@ -11,7 +11,7 @@ export function MenuSuspenso(){
             <nav>
                  <ul className='hidden md:relative md:flex md:flex-row'>
                     <li className='md:m-[0px_0px_0px_25px] hover:translate-y-[-2px] hover:transition-all hover:duration-200 hover:text-shadow-[0px_5px_15px_rgba(0,0,0,0.3)]' onClick={()=>{scrollSection("sS2")}} >Meu objetivo</li>
-                    <li className='md:m-[0px_0px_0px_25px] hover:translate-y-[-2px] hover:transition-all hover:duration-200 hover:text-shadow-[0px_5px_15px_rgba(0,0,0,0.3)]' onClick={()=>{scrollSection("aPS2")}} >Projetos</li>
+                    <li className='md:m-[0px_0px_0px_25px] hover:translate-y-[-2px] hover:transition-all hover:duration-200 hover:text-shadow-[0px_5px_15px_rgba(0,0,0,0.3)]' onClick={()=>{scrollSection("aPS2")}} >Alusão</li>
                     <li className='md:m-[0px_0px_0px_25px] hover:translate-y-[-2px] hover:transition-all hover:duration-200 hover:text-shadow-[0px_5px_15px_rgba(0,0,0,0.3)]' onClick={()=>{scrollSection("footerS4")}} >Contato</li>
                 </ul>
                 <MnSmobile/>
