@@ -20,7 +20,7 @@ export default function AreaPrj(){
                 )
                 }</SlideEffect>
                 <div className='flex justify-center'>
-                    <Link href='https://atlas-api-drab.vercel.app/' target='_blank'><Image src='/imgs/dispoPrj/prjIlustrativo.png' alt='Imagem de dispositivos com a imagens de um projeto ilustrativo.' width={800} height={800}/></Link>
+                    <Link href='https://atlas-api-drab.vercel.app/' target='_blank'><img src='/imgs/dispoPrj/prjIlustrativo.png' alt='Imagem de dispositivos com a imagens de um projeto ilustrativo.' className='w-[800px] xl:w-[1000px]' /></Link>
                 </div>
             </div>
         </div>
