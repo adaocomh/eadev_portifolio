@@ -12,7 +12,7 @@ export function MnSmobile() {
             <div className='absolute top-[60px] right-[0px] overflow-hidden'>
                 <ul className={`flex justify-around items-center md:hidden h-[40px] w-[100vw] bg-[#737156] list-none cursor-pointer ${aberto ? 'translate-y-[0%] transition-all duration-200 opacity-[1]' : 'translate-y-[-100%] transition-all duration-300 opacity-[0]'}`}>
                             <li className='text-[var(--cor-primaria)] md:m-[0px_0px_0px_25px] hover:translate-y-[-2px] hover:transition-all hover:duration-200 hover:text-shadow-[0px_5px_15px_rgba(0,0,0,0.3)]' onClick={()=>{scrollSection("sS2")}} >Meu objetivo</li>
-                            <li className='text-[var(--cor-primaria)] md:m-[0px_0px_0px_25px] hover:translate-y-[-2px] hover:transition-all hover:duration-200 hover:text-shadow-[0px_5px_15px_rgba(0,0,0,0.3)]' onClick={()=>{scrollSection("aPS2")}} >Alusão</li>
+                            <li className='text-[var(--cor-primaria)] md:m-[0px_0px_0px_25px] hover:translate-y-[-2px] hover:transition-all hover:duration-200 hover:text-shadow-[0px_5px_15px_rgba(0,0,0,0.3)]' onClick={()=>{scrollSection("aPS2")}} >Demo</li>
                             <li className='text-[var(--cor-primaria)] md:m-[0px_0px_0px_25px] hover:translate-y-[-2px] hover:transition-all hover:duration-200 hover:text-shadow-[0px_5px_15px_rgba(0,0,0,0.3)]' onClick={()=>{scrollSection("footerS4")}} >Contato</li>
                 </ul>
             </div>
