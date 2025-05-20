@@ -8,10 +8,10 @@ export function ConteudoForm(){
         if (!form.current) return
 
         emailjs.sendForm(
-            'service_z4idfyi',
-            'template_cbveu0h',
+            process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!,
+            process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!,
             form.current,
-            'gErIOmQI0JSAI3jmz'
+            process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!
         )
         .then((result) =>{
             alert('Mensagem enviada com sucesso!')

@@ -1,5 +1,4 @@
 'use client'
-import styles from './style.module.css'
 import SlideEffect from '../slideEffect/slideEffect'
 import { LogoContato } from './logoContato'
 import { ConteudoForm } from './form'
