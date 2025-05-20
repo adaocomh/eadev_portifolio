@@ -2,7 +2,7 @@
 import {ReactNode, useEffect, useRef, useState } from "react"
 
 interface SlideProps<T extends HTMLElement> {
-    children: (ref: React.RefObject<T>, visivel: boolean) => ReactNode
+    children: (ref: React.RefObject<T | null>, visivel: boolean) => ReactNode
 };
 
 export default function SlideContato<T extends HTMLElement>({ children }: SlideProps<T>){
