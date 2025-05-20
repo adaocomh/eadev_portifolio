@@ -11,7 +11,7 @@ export function Machine({ text: fullText }: MachineProps) {
     const [mostrarCursor, setMostrarCursor] = useState<boolean>(false)
 
     useEffect(() => {
-        setText(""); // Resetando o texto ao mudar a props.text
+        setText("");
         setIndex(0);
     }, [fullText]);
 
@@ -20,8 +20,8 @@ export function Machine({ text: fullText }: MachineProps) {
             const timeout = setTimeout(() => {
                 setText((prev) => prev + fullText[index]);
                 setIndex((prev) => prev + 1);
-            }, 115);
-            return () => clearTimeout(timeout); // Limpa o timeout ao desmontar o componente
+            }, 140);
+            return () => clearTimeout(timeout);
         }
     }, [index, fullText]);
     
