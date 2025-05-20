@@ -15,6 +15,9 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "É. Adão Dev.",
   description: "É. Adão Dev. - Dev Front-end freelancer",
+  icons: {
+    icon: "/imgs/self/logoPiscando.png"
+  }
 };
 
 export default function RootLayout({
