@@ -6,7 +6,7 @@ export function MenuSuspenso(){
         document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "center" })
     }
     return (
-        <div className='flex justify-between items-center sticky top-[0px] h-[60px] bg-[#F5ECDB] p-[0px_27px] border-b-[1px] shadow-[0px_10px_20px_rgba(0,0,0,0.1)] z-1'>
+        <div className='flex justify-between items-center sticky top-[0px] h-[60px] bg-[#F5ECDB] p-[0px_27px] border-b-[1px] shadow-[0px_10px_20px_rgba(0,0,0,0.120)] z-1'>
             <p className='hover:translate-y-[-2px] hover:transition-all hover:duration-200 hover:text-shadow-[0px_5px_10px_rgba(0,0,0,0.250)] cursor-pointer font-light' onClick={()=>{scrollSection("hdS1")}}>ⓒ Code by É. Adão</p>
             <nav>
                  <ul className='hidden md:relative md:flex md:flex-row'>
