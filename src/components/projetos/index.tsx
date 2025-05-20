@@ -1,6 +1,7 @@
 'use client'
 import SlideEffect from '../slideEffect/slideEffect'
 import Image from 'next/image'
+import Link from 'next/link'
 
 export default function AreaPrj(){
     return(
@@ -19,7 +20,7 @@ export default function AreaPrj(){
                 )
                 }</SlideEffect>
                 <div className='flex justify-center'>
-                    <Image src='/imgs/dispoPrj/exposiPrj.png' alt='' width={800} height={800}/>
+                    <Link href='https://atlas-api-drab.vercel.app/'><Image src='/imgs/dispoPrj/prjIlustrativo.png' alt='Imagem de dispositivos com a imagens de um projeto ilustrativo.' width={800} height={800}/></Link>
                 </div>
             </div>
         </div>
