@@ -3,7 +3,8 @@ import SlideEffect from '../slideEffect/slideEffect'
 import { LogoContato } from './logoContato'
 import { ConteudoForm } from './form'
 import React, { useRef, useState } from 'react'
-export default function FtPg(){
+
+export default function FooterContato(){
     const [emailCopiadpo, setEmailCopiado] = useState<boolean>(false)
     const emailRef = useRef<HTMLAnchorElement | null>(null)
      

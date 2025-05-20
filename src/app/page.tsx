@@ -1,17 +1,17 @@
-import TelaIni from '../components/header'
-import Sobre from '../components/meuObjetivo'
-import AreaPrj from '../components/demo'
-import FtPg from '../components/footerContato'
-import { MenuSuspenso } from '../components/mnSuspenso'
+import Header from '../components/header'
+import MeuObjetivo from '../components/meuObjetivo'
+import Demo from '../components/demo'
+import FooterContato from '../components/footerContato'
+import MenuSuspenso from '../components/mnSuspenso'
 
 export default function Home() {
   return (
     <>
         <MenuSuspenso/>
-        <TelaIni/>
-        <Sobre/>
-        <AreaPrj/>
-        <FtPg/>
+        <Header/>
+        <MeuObjetivo/>
+        <Demo/>
+        <FooterContato/>
     </>
   );
 }

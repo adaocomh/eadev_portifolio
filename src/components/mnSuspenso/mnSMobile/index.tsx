@@ -1,6 +1,6 @@
 'use client'
 import { useState } from 'react'
-export function MnSmobile() {
+export default function MnSmobile() {
         const [aberto, setAberto] = useState<boolean>(false)
         const scrollSection = (id: string) => {
             document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "center" })

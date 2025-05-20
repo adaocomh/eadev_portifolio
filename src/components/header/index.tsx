@@ -1,7 +1,7 @@
 import { TitleComp } from './componets/title'
 import { Txt } from './componets/txt'
 
-export default function TelaIni(){
+export default function Header(){
     return (
         <div className='flex flex-col justify-between gap-[5vh] min-h-[calc(100vh-146px)] bg-[url(/imgs/self/Pasted%20Graphic.png)] bg-no-repeat bg-fixed bg-position-[180px_46vh] bg-size-[45vh] p-[40px_40px_40px_40px]
 

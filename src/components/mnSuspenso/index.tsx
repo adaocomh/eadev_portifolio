@@ -1,7 +1,7 @@
 'use client'
-import { MnSmobile } from './mnSMobile'
+import MnSmobile from './mnSMobile'
 
-export function MenuSuspenso(){
+export default function MenuSuspenso(){
     const scrollSection = (id: string) => {
         document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "center" })
     }

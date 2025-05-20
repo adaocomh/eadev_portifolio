@@ -2,7 +2,7 @@
 import SlideEffect from '../slideEffect/slideEffect'
 import Link from 'next/link'
 
-export default function AreaPrj(){
+export default function Demo(){
     return(
         <div className='flex justify-center items-center h-[125vh] p-[0px_40px_0px_40px] bg-linear-[180deg,rgba(0,0,0,0.020)1%,rgba(245,236,219,1)99%] md:h-[80vh] md:p-[80px]' id='aPS2'>
             <div className='flex flex-col justify-center gap-[0vh] max-h-[100vh]
