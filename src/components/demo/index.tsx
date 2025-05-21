@@ -4,7 +4,7 @@ import Link from 'next/link'
 
 export default function Demo(){
     return(
-        <div className='flex justify-center items-center h-[125vh] p-[0px_40px_0px_40px] bg-linear-[180deg,rgba(0,0,0,0.020)5%,rgba(245,236,219,1)95%] md:h-[80vh] md:p-[80px]' id='aPS2'>
+        <div className='flex justify-center items-center h-[125vh] p-[0px_40px_0px_40px] shadow-[inset_0px_30px_100px_rgba(0,0,0,0.040)] md:h-[80vh] md:p-[80px]' id='aPS2'>
             <div className='flex flex-col justify-center gap-[0vh] max-h-[100vh]
             md:flex-row md:items-center md:max-h-[80vh] md:p-[0_0_0_50px]
             xl:gap-[5vh] xl:max-w-[80vw]'>
