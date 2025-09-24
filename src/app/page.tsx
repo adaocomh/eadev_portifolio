@@ -7,7 +7,7 @@ import MenuSuspenso from '../components/mnSuspenso'
 export default function Home() {
   return (
     <>
-        <MenuSuspenso/>
+        <div className='fixed top-[40px] h-[100px] z-50'><MenuSuspenso/></div>
         <Header/>
         <MeuObjetivo/>
         <Demo/>

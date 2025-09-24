@@ -1,16 +1,18 @@
 import { TitleComp } from './componets/title'
 import { Txt } from './componets/txt'
+import MenuSuspenso from '../mnSuspenso'
 
 export default function Header(){
     return (
-        <div className='flex flex-col justify-between gap-[5vh] min-h-[calc(100vh-146px)] bg-[url(/imgs/self/Pasted%20Graphic.png)] bg-no-repeat bg-fixed bg-position-[180px_46vh] bg-size-[45vh] p-[40px_40px_40px_40px]
+        <div className='flex flex-col h-[100vh] p-[80px_80px_80px_80px]' id='hdS1'>
+            <div className='flex flex-col justify-around h-[100%]'>
+            <p className='max-w-[200px] text-start text-[4.5vh] text-[var(--cor-font)] text-shadow-[0px_10px_15px_rgba(0,0,0,0.3)] row-start-3 col-start-3 ml-[15px] md:max-w-max md:text-[2.8vw]'>Dev.<br/> Front-end freelancer<br/></p>
+                <TitleComp/>
+                <p className='self-end font-extralight text-[2.9vh] text-[var(--cor-font)] text-shadow-[0px_10px_15px_rgba(0,0,0,0.3)]
 
-        md:justify-start md:gap-[23vh] md:min-h-[calc(100vh-45px)] md:bg-position-[center_53vh] md:bg-size-[55vh] md:p-[0px_60px_60px_60px]
-
-        xl:justify-start xl:gap-[14vw] xl:max-w-[100vw] xl:max-h-[100vh] xl:min-h-[calc(100vh-40px)] xl:bg-position-[center_45vh] xl:bg-size-[65vh]  xl:p-[0px_80px_80px_80px]
-        ' id='hdS1'>
-            <TitleComp/>
-            <Txt/>
+             md:text-[1.6rem]
+            '>Construindo experiências interativas e intuitivas na web.</p>
+            </div>
         </div>
     )
 }
