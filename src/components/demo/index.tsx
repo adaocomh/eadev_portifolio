@@ -1,12 +1,14 @@
 'use client'
-import SlideEffect from '../slideEffect/slideEffect'
-import Link from 'next/link'
 import { useState, useRef, useEffect, use } from 'react'
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 const projetos = [
     {
         name: "Atlas API",
-        img: "/imgs/icons/sla.jpg",
+        img: "/imgs/icons/sla.jpeg",
         url: "https://example.com",
       },
       {
@@ -23,8 +25,33 @@ const projetos = [
 
 export default function Demo(){
     const displayRef = useRef<HTMLImageElement>(null);
+    const containerRef = useRef<HTMLDivElement>(null);
     const [hovered, setHovered] = useState<string | null>(null);
     const [visible, setVisible] = useState(false);
+
+    useEffect(() => {
+      if (!containerRef.current) return;
+
+      const elements = containerRef.current.querySelectorAll('.animate-on-scroll-demo');
+
+      gsap.fromTo(
+          elements,
+          { opacity: 0, y: 50 },
+          {
+              opacity: 1,
+              y: 0,
+              duration: 1,
+              ease: 'power1.inOut',
+              stagger: 0, // cada elemento aparece com 0.3s de diferença
+              scrollTrigger: {
+                  trigger: containerRef.current,
+                  start: 'top 50%',
+                  end: 'center bottom',
+                  scrub: 3, // suaviza o movimento com delay
+              },
+          }
+      )
+  }, []);
 
     useEffect(() => {
         const handleMouseMove = (e: MouseEvent) => {
@@ -38,8 +65,8 @@ export default function Demo(){
       }, []);
     
     return(
-        <div className='flex flex-col items-center w-[100vw] pb-[200px]'>
-                <div className='flex flex-col w-[80vw]'>
+        <div ref={containerRef} className='flex flex-col items-center w-[100vw] pb-[200px]'>
+                <div className='animate-on-scroll-demo flex flex-col w-[80vw]'>
                     <div  className='flex items-center border-b-1 w-full h-[100px] px-[80px]'>
                         <p className='text-[16px] font-extralight opacity-50'>demo serviços</p>
                     </div>
