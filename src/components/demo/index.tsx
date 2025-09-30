@@ -1,27 +1,73 @@
 'use client'
 import SlideEffect from '../slideEffect/slideEffect'
 import Link from 'next/link'
+import { useState, useRef, useEffect, use } from 'react'
+
+const projetos = [
+    {
+        name: "Atlas API",
+        img: "/imgs/icons/sla.jpg",
+        url: "https://example.com",
+      },
+      {
+        name: "3XMEND",
+        img: "/imgs/icons/w-kindle.png",
+        url: "https://example.com",
+      },
+      {
+        name: "RMAV engearia e contruções",
+        img: "/imgs/icons/IMG_3276.jpg",
+        url: "https://example.com",
+      },
+]
 
 export default function Demo(){
+    const displayRef = useRef<HTMLImageElement>(null);
+    const [hovered, setHovered] = useState<string | null>(null);
+    const [visible, setVisible] = useState(false);
+
+    useEffect(() => {
+        const handleMouseMove = (e: MouseEvent) => {
+          if (displayRef.current) {
+            displayRef.current.style.left = e.clientX + 20 + "px";
+            displayRef.current.style.top = e.clientY - 200 + "px";
+          }
+        };
+    
+        window.addEventListener("mousemove", handleMouseMove);
+      }, []);
+    
     return(
-        <div className='flex justify-center items-center h-[125vh] p-[0px_40px_0px_40px] shadow-[inset_0px_30px_100px_rgba(0,0,0,0.040)] md:h-[80vh] md:p-[80px]' id='aPS2'>
-            <div className='flex flex-col justify-center gap-[0vh] max-h-[100vh]
-            md:flex-row md:items-center md:max-h-[80vh] md:p-[0_0_0_50px]
-            xl:gap-[5vh] xl:max-w-[80vw]'>
-                <SlideEffect<HTMLDivElement>>{
-                    (ref, visivel)=>(
-                <div ref={ref} className={`${visivel ? 'translate-x-[0%] transition-all duration-1200 opacity-100' : 'translate-x-[-95%] transition-all duration-1200 opacity-0'}`}>
-                    <div>
-                        <h2 className='w-[75vw] text-[9vw] font-medium text-[var(--cor-font)] text-shadow-[0px_3px_8px_rgba(0,0,0,0.3)] border-b-1 pb-[5px] m-[2vh_0] md:w-[25vw] md:text-[2.5vw]'>Atlas API <span className='text-[12px] text-[rgba(0,0,0,0.6)]'>(projeto ilustrativo)</span></h2>
-                        <p className='text-[3vh] font-extralight text-[var(--cor-font)] text-shadow-[0px_3px_8px_rgba(0,0,0,0.3)] md:max-w-[500px] xl:max-w-[800px]'>Aplicação web que consome a REST Countries API para exibir informações sobre países do mundo, com funcionalidades de busca, filtro por região, visualização de detalhes e alternância entre temas claro e escuro. O projeto foi desenvolvido com foco em responsividade, usabilidade e boas práticas de desenvolvimento front-end moderno, simulando um cenário real de integração com API pública e interface dinâmica.</p>
+        <div className='flex flex-col items-center w-[100vw] pb-[200px]'>
+                <div className='flex flex-col w-[80vw]'>
+                    <div  className='flex items-center border-b-1 w-full h-[100px] px-[80px]'>
+                        <p className='text-[16px] font-extralight opacity-50'>demo serviços</p>
                     </div>
-                </div>
-                )
-                }</SlideEffect>
-                <div className='flex justify-center'>
-                    <Link href='https://atlas-api-drab.vercel.app/' target='_blank'><img src='/imgs/dispoPrj/prjIlustrativo.png' alt='Imagem de dispositivos com a imagens de um projeto ilustrativo.' className='w-[800px] xl:w-[1000px]' /></Link>
-                </div>
-            </div>
+                        {projetos.map((p)=> (
+                            <a key={p.name} href={p.url} target="_blank" rel="noopener noreferrer" className='flex justify-between items-center border-b-1 w-full h-[100px] px-[80px]'
+                            onMouseEnter={() => setHovered(p.name)}
+                            onMouseOver={() => setVisible(true)}
+                            onMouseOut={()=> setVisible(false)}>
+                                
+                                <h3 className='text-[2vw] text-[var(--cor-font)]'>{p.name}</h3>
+                                <img className='w-[20px] h-[20px]' src="imgs/icons/up-right.png" alt="seta que indica direcionamento"/>
+                            </a>
+                        ))}</div>
+             
+                <div
+          ref={displayRef}
+          className={`fixed w-[400px] h-[400px] border-1 border-black shadow-lg z-50 
+                  transition-opacity duration-300 bg-black
+                  ${visible ? "opacity-100" : "opacity-0"}`}
+        >
+          {hovered && (
+            <img
+              src={projetos.find((p) => p.name === hovered)?.img || ""}
+              alt={hovered}
+              className="object-cover w-full h-full"
+            />
+          )}
         </div>
+      </div>
     )
 }
