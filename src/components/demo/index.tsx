@@ -71,13 +71,16 @@ export default function Demo(){
                         <p className='text-[16px] font-extralight opacity-50'>demo serviços</p>
                     </div>
                         {projetos.map((p)=> (
-                            <a key={p.name} href={p.url} target="_blank" rel="noopener noreferrer" className='flex justify-between items-center border-b-1 w-full h-[100px] px-[80px]'
+                            <a key={p.name} href={p.url} target="_blank" rel="noopener noreferrer" className={`flex justify-between items-center border-b-1 w-full h-[100px] px-[80px] transition-color duration-300`}
                             onMouseEnter={() => setHovered(p.name)}
                             onMouseOver={() => setVisible(true)}
-                            onMouseOut={()=> setVisible(false)}>
+                            onMouseOut={()=> {
+                              setHovered(null)
+                              setVisible(false)
+                              }}>
                                 
-                                <h3 className='text-[2vw] text-[var(--cor-font)]'>{p.name}</h3>
-                                <img className='w-[20px] h-[20px]' src="imgs/icons/up-right.png" alt="seta que indica direcionamento"/>
+                                <h3 className={`text-[2vw] text-[var(--cor-font)] ${hovered === p.name ? "translate-y-[4px] translate-x-[3px] transition-all duration-300 opacity-50" : ""}`}>{p.name}</h3>
+                                <img className={`w-[20px] h-[20px] ${hovered === p.name ? "translate-y-[-4px] translate-x-[3px] transition-all duration-300 animate-pulse" : ""}`} src="imgs/icons/up-right.png" alt="seta que indica direcionamento"/>
                             </a>
                         ))}</div>
              
