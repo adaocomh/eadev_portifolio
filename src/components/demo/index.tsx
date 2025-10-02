@@ -68,7 +68,7 @@ export default function Demo(){
         <div ref={containerRef} className='flex flex-col items-center w-[100vw] pb-[200px]'>
                 <div className='animate-on-scroll-demo flex flex-col w-[80vw]'>
                     <div  className='flex items-center border-b-1 w-full h-[100px] px-[80px]'>
-                        <p className='text-[16px] font-extralight opacity-50'>demo serviços</p>
+                        <p className='text-[16px] font-extralight opacity-50'>Demonstração</p>
                     </div>
                         {projetos.map((p)=> (
                             <a key={p.name} href={p.url} target="_blank" rel="noopener noreferrer" className={`flex justify-between items-center border-b-1 w-full h-[100px] px-[80px] transition-color duration-300`}

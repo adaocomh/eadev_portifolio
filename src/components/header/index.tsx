@@ -29,7 +29,7 @@ export default function Header() {
                     trigger: containerRef.current,
                     start: 'top 0%',
                     end: 'bottom 10%',
-                    scrub: 0.5, // suaviza o movimento com delay
+                    scrub: 0, // suaviza o movimento com delay
                 },
             }
         )
