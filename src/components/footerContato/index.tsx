@@ -1,6 +1,6 @@
 'use client'
 import SlideEffect from '../slideEffect/slideEffect'
-import { LogoContato } from './logoContato'
+import { SlidePlane } from './slidePlane'
 import { ConteudoForm } from './form'
 import React, { useRef, useState } from 'react'
 
@@ -32,7 +32,7 @@ export default function FooterContato(){
                 <div className='flex items-center gap-[12%] m-[1.3vw_0_1.8vw_0]
                 md:m-[1.3vw_0_0.8vw_0]
                 xl:m-[2.3vw_0_2vw_0]'>
-                    <div className='w-[88%] border-b-[0.1px] border-[var(--cor-primaria)]'/> <LogoContato/>
+                    <div className='w-[88%] border-b-[0.1px] border-[var(--cor-primaria)]'/> <SlidePlane/>
                 </div>
                 <SlideEffect<HTMLDivElement>>
                     {(ref, visivel) => (
