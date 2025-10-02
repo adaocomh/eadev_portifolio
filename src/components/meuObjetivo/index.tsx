@@ -37,7 +37,7 @@ export default function MeuObjetivo() {
     }, []);
 
     return (
-    <div ref={containerRef} className='flex flex-col justify-center items-center w-[100vw] overflow-hidden p-[200px_0px]' id='sS2'>
+    <div ref={containerRef} className='flex flex-col justify-center items-center gap-[50px] w-[100vw] overflow-hidden p-[200px_0px_0px_0px]' id='sS2'>
         
             <div className='flex justify-center items-center'>
             <div className='flex justify-between w-[70vw] text-shadow-[0px_2px_5px_rgba(0,0,0,0.3)] xl:text-shadow-[0px_3px_8px_rgba(0,0,0,0.3)]'>
