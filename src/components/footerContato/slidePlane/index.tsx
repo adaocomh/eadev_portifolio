@@ -6,7 +6,7 @@ export function SlidePlane(){
     return(
         <SlideEffect<HTMLImageElement>>
         {(ref, visivel) => (
-        <div ref={ref} className={`${visivel ? 'translate-x-[0] transition-all duration-1200 opacity-100' : 'translate-x-[-100%] transition-all duration-1200 opacity-0'}`}>
+        <div ref={ref} className={`${visivel ? 'translate-x-[0] transition-all duration-1800 opacity-100' : 'translate-x-[-100%] transition-all duration-1800 opacity-0'}`}>
             <LottiePlane/>
         </div>
         )}
