@@ -22,11 +22,11 @@ export default function FooterContato(){
         <div className='relative flex justify-center items-center min-h-[95vh] max-h-[95vh] bg-[var(--cor-terciario)] overflow-hidden
         md:min-h-[100vh] md:max-h-[100vh] 
         xl:min-h-[110vh] xl:max-h-[110vh]
-        ' id="footerS4">
+        fFooter ' id="footerS4">
             <div className='flex flex-col justify-center max-w-[80vw]'>
                 <div className='flex justify-center'>
                     <div className='hidden
-                    md:flex md:top-[11vh] justify-center items-center bg-[url(/imgs/self/logoPiscando.png)] bg-no-repeat bg-center bg-[var(--cor-primaria)] rounded-[50%] absolute left-[5vw] w-[100px] h-[100px] xl:top-[15vh]'></div>
+                    md:flex md:top-[18vh] justify-center items-center bg-[url(/imgs/self/logoPiscando.png)] bg-no-repeat bg-center bg-[var(--cor-primaria)] rounded-[50%] absolute left-[5vw] w-[100px] h-[100px] xl:top-[22vh]'></div>
                     <ConteudoForm/>
                 </div>
                 <div className='flex items-center gap-[12%] m-[1.3vw_0_1.8vw_0]
