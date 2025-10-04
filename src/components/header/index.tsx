@@ -45,7 +45,7 @@ export default function Header() {
                     <TitleComp/>
                 <div className="animate-on-scroll flex justify-between">
                     <img
-                        className="h-[250px]"
+                        className="h-[300px]"
                         src="/imgs/icons/sla.jpeg"
                         alt="Foto do desenvolvedor"
                     />

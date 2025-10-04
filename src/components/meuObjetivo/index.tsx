@@ -4,6 +4,7 @@ import LottieWord from '../lottieAnimate/lottieWord';
 import { useRef, useEffect } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
+import CircleText from '../circleTag/circleTag';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -30,7 +31,7 @@ export default function MeuObjetivo() {
                     trigger: containerRef.current,
                     start: 'top 100%',
                     end: 'bottom 0%',
-                    scrub: 1.3, // suaviza o movimento com delay
+                    scrub: 1.5, // suaviza o movimento com delay
                 },
             }
         )
@@ -111,7 +112,7 @@ export default function MeuObjetivo() {
             </div>
             </div>
             <div className='animate-on-scroll-lottie w-[50vw] flex justify-end'>
-                <LottieWord/>
+                <CircleText/>
                 </div>
     </div>
     );
