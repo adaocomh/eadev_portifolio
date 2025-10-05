@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 
 export default function TextCircle() {
   const [letters, setLetters] = useState<string[]>([]);
-  const content = "© code by É.adão · ";
+  const content = "© code by É. Adão. ";
   const radius = 120;
 
   // Gerar letras apenas uma vez
@@ -22,7 +22,7 @@ export default function TextCircle() {
       <div
         className="m-auto origin-center"
         style={{
-          transform: "rotateY(45deg) rotate(-45deg)",
+          transform: "rotateX(20deg) rotate(-20deg)",
           transformStyle: "preserve-3d",
         }}
       >
@@ -50,10 +50,10 @@ export default function TextCircle() {
       <style jsx>{`
         @keyframes spinY {
           0% {
-            transform: rotateY(0deg);
+            transform: rotateY(1turn);
           }
           100% {
-            transform: rotateY(1turn);
+            transform: rotateY(0deg);
           }
         }
       `}</style>
