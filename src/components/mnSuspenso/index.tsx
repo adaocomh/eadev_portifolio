@@ -51,13 +51,13 @@ export default function MenuSuspenso() {
 
   return (
     <div className="flex justify-between items-center w-[100vw] p-[0px_80px] transition-all duration-500">
-      <div className={`hover:bg-[#474837] hover:translate-y-[-4px] hover:transition-all hover:shadow-[0px_3px_8px_rgba(0,0,0,0.3)] p-[20px] rounded-[50px] transition-[background] duration-300 ${overFooter ? "bg-[#3F4030] text-(--cor-primaria) border-[0.1px] borde-(--cor-primaria)" : scrolled ? "bg-[#f1ebdf90] shadow-[0px_8px_10px_rgba(0,0,0,0.05)] transition-all duration-600" : "transition-all duration-600"}`}>
+      <div className={`hover:translate-y-[-4px] hover:transition-all hover:shadow-[0px_3px_8px_rgba(0,0,0,0.3)] p-[20px] rounded-[50px] transition-[background] duration-300 ${overFooter ? "text-(--cor-primaria) border-[0.1px] borde-(--cor-primaria)" : scrolled ? "bg-transparent backdrop-blur-md shadow-[0px_8px_10px_rgba(0,0,0,0.05)] transition-all duration-600" : "transition-all duration-600"}`}>
         <p className="cursor-pointer font-light">
           ⓒ Code by É. Adão
         </p>
       </div>
       <nav>
-        <ul className={`hidden rounded-[50px] md:flex md:flex-row md:gap-[20px] md:p-[20px] transition-[background] duration-300 ${overFooter ? "bg-[#3F4030] text-(--cor-primaria) border-[0.1px] borde-(--cor-primaria)" : scrolled ? "bg-[#f1ebdf90] shadow-[0px_8px_10px_rgba(0,0,0,0.05)] transition-all duration-600" : "transition-all duration-600"}}`}>
+        <ul className={`hidden rounded-[50px] md:flex md:flex-row md:gap-[20px] md:p-[20px] transition-[background] duration-300 ${overFooter ? "text-(--cor-primaria) border-[0.1px] borde-(--cor-primaria)" : scrolled ? "bg-transparent backdrop-blur-md shadow-[0px_8px_10px_rgba(0,0,0,0.05)] transition-all duration-600" : "transition-all duration-600"}}`}>
           <li className="cursor-pointer hover:translate-y-[-1px] hover:transition-all hover:duration-300 hover:text-shadow-[0px_5px_15px_rgba(0,0,0,0.3)]" onClick={() => scrollSection("sS2")}>Meu objetivo</li>
           <li className="cursor-pointer hover:translate-y-[-1px] hover:transition-all hover:duration-300 hover:text-shadow-[0px_5px_15px_rgba(0,0,0,0.3)]" onClick={() => scrollSection("aPS2")}>Demo.</li>
           <li className="cursor-pointer hover:translate-y-[-1px] hover:transition-all hover:duration-300 hover:text-shadow-[0px_5px_15px_rgba(0,0,0,0.3)]" onClick={() => scrollSection("footerS4")}>Contato</li>
