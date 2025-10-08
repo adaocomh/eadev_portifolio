@@ -23,7 +23,7 @@ export default function MeuObjetivo() {
             { opacity: 1, y: 300 },
             {
                 opacity: 1,
-                y:"-" + 170,
+                y:"-" + 225,
                 duration: 0.5,
                 ease: 'power2.out',
                 stagger: 0, // cada elemento aparece com 0.3s de diferença

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import FooterContato from "@/components/footerContato";
 
 export const metadata: Metadata = {
   title: "É. Adão Dev.",

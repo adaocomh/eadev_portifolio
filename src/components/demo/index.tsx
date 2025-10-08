@@ -8,17 +8,17 @@ gsap.registerPlugin(ScrollTrigger);
 const projetos = [
     {
         name: "Atlas API",
-        img: "/imgs/icons/sla.jpeg",
+        img: "/imgs/icons/atlas-API.png",
         url: "https://example.com",
       },
       {
         name: "3XMEND",
-        img: "/imgs/icons/w-kindle.png",
+        img: "/imgs/icons/header-mend.png",
         url: "https://example.com",
       },
       {
         name: "RMAV engearia e contruções",
-        img: "/imgs/icons/IMG_3276.jpg",
+        img: "/imgs/icons/atlas-API.png",
         url: "https://example.com",
       },
 ]
@@ -65,7 +65,7 @@ export default function Demo(){
       }, []);
     
     return(
-        <div ref={containerRef} className='flex flex-col items-center w-[100vw] pb-[200px]'>
+        <div ref={containerRef} className='flex flex-col items-center w-[100vw] pb-[200px]' id='demo'>
                 <div className='animate-on-scroll-demo flex flex-col w-[80vw]'>
                     <div  className='flex items-center border-b-1 w-full h-[100px] px-[80px]'>
                         <p className='text-[16px] font-extralight opacity-50'>Demonstração</p>
@@ -80,22 +80,22 @@ export default function Demo(){
                               }}>
                                 
                                 <h3 className={`text-[2vw] text-[var(--cor-font)] ${hovered === p.name ? "translate-y-[4px] translate-x-[3px] transition-all duration-300 opacity-50" : ""}`}>{p.name}</h3>
-                                <img className={`w-[20px] h-[20px] ${hovered === p.name ? "translate-y-[-4px] translate-x-[3px] transition-all duration-300 animate-pulse" : ""}`} src="imgs/icons/up-right.png" alt="seta que indica direcionamento"/>
+                                <img className={`w-[20px] h-[20px] ${hovered === p.name ? "translate-y-[-4px] translate-x-[3px] transition-all duration-300 animate-bounce" : ""}`} src="imgs/icons/up-right.png" alt="seta que indica direcionamento"/>
                             </a>
                         ))}</div>
              
                 <div
           ref={displayRef}
-          className={`fixed w-[400px] h-[400px] border-1 border-black shadow-lg z-50 
-                  transition-opacity duration-300 bg-black
+          className={`fixed flex justify-center items-center w-[500px] h-[450px] rounded-[20px] z-50 
+                  transition-opacity duration-300 bg-[rgba(128,128,128,0.08)] backdrop-blur-md shadow-[inset_2.5px_2.5px_12px_rgba(255,255,255,0.18),2.5px_8px_10px_rgba(0,0,0,0.08)]
                   ${visible ? "opacity-100" : "opacity-0"}`}
         >
           {hovered && (
-            <img
-              src={projetos.find((p) => p.name === hovered)?.img || ""}
-              alt={hovered}
-              className="object-cover w-full h-full"
-            />
+              <img
+                src={projetos.find((p) => p.name === hovered)?.img || ""}
+                alt={hovered}
+                className="w-[450px]"
+              />
           )}
         </div>
       </div>
