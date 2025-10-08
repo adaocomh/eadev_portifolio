@@ -26,7 +26,7 @@ export function ConteudoForm(){
     }
     return(
         <div>
-            <h1 className='text-[var(--cor-primaria)] text-[5vh] mb-[5vh] font-medium text-center text-shadow-[0px_10px_15px_rgba(0,0,0,0.3)]
+            <h1 className='text-[var(--cor-primaria)] text-[5vh] mb-[5vh] font-medium text-center text-shadow-[0px_0px_10px_rgba(0,0,0,0.5)]
             md:text-[3vw] md:mb-[3vh]'>Vamos trabalhar juntos?</h1>
             <form ref={form} onSubmit={enviarEmail} className='grid grid-rows-[1fr_1fr_1fr_1fr_1fr] grid-cols-[repeat(4,1fr)] gap-[2vh] md:gap-[1.3vw] xl:gap-[0.8vw]'>
                 <label htmlFor='name' className='hidden'></label>

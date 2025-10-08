@@ -19,6 +19,7 @@ const projetos = [
 export default function Home() {
   const headerRef = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
+  const demoRef = useRef<HTMLDivElement>(null);
   const cardRef = useRef<HTMLDivElement>(null);
   const footerRef = useRef<HTMLDivElement>(null);
   const [hovered, setHovered] = useState<string | null>(null);
@@ -44,7 +45,7 @@ export default function Home() {
                 scrollTrigger: {
                     trigger: headerRef.current,
                     start: 'top 0%',
-                    end: 'bottom 10%',
+                    end: 'bottom 5%',
                     scrub: 0, // suaviza o movimento com delay
                 },
             }
@@ -76,9 +77,9 @@ export default function Home() {
     }, []);
 
     useEffect(() => {
-      if (!containerRef.current) return;
+      if (!demoRef.current) return;
 
-      const elements = containerRef.current.querySelectorAll('.animate-on-scroll-demo');
+      const elements = demoRef.current.querySelectorAll('.animate-on-scroll-demo');
 
       gsap.fromTo(
           elements,
@@ -90,7 +91,7 @@ export default function Home() {
               ease: 'power1.inOut',
               stagger: 0,
               scrollTrigger: {
-                  trigger: containerRef.current,
+                  trigger: demoRef.current,
                   start: 'top 50%',
                   end: 'center bottom',
                   scrub: 3,
@@ -169,29 +170,35 @@ export default function Home() {
         <nav className='fixed top-[20px] h-[100px] z-50'><MenuSuspenso/></nav>
         <header ref={headerRef} className="flex flex-col h-[100vh] p-[80px]  bg-[var(--cor-primaria)]" id="hdS1">
           <div className="flex flex-col justify-around h-[100%]">
-                <h2 className="animate-h2 max-w-[200px] text-start text-[4.5vh] text-[var(--cor-font)] 
-                    text-shadow-[0px_10px_15px_rgba(0,0,0,0.3)] ml-[15px] md:max-w-max md:text-[2.8vw]">
+            <div className="flex justify-start items-end gap-[80px]">
+                <img
+                    className="h-[300px]"
+                    src="/imgs/perfil/perfil.jpeg"
+                    alt="Foto do desenvolvedor"
+                />
+                <div className='flex flex-col'>
+                    <h2 className="text-start text-[60px] text-[var(--cor-font)]
+                    text-shadow-[0px_0px_10px_rgba(0,0,0,0.3)]">
                     Dev.<br /> Front-end freelancer<br />
-                </h2>
-                    <TitleComp/>
-                <div className="animate-on-scroll flex justify-between">
-                    <img
-                        className="h-[300px]"
-                        src="/imgs/perfil/perfil.jpeg"
-                        alt="Foto do desenvolvedor"
-                    />
-                    <p className="title self-end font-extralight 
-                        text-[2.9vh] text-[var(--cor-font)] 
-                        text-shadow-[0px_10px_15px_rgba(0,0,0,0.3)] md:text-[1.6rem]">
-                        Construindo experiências interativas e intuitivas na web.
-                    </p>
+                                </h2>
+                                <p className="title self-end font-extralight
+                    text-[2.9vh] text-[var(--cor-font)]
+                    text-shadow-[0px_0px_10px_rgba(0,0,0,0.3)] md:text-[1.6rem]">
+                    Construindo experiências interativas e intuitivas na web.
+                                </p>
                 </div>
+            </div>
+            <div className='animate-on-scroll '>
+                
+                <TitleComp/>
+            </div>
+            
           </div>
         </header>
         <main  ref={containerRef} className='bg-[var(--cor-primaria)]'>
           <section className='flex flex-col justify-center items-center gap-[50px] w-[100vw] overflow-hidden py-[200px]' id='sS2'>
           <div className='flex justify-center items-center'>
-            <div className='flex justify-between w-[70vw] text-shadow-[0px_2px_5px_rgba(0,0,0,0.3)] xl:text-shadow-[0px_3px_8px_rgba(0,0,0,0.3)]'>
+            <div className='flex justify-between w-[70vw] text-shadow-[0px_0px_10px_rgba(0,0,0,0.3)]'>
                 <div className='hidden
                 md:block md:text-[2vw] md:font-extralight md:text-[var(--cor-font)]
                 '>
@@ -265,13 +272,13 @@ export default function Home() {
                 <CircleText/>
                 </div>
           </section>
-          <section className='flex flex-col items-center w-[100vw] pb-[200px]' id='demo'>
+          <section ref={demoRef} className='flex flex-col items-center w-[100vw] pb-[200px]' id='demo'>
           <div className='animate-on-scroll-demo flex flex-col w-[80vw]'>
                     <div  className='flex items-center border-b-1 w-full h-[100px] px-[80px]'>
                         <p className='text-[16px] font-extralight opacity-50'>Demonstração</p>
                     </div>
                         {Data.demo.map((d)=> (
-                            <a key={d.name} href={d.url} target="_blank" rel="noopener noreferrer" className={`flex justify-between items-center border-b-1 w-full h-[100px] px-[80px] transition-color duration-300`}
+                            <a key={d.name} href={d.url} target="_blank" rel="noopener noreferrer" className={`flex justify-between items-center border-b-1 w-full h-[100px] px-[80px] transition-color duration-300 z-30`}
                             onMouseEnter={() => setHovered(d.name)}
                             onMouseOver={() => setVisible(true)}
                             onMouseOut={()=> {
@@ -279,7 +286,7 @@ export default function Home() {
                               setVisible(false)
                               }}>
           
-                                <h3 className={`text-[2vw] text-[var(--cor-font)] ${hovered === d.name ? "translate-y-[4px] translate-x-[3px] transition-all duration-300 opacity-50" : ""}`}>{d.name}</h3>
+                                <h3 className={`pointer-events-none text-[2vw] text-[var(--cor-font)] text-shadow-[0px_0px_10px_rgba(0,0,0,0.3)] cursor- ${hovered === d.name ? "translate-y-[4px] translate-x-[3px] transition-all duration-300 opacity-50" : ""}`}>{d.name}</h3>
                                 <img className={`w-[20px] h-[20px] ${hovered === d.name ? "translate-y-[-4px] translate-x-[3px] transition-all duration-300 animate-bounce" : ""}`} src="imgs/icons/up-right.png" alt="seta que indica direcionamento"/>
                             </a>
                         ))}</div>
@@ -314,8 +321,8 @@ export default function Home() {
                     <div className='flex w-[100%] justify-between'>
         
                         <div ref={ref} className={`${visivel ? 'flex items-center gap-[2vw] translate-y-[0] transition-all duration-1000 opacity-100 md:flex-row' : 'flex flex-col items-center gap-[2vw] translate-y-[19%] transition-all duration-1000 opacity-0 md:flex-row'}`}>
-                            <a ref={emailRef} className='w-max rounded-[50px] font-extralight text-[16px] p-[2vw] text-center hover:translate-y-[-4px] hover:transition-all hover:duration-500 hover:shadow-[inset_2px_2px_8px_rgba(255,255,255,0.08),2px_8px_12px_rgba(0,0,0,0.15)] bg-[rgba(128,128,128,0.05)] backdrop-blur-xs text-(--cor-primaria) shadow-[inset_2px_2px_8px_rgba(255,255,255,0.08),2px_8px_10px_rgba(0,0,0,0.08)]' onClick={copiarEmail}>{emailCopiadpo ? 'E-mail copiado!' : 'eadevcontato@gmail.com'}</a>
-                            <a href='https://wa.me/48988325514?text=Olá,%20Éverton!%20Gostaria%20de%20falar%20mais%20sobre%20seus%20serviços%20oferecido.' target='_blank' rel='noopener noreferrer' className='w-max rounded-[50px] font-extralight text-[16px] p-[2vw] text-center  hover:translate-y-[-4px] hover:transition-all hover:duration-500 hover:shadow-[inset_2px_2px_8px_rgba(255,255,255,0.08),2px_8px_12px_rgba(0,0,0,0.15)] bg-[rgba(128,128,128,0.05)] backdrop-blur-xs text-(--cor-primaria) shadow-[inset_2px_2px_8px_rgba(255,255,255,0.08),2px_8px_10px_rgba(0,0,0,0.08)]'>+55 (48) 98832-5514</a>
+                            <a ref={emailRef} className='w-max rounded-[50px] font-extralight text-[16px] p-[2vw] text-center text-shadow-[0px_0px_10px_rgba(0,0,0,0.3)] hover:translate-y-[-4px] hover:transition-all hover:duration-500 hover:shadow-[inset_2px_2px_8px_rgba(255,255,255,0.08),2px_8px_12px_rgba(0,0,0,0.15)] bg-[rgba(128,128,128,0.05)] backdrop-blur-xs text-(--cor-primaria) shadow-[inset_2px_2px_8px_rgba(255,255,255,0.08),2px_8px_10px_rgba(0,0,0,0.08)]' onClick={copiarEmail}>{emailCopiadpo ? 'E-mail copiado!' : 'eadevcontato@gmail.com'}</a>
+                            <a href='https://wa.me/48988325514?text=Olá,%20Éverton!%20Gostaria%20de%20falar%20mais%20sobre%20seus%20serviços%20oferecido.' target='_blank' rel='noopener noreferrer' className='w-max rounded-[50px] font-extralight text-[16px] p-[2vw] text-center text-shadow-[0px_0px_10px_rgba(0,0,0,0.3)] hover:translate-y-[-4px] hover:transition-all hover:duration-500 hover:shadow-[inset_2px_2px_8px_rgba(255,255,255,0.08),2px_8px_12px_rgba(0,0,0,0.15)] bg-[rgba(128,128,128,0.05)] backdrop-blur-xs text-(--cor-primaria) shadow-[inset_2px_2px_8px_rgba(255,255,255,0.08),2px_8px_10px_rgba(0,0,0,0.08)]'>+55 (48) 98832-5514</a>
                         </div>
                     </div>)}
                     </SlideEffect>
