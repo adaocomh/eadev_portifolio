@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import FooterContato from "@/components/footerContato";
 
 export const metadata: Metadata = {
   title: "É. Adão Dev.",
@@ -16,7 +15,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="pt" className="translated-ltr">
+    <html lang="pt" className="translated-ltr bg-[var(--cor-terciario)]">
       <body
         cz-shortcut-listen="true"
         className={'antialiased'}
