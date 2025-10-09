@@ -33,7 +33,7 @@ export function Machine({ text: fullText }: MachineProps) {
     }, [])
     return (
     <>
-        <h1 className='text-[13vw] text-[rgba(0,0,0,0.9)] text-shadow-[0px_0px_10px_rgba(0,0,0,0.3)]'>
+        <h1 className='text-[280px] text-[rgba(0,0,0,0.9)] text-shadow-[0px_0px_10px_rgba(0,0,0,0.3)]'>
             {text[0]}<span className='text-[var(--cor-secundaria)]'>{text[1]}</span>{text.slice(2, 7)}
             <span className='text-[var(--cor-secundaria)]'>{text[7]}</span>{text.slice(8, 12)}
             {mostrarCursor && <span className='text-[var(--cor-secundaria)]'>|</span>}

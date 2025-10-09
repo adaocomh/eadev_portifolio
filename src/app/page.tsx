@@ -12,10 +12,6 @@ import Data from "../arquivoDemo/demo.json"
 
 gsap.registerPlugin(ScrollTrigger);
 
-const projetos = [
-  ,
-]
-
 export default function Home() {
   const headerRef = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -83,7 +79,7 @@ export default function Home() {
 
       gsap.fromTo(
           elements,
-          { opacity: 0, y: 50 },
+          { opacity: 0, y: 100 },
           {
               opacity: 1,
               y: 0,
@@ -92,7 +88,7 @@ export default function Home() {
               stagger: 0,
               scrollTrigger: {
                   trigger: demoRef.current,
-                  start: 'top 50%',
+                  start: 'top 80%',
                   end: 'center bottom',
                   scrub: 3,
               },
@@ -120,7 +116,7 @@ export default function Home() {
 
       gsap.fromTo(
           elements,
-          { opacity: 0.50, y: 50 + "%" },
+          { opacity: 0, y: 0 },
           {
               opacity: 1,
               y: 0,
@@ -130,8 +126,8 @@ export default function Home() {
               scrollTrigger: {
                   trigger: footerRef.current,
                   start: 'top 60%',
-                  end: 'top 10%',
-                  scrub: 3,
+                  end: 'top top',
+                  scrub: 2,
               },
           }
       )
@@ -142,8 +138,8 @@ export default function Home() {
           pinInstance = ScrollTrigger.create({
               trigger: section,
               start: 'top 20%',
-              end: 'top top',
-              scrub: 0.5,
+              end: '+=150%',
+              scrub: 1,
               pin: true,
               pinSpacing: false,
           })
@@ -169,14 +165,14 @@ export default function Home() {
     <>
         <nav className='fixed top-[20px] h-[100px] z-50'><MenuSuspenso/></nav>
         <header ref={headerRef} className="flex flex-col h-[100vh] p-[80px]  bg-[var(--cor-primaria)]" id="hdS1">
-          <div className="flex flex-col justify-around h-[100%]">
+          <div className="flex flex-col justify-end gap-[30px] h-[100%]">
             <div className="flex justify-start items-end gap-[80px]">
                 <img
-                    className="h-[300px]"
+                    className="h-[330px] ml-[20px]"
                     src="/imgs/perfil/perfil.jpeg"
                     alt="Foto do desenvolvedor"
                 />
-                <div className='flex flex-col'>
+                <div className='flex flex-col gap-[10px]'>
                     <h2 className="text-start text-[60px] text-[var(--cor-font)]
                     text-shadow-[0px_0px_10px_rgba(0,0,0,0.3)]">
                     Dev.<br /> Front-end freelancer<br />
@@ -188,15 +184,14 @@ export default function Home() {
                                 </p>
                 </div>
             </div>
-            <div className='animate-on-scroll '>
-                
+            <div className='animate-on-scroll'>
                 <TitleComp/>
             </div>
             
           </div>
         </header>
         <main  ref={containerRef} className='bg-[var(--cor-primaria)]'>
-          <section className='flex flex-col justify-center items-center gap-[50px] w-[100vw] overflow-hidden py-[200px]' id='sS2'>
+          <section className='flex flex-col justify-center items-center gap-[50px] w-[100vw] overflow-hidden p-[200px_0px_50px_0px]' id='sS2'>
           <div className='flex justify-center items-center'>
             <div className='flex justify-between w-[70vw] text-shadow-[0px_0px_10px_rgba(0,0,0,0.3)]'>
                 <div className='hidden
@@ -307,7 +302,7 @@ export default function Home() {
                 </div>
           </section>
         </main>
-        <footer ref={footerRef} className='bg-gradient-to-t from-[var(--cor-terciario)] from-30% to-[var(--cor-primaria)] to-70% h-[100vh] ' id="footerS4">
+        <footer ref={footerRef} className='bg-[var(--cor-primaria)] h-[100vh] ' id="footerS4">
         <div className='animate-on-scroll-form sticky top-[0px] flex justify-center items-center bg-[var(--cor-terciario)] h-[100vh]'>
                 <div className='flex flex-col justify-center max-w-[80vw]'>
                     <ConteudoForm/>
