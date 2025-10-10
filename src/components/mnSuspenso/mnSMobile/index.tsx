@@ -77,15 +77,15 @@ export default function MnSmobile() {
             <div className="hoverSeta">
               <span
                 className={`absolute left-0 block h-[2.1px] rounded-full ${overFooter ? aberto ? "g-[var(--cor-font)] duration-600" : "bg-[var(--cor-primaria)] duration-600" : "bg-[var(--cor-font)] duration-600"} transition-all duration-700 ease-in-out hoverSeta
-                  ${aberto ? "w-[30px] rotate-[135deg]" : "top-[5px] w-[20px] rotate-0"} listras`}
+                  ${aberto ? "w-[30px] rotate-[135deg]" : "top-[5px] w-[20px] rotate-0"}`}
               />
               <span
                 className={`absolute left-0 block h-[2.1px] w-[30px] rounded-lg ${overFooter ? aberto ? "bg-[var(--cor-font)] duration-600" : "bg-[var(--cor-primaria)] duration-600" : "bg-[var(--cor-font)] duration-600"}  transition-all duration-500 ease-in-out hoverSeta
-                  ${aberto ? "opacity-0" : "top-[14px] opacity-100"} listras`}
+                  ${aberto ? "opacity-0" : "top-[14px] opacity-100"}`}
               />
               <span
                 className={`absolute left-0 block h-[2.1px] rounded-lg ${overFooter ? aberto ? "g-[var(--cor-font)] duration-600" : "bg-[var(--cor-primaria)] duration-600" : "bg-[var(--cor-font)] duration-600"}  transition-all duration-700 ease-in-out hoverSeta
-                  ${aberto ? "w-[30px] -rotate-[135deg]" : "top-[23px] w-[25px] rotate-0"} listras`}
+                  ${aberto ? "w-[30px] -rotate-[135deg]" : "top-[23px] w-[25px] rotate-0"}`}
               />
             </div>
           </button>
