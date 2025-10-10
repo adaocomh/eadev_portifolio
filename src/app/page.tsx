@@ -163,7 +163,7 @@ export default function Home() {
 
   return (
     <>
-        <nav className='fixed h-[100px] z-50'><MenuSuspenso/></nav>
+        <nav className='fixed w-[100vw] h-[100px] z-50 md:p-[20px_80px_20px_80px] p-[20px_30px_20px_30px]'><MenuSuspenso/></nav>
         <header ref={headerRef} className="flex flex-col h-[100vh] p-[80px]  bg-[var(--cor-primaria)]" id="hdS1">
           <div className="flex flex-col justify-end gap-[30px] h-[100%]">
             <div className="flex justify-start items-end gap-[80px]">
