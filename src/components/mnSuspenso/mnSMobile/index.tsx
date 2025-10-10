@@ -51,9 +51,9 @@ export default function MnSmobile() {
 
       <ul className={`w-full h-full flex-col justify-end items-start p-[100px] gap-[50px] md:hidden list-none ${aberto ? 'flex' : 'hidden'}`}>
                                 <li className='w-max text-[var(--cor-terciario)] text-[60px] font-black slideMenu1 hover:translate-y-[-4px] hover:transition-all rounded-[50px] text-shadow-[0px_0px_10px_rgba(0,0,0,0.08)] transition-all duration-500' onClick={()=>{scrollSection("sS2")}}>Meu objetivo</li>
-                                <li className='w-max text-[var(--cor-terciario)] text-[60px] font-black slideMenu1 hover:translate-y-[-4px] hover:transition-all rounded-[50px] text-shadow-[0px_0px_10px_rgba(0,0,0,0.08)] transition-all duration-500' onClick={()=>{scrollSection("aPS2")}}>Demo.</li>
-                                <li className='w-max text-[var(--cor-terciario)] text-[60px] font-black slideMenu1 hover:translate-y-[-4px] hover:transition-all rounded-[50px] text-shadow-[0px_0px_10px_rgba(0,0,0,0.08)] transition-all duration-500' onClick={()=>{scrollSection("footerS4")}}>Contato</li>
-                                <p className="cursor-pointer font-light hover:translate-y-[-4px] hover:transition-all rounded-[50px] text-shadow-[0px_0px_10px_rgba(0,0,0,0.3)] transition-all duration-500" onClick={() => scrollSection("hdS1")}>
+                                <li className='w-max text-[var(--cor-terciario)] text-[60px] font-black slideMenu2 hover:translate-y-[-4px] hover:transition-all rounded-[50px] text-shadow-[0px_0px_10px_rgba(0,0,0,0.08)] transition-all duration-500' onClick={()=>{scrollSection("aPS2")}}>Demo.</li>
+                                <li className='w-max text-[var(--cor-terciario)] text-[60px] font-black slideMenu3 hover:translate-y-[-4px] hover:transition-all rounded-[50px] text-shadow-[0px_0px_10px_rgba(0,0,0,0.08)] transition-all duration-500' onClick={()=>{scrollSection("footerS4")}}>Contato</li>
+                                <p className="cursor-pointer font-light hover:translate-y-[-4px] hover:transition-all rounded-[50px] text-shadow-[0px_0px_10px_rgba(0,0,0,0.3)] transition-all duration-500 slideMenu4" onClick={() => scrollSection("hdS1")}>
                                 ⓒ Code by É. Adão
                                 </p>
                     </ul>
