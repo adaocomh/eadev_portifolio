@@ -19,6 +19,18 @@ export default function MnSmobile() {
           }, []);
 
           useEffect(() => {
+            if (aberto) {
+              document.body.style.overflow = "hidden";
+            } else {
+              document.body.style.overflow = "auto";
+            }
+        
+            return () => {
+              document.body.style.overflow = "auto";
+            };
+          }, [aberto]);
+
+          useEffect(() => {
             const footer = document.querySelector("#footerS4")
             if (!footer) return
         
@@ -46,7 +58,7 @@ export default function MnSmobile() {
           }, [])
 
     return(
-        <div className={`md:hidden flex justify-center items-center w-[70px] h-[70px] p-[20px] rounded-full cursor-pointer transition-all duration-500 ease-in-out z-40 ${overFooter ? "bg-[rgba(128,128,128,0.05)] backdrop-blur-xs shadow-[inset_2px_2px_8px_rgba(255,255,255,0.08),2px_8px_10px_rgba(0,0,0,0.08)] hover:shadow-[inset_2px_2px_8px_rgba(255,255,255,0.08),2px_8px_12px_rgba(0,0,0,0.15)]" : scrolled ? "bg-[rgba(128,128,128,0.05)] backdrop-blur-xs shadow-[inset_2px_2px_8px_rgba(255,255,255,0.1),2px_8px_10px_rgba(0,0,0,0.08)]" : ""}`} onClick={() => setAberto(!aberto)}>
+        <div className={`md:hidden flex justify-center items-center w-[70px] h-[70px] p-[20px] rounded-full cursor-pointer transition-all duration-500 ease-in-out z-40 ${aberto ? "" : overFooter ? "bg-[rgba(128,128,128,0.05)] backdrop-blur-xs shadow-[inset_2px_2px_8px_rgba(255,255,255,0.08),2px_8px_10px_rgba(0,0,0,0.08)] hover:shadow-[inset_2px_2px_8px_rgba(255,255,255,0.08),2px_8px_12px_rgba(0,0,0,0.15)]" : scrolled ? "bg-[rgba(128,128,128,0.05)] backdrop-blur-xs shadow-[inset_2px_2px_8px_rgba(255,255,255,0.1),2px_8px_10px_rgba(0,0,0,0.08)]" : ""}`} onClick={() => setAberto(!aberto)}>
           <div className={`absolute flex justify-center items-center w-0 h-0 bg-[rgba(245,236,219,0.95)] backdrop-blur-xs transition-all duration-600 ease-in-out rounded-[100%] ${aberto ? "right-[0px] top-[0px] w-[100vw] h-[100vh] rounded-none" : ""}`}>
             <ul className={`w-full h-full flex-col justify-end items-start p-[100px] gap-[50px] md:hidden list-none ${aberto ? 'flex' : 'hidden'}`}>
                                       <li className='w-max text-[var(--cor-terciario)] text-[60px] font-black slideMenu1 hover:translate-y-[-4px] hover:transition-all rounded-[50px] text-shadow-[0px_0px_10px_rgba(0,0,0,0.08)] transition-all duration-500' onClick={()=>{scrollSection("sS2")}}>Meu objetivo</li>
