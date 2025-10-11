@@ -178,9 +178,9 @@ export default function Home() {
           </div>
         </header>
         <main  ref={containerRef} className='bg-[var(--cor-primaria)]'>
-          <section className='flex flex-col justify-center items-center gap-[50px] w-[100vw] overflow-hidden p-[200px_0px_50px_0px]' id='sS2'>
+          <section className='flex flex-col justify-center items-center gap-[50px] w-[100vw] overflow-hidden p-[100px_0px_0px_0px] md:p-[200px_0px_50px_0px]' id='sS2'>
           <div className='flex justify-center items-center'>
-            <div className='flex justify-between w-[70vw] text-shadow-[0px_0px_10px_rgba(0,0,0,0.3)]'>
+            <div className='flex flex-col items-center justify-center w-[90vw] md:flex-row md:justify-between md:items-start md:w-[70vw] text-shadow-[0px_0px_10px_rgba(0,0,0,0.3)]'>
                 <div className='hidden
                 md:block md:text-[2vw] md:font-extralight md:text-[var(--cor-font)]
                 '>
@@ -215,7 +215,7 @@ export default function Home() {
                         ))}
                         </div>
                     </div>
-                <div className='md:hidden font-extralight text-[3.2vh] text-[var(--cor-font)]'>
+                <div className='md:hidden w-full font-extralight text-[3.5vh] text-[var(--cor-font)]'>
                     {["Buscando entregar projetos",
                       "interativos e intuitivos; sem",
                       "descartar suas intenções,",
@@ -229,18 +229,17 @@ export default function Home() {
                         </div>
                     ))}
                 </div>
-                    <div className='md:hidden overflow-hidden m-[3vh_0]'>
+                    <div className='md:hidden w-full overflow-hidden m-[3vh_0]'>
                         <SlideEffect<HTMLDivElement>>{(ref, visivel) => (
                         <div ref={ref} className={`${visivel ? 'w-[75vw] border-b-1 pb-[5px] font-normal text-[5vh] text-[var(--cor-font)] translate-y-[0%] transition-all duration-1200 opacity-100' : 'w-[75vw] border-b-1 pb-[5px] font-normal text-[5vh] text-[var(--cor-font)] translate-y-[89%] transition-all duration-1200 opacity-0'}`}>Posso atuar...</div>)}</SlideEffect>
                     </div>
-                <div className='md:hidden font-extralight text-[3.2vh] text-[var(--cor-font)]'>
-                    {["transformando layouts",
-                      "pré-definidos em código",
-                      "funcional ou colaborar na",
-                      "criação do projeto desde",
-                      " o início, unindo design e ",
-                      "desenvolvimento para uma",
-                      "solução completa."].map((text, index) => (
+                <div className='md:hidden w-full font-extralight text-[3vh] text-[var(--cor-font)]'>
+                    {["transformando layouts pré-",
+                      "definidos em código funcional ou",
+                      "colaborar na criação do projeto",
+                      "desde o início, unindo design e",
+                      "desenvolvimento para uma solução",
+                      "completa."].map((text, index) => (
                         <div key={index} className='overflow-hidden'>
                             <SlideEffect<HTMLDivElement>>{(ref, visivel) => (
                             <div ref={ref} className={`${visivel ? 'translate-y-[0%] transition-all duration-1200 opacity-100' : 'translate-y-[89%] transition-all duration-1200 opacity-0'}`}>{text}</div>
@@ -252,7 +251,7 @@ export default function Home() {
             </div>
             <div className='animate-on-scroll-lottie w-[50vw] flex justify-end'>
                 <CircleText/>
-                </div>
+            </div>
           </section>
           <section ref={demoRef} className='flex flex-col items-center w-[100vw] pb-[200px]' id='demo'>
           <div className='animate-on-scroll-demo flex flex-col w-[80vw]'>
