@@ -124,7 +124,7 @@ export default function Home() {
               stagger: 0,
               scrollTrigger: {
                   trigger: footerRef.current,
-                  start: 'top 60%',
+                  start: 'top 50%',
                   end: 'top top',
                   scrub: 2,
               },
@@ -215,7 +215,7 @@ export default function Home() {
                         ))}
                         </div>
                     </div>
-                <div className='md:hidden w-full font-extralight text-[3.5vh] text-[var(--cor-font)]'>
+                <div className='md:hidden w-full font-extralight text-[6.5vw] text-[var(--cor-font)]'>
                     {["Buscando entregar projetos",
                       "interativos e intuitivos; sem",
                       "descartar suas intenções,",
@@ -233,7 +233,7 @@ export default function Home() {
                         <SlideEffect<HTMLDivElement>>{(ref, visivel) => (
                         <div ref={ref} className={`${visivel ? 'w-[75vw] border-b-1 pb-[5px] font-normal text-[5vh] text-[var(--cor-font)] translate-y-[0%] transition-all duration-1200 opacity-100' : 'w-[75vw] border-b-1 pb-[5px] font-normal text-[5vh] text-[var(--cor-font)] translate-y-[89%] transition-all duration-1200 opacity-0'}`}>Posso atuar...</div>)}</SlideEffect>
                     </div>
-                <div className='md:hidden w-full font-extralight text-[3vh] text-[var(--cor-font)]'>
+                <div className='md:hidden w-full font-extralight text-[5.5vw] text-[var(--cor-font)]'>
                     {["transformando layouts pré-",
                       "definidos em código funcional ou",
                       "colaborar na criação do projeto",
@@ -253,8 +253,8 @@ export default function Home() {
                 <CircleText/>
             </div>
           </section>
-          <section ref={demoRef} className='flex flex-col items-center w-[100vw] pb-[200px]' id='demo'>
-          <div className='animate-on-scroll-demo flex flex-col w-[80vw]'>
+          <section ref={demoRef} className='flex flex-col items-center w-[100vw] pb-[100px] md:pb-[200px]' id='demo'>
+          <div className='hidden animate-on-scroll-demo md:flex flex-col w-[80vw]'>
                     <div  className='flex items-center border-b-1 w-full h-[100px] px-[80px]'>
                         <p className='text-[16px] font-extralight opacity-50'>Demonstração</p>
                     </div>
@@ -272,19 +272,20 @@ export default function Home() {
                             </a>
                         ))}</div>
           
-                <div
-          ref={cardRef}
-          className={`fixed flex justify-center items-center w-[500px] h-[450px] rounded-[20px] z-50
-                  transition-opacity duration-300 bg-[rgba(128,128,128,0.08)] backdrop-blur-md shadow-[inset_2.5px_2.5px_12px_rgba(255,255,255,0.18),2.5px_8px_10px_rgba(0,0,0,0.08)]
-                  ${visible ? "opacity-100" : "opacity-0"}`}
-                >
-          {hovered && (
-              <img
-                src={Data.demo.find((d) => d.name === hovered)?.img || ""}
-                alt={hovered}
-                className="w-[450px]"
-              />
-          )}
+                <div ref={cardRef} className={`fixed flex justify-center items-center w-[500px] h-[450px] rounded-[20px] z-50 transition-opacity duration-300 bg-[rgba(128,128,128,0.08)] backdrop-blur-md shadow-[inset_2.5px_2.5px_12px_rgba(255,255,255,0.18),2.5px_8px_10px_rgba(0,0,0,0.08)] ${visible ? "opacity-100" : "opacity-0"}`}>
+                    {hovered && (
+                        <img src={Data.demo.find((d) => d.name === hovered)?.img || ""} alt={hovered} className="w-[450px]"/>
+                    )}</div>
+                <div className='md:hidden'>
+                    <div className='flex flex-col gap-[30px]'>
+                    <div  className='flex items-center w-full'>
+                        <p className='text-[16px] font-extralight opacity-50'>Demonstração</p>
+                    </div>
+                    {Data.demo.map((d) => (<div key={d.name} className={`flex flex-col justify-center items-center w-[90vw] p-[0px_0px_20px_0px] rounded-[20px] transition-opacity duration-300 bg-[rgba(128,128,128,0.08)] backdrop-blur-md shadow-[inset_2.5px_2.5px_12px_rgba(255,255,255,0.18),2.5px_8px_10px_rgba(0,0,0,0.08)]`}>
+                        <h1 className='text-[22px] text-shadow-[0px_0px_10px_rgba(0,0,0,0.3)] font-extralight opacity-50 self-start p-[20px]'>{d.name}</h1>
+                        <img src={d.img} alt={d.name} className="w-[80vw]"/>
+                    </div>))}
+                </div>
                 </div>
           </section>
         </main>
