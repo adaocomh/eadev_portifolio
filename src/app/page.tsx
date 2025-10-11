@@ -162,34 +162,19 @@ export default function Home() {
 
   return (
     <>
-        <nav className='fixed w-[100vw] h-[100px] z-50 md:p-[20px_80px_20px_80px] p-[20px_30px_20px_30px]'><MenuSuspenso/></nav>
-        <header ref={headerRef} className="flex flex-col h-[125vh] p-[20px] bg-[var(--cor-primaria)] lg:p-[80px_0px_0px_80px]" id="hdS1">
-          <div className="flex flex-col justify-end lg:justify-around h-[100%]">
-            <div className="flex justify-start items-end relative top-[50px] gap-[20px] lg:gap-[80px]">
-                <img
-                    className="h-[330px] lg:ml-[20px]"
-                    src="/imgs/perfil/perfil.jpeg"
-                    alt="Foto do desenvolvedor"
-                />
+        <nav className='fixed w-[100vw] h-[100px] p-[20px_20px_0px_20px] z-50 md:p-[20px_80px_20px_80px]'><MenuSuspenso/></nav>
+        <header ref={headerRef} className="flex flex-col h-[119vh] p-[20px_0px_0px_20px] bg-[var(--cor-primaria)] lg:p-[80px_0px_0px_80px]" id="hdS1">
+          <div className="flex flex-col justify-end h-[100%] md:gap-[60px]">
+            <div className="flex flex-col justify-center items-start pr-[20px] gap-[20px] md:flex-row md:justify-start md:items-end lg:gap-[80px]">
+                <img className="h-[300px] md:h-[330px]" src="/imgs/perfil/perfil.jpeg" alt="Foto do desenvolvedor"/>
                 <div className='flex flex-col gap-[10px]'>
-                    <h2 className="text-start text-[40px] text-[var(--cor-font)]
-                    text-shadow-[0px_0px_10px_rgba(0,0,0,0.3)] lg:text-[60px]">
-                    Dev.<br /> Front-end freelancer<br />
-                                </h2>
-                                <p className="title self-end font-extralight
-                                text-[18px]
-                     text-[var(--cor-font)]
-                    text-shadow-[0px_0px_10px_rgba(0,0,0,0.3)] lg:text-[30px]">
-                    Construindo experiências interativas e intuitivas na web.
-                                </p>
+                    <h2 className="text-start text-[35px] text-[var(--cor-font)] text-shadow-[0px_0px_10px_rgba(0,0,0,0.3)] md:text-[50px] lg:text-[60px]"> Dev.<br/> Front-end freelancer<br/></h2>
+                    <p className="text-[20px] font-extralight text-[var(--cor-font)] text-shadow-[0px_0px_10px_rgba(0,0,0,0.3)] md:text-[25px] lg:text-[30px]">Construindo experiências interativas e intuitivas na web.</p>
                 </div>
             </div>
-            <div className='hidden lg:flex h-[50vh] justify-end items-center font-[Barriecito] animate-on-scroll'>
-            <h1 className='hidden lg:inline text-[52vh] text-[rgba(0,0,0,0.9)] text-shadow-[0px_0px_10px_rgba(0,0,0,0.3)] '>
-            É<span className='text-[var(--cor-secundaria)]'>v</span>erton 
-            </h1>
+            <div className='flex justify-end items-center h-[25vh] font-[Barriecito] md:h-[50vh] animate-on-scroll'>
+            <h1 className='text-[28vw] text-[rgba(0,0,0,0.9)] text-shadow-[0px_0px_10px_rgba(0,0,0,0.3)]'>É<span className='text-[var(--cor-secundaria)]'>v</span>erton</h1>
             </div>
-            
           </div>
         </header>
         <main  ref={containerRef} className='bg-[var(--cor-primaria)]'>
