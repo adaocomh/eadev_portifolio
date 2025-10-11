@@ -25,22 +25,22 @@ export function ConteudoForm(){
     })
     }
     return(
-        <div>
-            <h1 className='text-[var(--cor-primaria)] text-[5vh] mb-[5vh] font-medium text-center text-shadow-[0px_0px_10px_rgba(0,0,0,0.5)]
+        <div className='flex flex-col'>
+            <h1 className='hidden md:inline-block text-[var(--cor-primaria)] text-[5vh] font-medium text-center text-shadow-[0px_0px_10px_rgba(0,0,0,0.5)]
             md:text-[3vw] md:mb-[3vh]'>Vamos trabalhar juntos?</h1>
             <form ref={form} onSubmit={enviarEmail} className='grid grid-rows-[1fr_1fr_1fr_1fr_1fr] grid-cols-[repeat(4,1fr)] gap-[2vh] md:gap-[1.3vw] xl:gap-[0.8vw]'>
                 <label htmlFor='name' className='hidden'></label>
-                <input type="text" id='name' name='name' className='w-[35vw] h-[4vh] col-[1/3] row-[1/2] p-[10px] border-none bg-[#737156] text-[var(--cor-primaria)] rounded-[10px] placeholder:text-[#3F4030] font-extralight text-[15px]
+                <input type="text" id='name' name='name' className='w-[100%] h-[5vh] col-[1/3] row-[1/2] p-[10px] border-none bg-[#737156] text-[var(--cor-primaria)] rounded-[10px] placeholder:text-[#3F4030] font-extralight text-[15px]
                 md:w-[25vw] shadow-[inset_2px_2px_8px_rgba(0,0,0,0.4)]' placeholder="Nome" required/>
 
                 <label htmlFor='email'  className='hidden'></label>
-                <input type="email" id='email' name='email' className='w-[35vw] h-[4vh] col-[3/5] row-[1/2] p-[10px] border-none bg-[#737156] text-[var(--cor-primaria)] rounded-[10px] placeholder:text-[#3F4030] font-extralight text-[15px]
+                <input type="email" id='email' name='email' className='w-[100%] h-[5vh] col-[3/5] row-[1/2] p-[10px] border-none bg-[#737156] text-[var(--cor-primaria)] rounded-[10px] placeholder:text-[#3F4030] font-extralight text-[15px]
                 md:w-[25vw] shadow-[inset_2px_2px_8px_rgba(0,0,0,0.4)]' placeholder="E-mail" required/>
 
                 <label htmlFor='areatxt' className='font-extralight text-[var(--cor-primaria)] text-[18px] col-[1] row-[3]'></label>
-                <textarea id='areatxt' name='message' className='col-[1/5] row-[2/7] p-[10px] border-none bg-[#737156] text-[var(--cor-primaria)] rounded-[10px] placeholder:text-[#3F4030] font-extralight text-[15px] shadow-[inset_2px_2px_8px_rgba(0,0,0,0.4)]' placeholder="Mensagem com seu intuito" required/>
+                <textarea id='areatxt' name='message' className='col-[1/5] row-[2/6] md:row-[2/7] p-[10px] border-none bg-[#737156] text-[var(--cor-primaria)] rounded-[10px] placeholder:text-[#3F4030] font-extralight text-[15px] shadow-[inset_2px_2px_8px_rgba(0,0,0,0.4)]' placeholder="Mensagem com seu intuito" required/>
 
-                <button type="submit" className='text-center hover:shadow-[inset_2px_2px_8px_rgba(255,255,255,0.08),2px_8px_12px_rgba(0,0,0,0.12)] bg-[rgba(128,128,128,0.05)] backdrop-blur-md shadow-[inset_2px_2px_8px_rgba(255,255,255,0.08),2px_8px_10px_rgba(0,0,0,0.08)] h-[5vh] col-[1/5] row-[7] font-normal text-[2.3vh] p-[5px] border-none text-[var(--cor-primaria)] rounded-[10px]
+                <button type="submit" className='text-center hover:shadow-[inset_2px_2px_8px_rgba(255,255,255,0.08),2px_8px_12px_rgba(0,0,0,0.12)] bg-[rgba(128,128,128,0.05)] backdrop-blur-md shadow-[inset_2px_2px_8px_rgba(255,255,255,0.08),2px_8px_10px_rgba(0,0,0,0.08)] h-[5vh] col-[1/5] row-[6/8] md:row-[7/8] font-normal text-[2.3vh] p-[5px] border-none text-[var(--cor-primaria)] rounded-[10px]
                 md:font-extralight md:text-[15px] 
                 hover:translate-y-[-3px] hover:transition-all hover:duration-500 transition-all duration-500 
                 '>Enviar</button>

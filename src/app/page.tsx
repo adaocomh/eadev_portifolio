@@ -289,22 +289,23 @@ export default function Home() {
                 </div>
           </section>
         </main>
-        <footer ref={footerRef} className='bg-[var(--cor-primaria)] h-[100vh] ' id="footerS4">
+        <footer ref={footerRef} className='bg-gradient-to-t from-[var(--cor-terciario)] to-[var(--cor-primaria)] h-[100vh] ' id="footerS4">
         <div className='animate-on-scroll-form sticky top-[0px] flex justify-center items-center bg-[var(--cor-terciario)] h-[100vh]'>
-                <div className='flex flex-col justify-center max-w-[80vw]'>
+                <div className='flex flex-col justify-center gap-[15px] max-w-[80vw]'>
                     <ConteudoForm/>
-                    <div className='flex items-center gap-[12%] m-[1.3vw_0_1.8vw_0]
+                    <div className='flex items-center md:gap-[12%] m-[1.3vw_0_1.8vw_0]
                     md:m-[1.3vw_0_0.8vw_0]
                     xl:m-[2.3vw_0_2vw_0]'>
-                        <div className='w-[70%] border-b-[0.1px] border-[#F5ECDB50]'/><SlideMemoji/>
+                        <div className='hidden md:block w-[70%] border-b-[0.1px] border-[#F5ECDB50]'/>
+                        <h1 className='md:hidden text-[var(--cor-primaria)] text-[24px] font-medium text-start text-shadow-[0px_0px_10px_rgba(0,0,0,0.5)] my-[10px]'>Vamos trabalhar juntos?</h1>
+                        <SlideMemoji/>
                     </div>
                     <SlideEffect<HTMLDivElement>>
                         {(ref, visivel) => (
                     <div className='flex w-[100%] justify-between'>
-        
-                        <div ref={ref} className={`${visivel ? 'flex items-center gap-[2vw] translate-y-[0] transition-all duration-1000 opacity-100 md:flex-row' : 'flex flex-col items-center gap-[2vw] translate-y-[19%] transition-all duration-1000 opacity-0 md:flex-row'}`}>
-                            <a ref={emailRef} className='w-max rounded-[50px] font-extralight text-[16px] p-[2vw] text-center text-shadow-[0px_0px_10px_rgba(0,0,0,0.3)] hover:translate-y-[-4px] hover:transition-all hover:duration-500 hover:shadow-[inset_2px_2px_8px_rgba(255,255,255,0.08),2px_8px_12px_rgba(0,0,0,0.15)] bg-[rgba(128,128,128,0.05)] backdrop-blur-xs text-(--cor-primaria) shadow-[inset_2px_2px_8px_rgba(255,255,255,0.08),2px_8px_10px_rgba(0,0,0,0.08)]' onClick={copiarEmail}>{emailCopiadpo ? 'E-mail copiado!' : 'eadevcontato@gmail.com'}</a>
-                            <a href='https://wa.me/48988325514?text=Olá,%20Éverton!%20Gostaria%20de%20falar%20mais%20sobre%20seus%20serviços%20oferecido.' target='_blank' rel='noopener noreferrer' className='w-max rounded-[50px] font-extralight text-[16px] p-[2vw] text-center text-shadow-[0px_0px_10px_rgba(0,0,0,0.3)] hover:translate-y-[-4px] hover:transition-all hover:duration-500 hover:shadow-[inset_2px_2px_8px_rgba(255,255,255,0.08),2px_8px_12px_rgba(0,0,0,0.15)] bg-[rgba(128,128,128,0.05)] backdrop-blur-xs text-(--cor-primaria) shadow-[inset_2px_2px_8px_rgba(255,255,255,0.08),2px_8px_10px_rgba(0,0,0,0.08)]'>+55 (48) 98832-5514</a>
+                        <div ref={ref} className={`${visivel ? 'w-full flex flex-col items-center gap-[15px] md:gap-[2vw] translate-y-[0] transition-all duration-1000 opacity-100 md:flex-row' : 'flex flex-col items-center gap-[2vw] translate-y-[19%] transition-all duration-1000 opacity-0 md:flex-row'}`}>
+                            <a ref={emailRef} className='w-full md:w-max rounded-[50px] font-extralight text-[16px] p-[15px] md:p-[2vw] text-center text-shadow-[0px_0px_10px_rgba(0,0,0,0.3)] hover:translate-y-[-4px] hover:transition-all hover:duration-500 hover:shadow-[inset_2px_2px_8px_rgba(255,255,255,0.08),2px_8px_12px_rgba(0,0,0,0.15)] bg-[rgba(128,128,128,0.05)] backdrop-blur-xs text-(--cor-primaria) shadow-[inset_2px_2px_8px_rgba(255,255,255,0.08),2px_8px_10px_rgba(0,0,0,0.08)]' onClick={copiarEmail}>{emailCopiadpo ? 'E-mail copiado!' : 'eadevcontato@gmail.com'}</a>
+                            <a href='https://wa.me/48988325514?text=Olá,%20Éverton!%20Gostaria%20de%20falar%20mais%20sobre%20seus%20serviços%20oferecido.' target='_blank' rel='noopener noreferrer' className='w-full md:w-max rounded-[50px] font-extralight text-[16px] p-[15px] md:p-[2vw] text-center text-shadow-[0px_0px_10px_rgba(0,0,0,0.3)] hover:translate-y-[-4px] hover:transition-all hover:duration-500 hover:shadow-[inset_2px_2px_8px_rgba(255,255,255,0.08),2px_8px_12px_rgba(0,0,0,0.15)] bg-[rgba(128,128,128,0.05)] backdrop-blur-xs text-(--cor-primaria) shadow-[inset_2px_2px_8px_rgba(255,255,255,0.08),2px_8px_10px_rgba(0,0,0,0.08)]'>+55 (48) 98832-5514</a>
                         </div>
                     </div>)}
                     </SlideEffect>

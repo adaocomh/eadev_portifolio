@@ -6,7 +6,7 @@ export function SlideMemoji(){
         <SlideEffect<HTMLImageElement>>
         {(ref, visivel) => (
         <div ref={ref} className={`transition-all duration-1500 ${visivel ?'translate-x-[0] opacity-100' : 'translate-x-[-200px] opacity-0'}`}>
-            <img src='/imgs/perfil/contato.png' className='w-[150px] h-[150px] rounded-b-[50%]'/>
+            <img src='/imgs/perfil/contato.png' className='w-[80px] md:w-[150px] rounded-b-[50%]'/>
         </div>
         )}
         </SlideEffect>
