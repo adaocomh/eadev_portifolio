@@ -1,7 +1,6 @@
 'use client'
 import MenuSuspenso from '../components/mnSuspenso'
 import { useEffect, useRef, useState } from 'react';
-import { TitleComp } from '../components/title';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 import SlideEffect from '../components/slideEffect/slideEffect';
@@ -164,28 +163,31 @@ export default function Home() {
   return (
     <>
         <nav className='fixed w-[100vw] h-[100px] z-50 md:p-[20px_80px_20px_80px] p-[20px_30px_20px_30px]'><MenuSuspenso/></nav>
-        <header ref={headerRef} className="flex flex-col h-[100vh] p-[80px]  bg-[var(--cor-primaria)]" id="hdS1">
-          <div className="flex flex-col justify-end gap-[30px] h-[100%]">
-            <div className="flex justify-start items-end gap-[80px]">
+        <header ref={headerRef} className="flex flex-col h-[125vh] p-[20px] bg-[var(--cor-primaria)] lg:p-[80px_0px_0px_80px]" id="hdS1">
+          <div className="flex flex-col justify-end lg:justify-around h-[100%]">
+            <div className="flex justify-start items-end relative top-[50px] gap-[20px] lg:gap-[80px]">
                 <img
-                    className="h-[330px] ml-[20px]"
+                    className="h-[330px] lg:ml-[20px]"
                     src="/imgs/perfil/perfil.jpeg"
                     alt="Foto do desenvolvedor"
                 />
                 <div className='flex flex-col gap-[10px]'>
-                    <h2 className="text-start text-[60px] text-[var(--cor-font)]
-                    text-shadow-[0px_0px_10px_rgba(0,0,0,0.3)]">
+                    <h2 className="text-start text-[40px] text-[var(--cor-font)]
+                    text-shadow-[0px_0px_10px_rgba(0,0,0,0.3)] lg:text-[60px]">
                     Dev.<br /> Front-end freelancer<br />
                                 </h2>
                                 <p className="title self-end font-extralight
-                    text-[2.9vh] text-[var(--cor-font)]
-                    text-shadow-[0px_0px_10px_rgba(0,0,0,0.3)] md:text-[1.6rem]">
+                                text-[18px]
+                     text-[var(--cor-font)]
+                    text-shadow-[0px_0px_10px_rgba(0,0,0,0.3)] lg:text-[30px]">
                     Construindo experiências interativas e intuitivas na web.
                                 </p>
                 </div>
             </div>
-            <div className='animate-on-scroll'>
-                <TitleComp/>
+            <div className='hidden lg:flex h-[50vh] justify-end items-center font-[Barriecito] animate-on-scroll'>
+            <h1 className='hidden lg:inline text-[52vh] text-[rgba(0,0,0,0.9)] text-shadow-[0px_0px_10px_rgba(0,0,0,0.3)] '>
+            É<span className='text-[var(--cor-secundaria)]'>v</span>erton 
+            </h1>
             </div>
             
           </div>
@@ -282,7 +284,7 @@ export default function Home() {
                               }}>
           
                                 <h3 className={`pointer-events-none text-[2vw] text-[var(--cor-font)] text-shadow-[0px_0px_10px_rgba(0,0,0,0.3)] cursor- ${hovered === d.name ? "translate-y-[4px] translate-x-[3px] transition-all duration-300 opacity-50" : ""}`}>{d.name}</h3>
-                                <img className={`w-[20px] h-[20px] ${hovered === d.name ? "translate-y-[-4px] translate-x-[3px] transition-all duration-300 animate-bounce" : ""}`} src="imgs/icons/up-right.png" alt="seta que indica direcionamento"/>
+                                <img className={`w-[20px] h-[20px] ${hovered === d.name ? "translate-y-[-4px] translate-x-[3px] transition-all duration-300 animate-bounce" : ""}`} src="icons/up-right.png" alt="seta que indica direcionamento"/>
                             </a>
                         ))}</div>
           
