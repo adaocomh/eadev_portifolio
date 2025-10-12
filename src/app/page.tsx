@@ -8,6 +8,7 @@ import CircleText from '../components/circleTag/circleTag';
 import { SlideMemoji } from '../components/slideMemoji'
 import { ConteudoForm } from '../components/form'
 import Data from "../arquivoDemo/demo.json"
+import { TextW } from "../components/textW"
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -163,16 +164,16 @@ export default function Home() {
   return (
     <>
         <nav className='fixed w-[100vw] h-[100px] p-[20px_20px_0px_20px] z-50 md:p-[20px_80px_20px_80px]'><MenuSuspenso/></nav>
-        <header ref={headerRef} className="flex flex-col h-[119vh] p-[20px_0px_0px_20px] bg-[var(--cor-primaria)] lg:p-[80px_0px_0px_80px]" id="hdS1">
+        <header ref={headerRef} className="flex flex-col h-[106vh] p-[20px_0px_0px_20px] bg-[var(--cor-primaria)] lg:h-[119vh] lg:p-[80px_0px_0px_80px]" id="hdS1">
           <div className="flex flex-col justify-end h-[100%] md:gap-[60px]">
             <div className="flex flex-col justify-center items-start pr-[20px] gap-[20px] md:flex-row md:justify-start md:items-end lg:gap-[80px]">
                 <img className="h-[300px] md:h-[330px]" src="/imgs/perfil/perfil.jpeg" alt="Foto do desenvolvedor"/>
                 <div className='flex flex-col gap-[10px]'>
                     <h2 className="text-start text-[35px] text-[var(--cor-font)] text-shadow-[0px_0px_10px_rgba(0,0,0,0.3)] md:text-[50px] lg:text-[60px]"> Dev.<br/> Front-end freelancer<br/></h2>
-                    <p className="text-[20px] font-extralight text-[var(--cor-font)] text-shadow-[0px_0px_10px_rgba(0,0,0,0.3)] md:text-[25px] lg:text-[30px]">Construindo experiências interativas e intuitivas na web.</p>
+                    <TextW/>
                 </div>
             </div>
-            <div className='flex justify-end items-center h-[25vh] font-[Barriecito] md:h-[50vh] animate-on-scroll'>
+            <div className='flex justify-end items-center h-[25vh] font-[Barriecito] lg:h-[50vh] animate-on-scroll'>
             <h1 className='text-[28vw] text-[rgba(0,0,0,0.9)] text-shadow-[0px_0px_10px_rgba(0,0,0,0.3)]'>É<span className='text-[var(--cor-secundaria)]'>v</span>erton</h1>
             </div>
           </div>
@@ -231,7 +232,7 @@ export default function Home() {
                 </div>
                     <div className='md:hidden w-full overflow-hidden m-[3vh_0]'>
                         <SlideEffect<HTMLDivElement>>{(ref, visivel) => (
-                        <div ref={ref} className={`${visivel ? 'w-[75vw] border-b-1 pb-[5px] font-normal text-[5vh] text-[var(--cor-font)] translate-y-[0%] transition-all duration-1200 opacity-100' : 'w-[75vw] border-b-1 pb-[5px] font-normal text-[5vh] text-[var(--cor-font)] translate-y-[89%] transition-all duration-1200 opacity-0'}`}>Posso atuar...</div>)}</SlideEffect>
+                        <div ref={ref} className={`${visivel ? 'w-[75vw] border-b border-[rgba(0, 0, 0, 0.6)] pb-[5px] font-normal text-[5vh] text-[var(--cor-font)] translate-y-[0%] transition-all duration-1200 opacity-100' : 'w-[75vw] border-b-1 pb-[5px] font-normal text-[5vh] text-[var(--cor-font)] translate-y-[89%] transition-all duration-1200 opacity-0'}`}>Posso atuar...</div>)}</SlideEffect>
                     </div>
                 <div className='md:hidden w-full font-extralight text-[5.5vw] text-[var(--cor-font)]'>
                     {["transformando layouts pré-",
@@ -276,20 +277,20 @@ export default function Home() {
                     {hovered && (
                         <img src={Data.demo.find((d) => d.name === hovered)?.img || ""} alt={hovered} className="w-[450px]"/>
                     )}</div>
-                <div className='md:hidden'>
+                <div className='md:hidden animate-on-scroll-demo'>
                     <div className='flex flex-col gap-[30px]'>
                     <div  className='flex items-center w-full'>
                         <p className='text-[16px] font-extralight opacity-50'>Demonstração</p>
                     </div>
-                    {Data.demo.map((d) => (<div key={d.name} className={`flex flex-col justify-center items-center w-[90vw] p-[0px_0px_20px_0px] rounded-[20px] transition-opacity duration-300 bg-[rgba(128,128,128,0.08)] backdrop-blur-md shadow-[inset_2.5px_2.5px_12px_rgba(255,255,255,0.18),2.5px_8px_10px_rgba(0,0,0,0.08)]`}>
+                    {Data.demo.map((d) => (<a key={d.name} href={d.url} className={`flex flex-col justify-center items-center w-[90vw] p-[0px_0px_20px_0px] rounded-[20px] transition-opacity duration-300 bg-[rgba(128,128,128,0.08)] backdrop-blur-md shadow-[inset_2.5px_2.5px_12px_rgba(255,255,255,0.18),2.5px_8px_10px_rgba(0,0,0,0.08)]`} target='_blank'>
                         <h1 className='text-[22px] text-shadow-[0px_0px_10px_rgba(0,0,0,0.3)] font-extralight opacity-50 self-start p-[20px]'>{d.name}</h1>
                         <img src={d.img} alt={d.name} className="w-[80vw]"/>
-                    </div>))}
+                    </a>))}
                 </div>
                 </div>
           </section>
         </main>
-        <footer ref={footerRef} className='bg-gradient-to-t from-[var(--cor-terciario)] to-[var(--cor-primaria)] h-[100vh] ' id="footerS4">
+        <footer ref={footerRef} className='bg-gradient-to-t from-[var(--cor-terciario)] to-[var(--cor-primaria)] h-[100vh] footerS4' id="footerS4">
         <div className='animate-on-scroll-form sticky top-[0px] flex justify-center items-center bg-[var(--cor-terciario)] h-[100vh]'>
                 <div className='flex flex-col justify-center gap-[15px] max-w-[80vw]'>
                     <ConteudoForm/>
@@ -297,7 +298,7 @@ export default function Home() {
                     md:m-[1.3vw_0_0.8vw_0]
                     xl:m-[2.3vw_0_2vw_0]'>
                         <div className='hidden md:block w-[70%] border-b-[0.1px] border-[#F5ECDB50]'/>
-                        <h1 className='md:hidden text-[var(--cor-primaria)] text-[24px] font-medium text-start text-shadow-[0px_0px_10px_rgba(0,0,0,0.5)] my-[10px]'>Vamos trabalhar juntos?</h1>
+                        <h1 className='md:hidden w-full text-[var(--cor-primaria)] text-[24px] font-medium text-start text-shadow-[0px_0px_10px_rgba(0,0,0,0.5)] my-[10px]'>Vamos trabalhar<br/> juntos?</h1>
                         <SlideMemoji/>
                     </div>
                     <SlideEffect<HTMLDivElement>>
@@ -315,11 +316,3 @@ export default function Home() {
     </>
   );
 }
-
-
-
-
-
-
-
-
