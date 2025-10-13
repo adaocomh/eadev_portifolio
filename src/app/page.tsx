@@ -44,7 +44,6 @@ useEffect(() => {
             const alturaAberto = isMobile ? "42vh" : "95vh";
             const endM = isMobile ? "100% top" : "200% top";
             const startM = isMobile ? "-250% top" : "-100% top";
-            const yM = isMobile ? "40" : "60";
 
     
             const abrir = () => {
@@ -62,17 +61,29 @@ useEffect(() => {
             // Abre o atual
             gsap.to(el, {
                 height: alturaAberto,
-                duration: 0.3,
+                duration: 0.15,
                 ease: "power1.out",
             });
+            gsap.fromTo(el.querySelector(".img"), {
+                opacity: 0,
+            }, {
+                opacity: 1,
+                duration: 0.8,
+            })
             };
             
             const fechar = () => {
             gsap.to(el, {
                 height: alturaFechado,
-                duration: 0.3,
+                duration: 0.15,
                 ease: "power1.inOut",
             });
+            gsap.fromTo(el.querySelector(".img"), {
+                opacity: 1,
+            }, {
+                opacity: 0,
+                duration: 0.5,
+            })
             };
     
             const trigger = ScrollTrigger.create({
