@@ -11,18 +11,95 @@ import Data from "../arquivoDemo/demo.json"
 import { TextW } from "../components/textW"
 
 gsap.registerPlugin(ScrollTrigger);
+const mm = gsap.matchMedia();
+const triggers: ScrollTrigger[] = [];
 
 export default function Home() {
-  const headerRef = useRef<HTMLDivElement>(null);
-  const containerRef = useRef<HTMLDivElement>(null);
-  const demoRef = useRef<HTMLDivElement>(null);
+  const headerRef = useRef<HTMLElement>(null);
+  const containerRef = useRef<HTMLElement>(null);
+  const demoRef = useRef<HTMLElement>(null);
   const cardRef = useRef<HTMLDivElement>(null);
-  const footerRef = useRef<HTMLDivElement>(null);
-  const [hovered, setHovered] = useState<string | null>(null);
-  const [visible, setVisible] = useState(false);
+  const footerRef = useRef<HTMLElement>(null);
   const [emailCopiadpo, setEmailCopiado] = useState<boolean>(false)
   const emailRef = useRef<HTMLAnchorElement | null>(null)
+  const divRefs = useRef<(HTMLDivElement | null)[]>([]);
 
+
+
+useEffect(() => {
+    if (!divRefs.current.length) return;
+
+        // Cria o contexto responsivo 
+    mm.add(
+        {
+        isMobile: "(max-width: 768px)",
+        isDesktop: "(min-width: 769px)",
+        },
+        (context) => {
+        const { isMobile } = context.conditions as { isMobile: boolean };
+    
+        divRefs.current.forEach((el, index) => {
+            if (!el) return;
+            const alturaFechado = isMobile ? "10vh" : "18vh";
+            const alturaAberto = isMobile ? "42vh" : "95vh";
+            const endM = isMobile ? "100% top" : "200% top";
+            const startM = isMobile ? "-250% top" : "-100% top";
+            const yM = isMobile ? "40" : "60";
+
+    
+            const abrir = () => {
+            // Fecha outros
+            divRefs.current.forEach((other, i) => {
+                if (other && i !== index) {
+                gsap.to(other, {
+                    height: alturaFechado,
+                    duration: 0.05,
+                    ease: "power1.inOut",
+                });
+                }
+            });
+            
+            // Abre o atual
+            gsap.to(el, {
+                height: alturaAberto,
+                duration: 0.3,
+                ease: "power1.out",
+            });
+            };
+            
+            const fechar = () => {
+            gsap.to(el, {
+                height: alturaFechado,
+                duration: 0.3,
+                ease: "power1.inOut",
+            });
+            };
+    
+            const trigger = ScrollTrigger.create({
+            trigger: el,
+            start: startM,
+            end: endM,
+            onEnter: abrir,      // Rola pra baixo
+            onEnterBack: abrir,  // Volta pra cima
+            onLeave: fechar,     // Sai pra baixo
+            onLeaveBack: fechar, // Sai pra cima
+            });
+    
+            triggers.push(trigger);
+        });
+    
+        // Cleanup dos triggers quando o breakpoint mudar
+        return () => {
+            triggers.forEach((t) => t.kill());
+        };
+        }
+    );
+    
+    // Cleanup geral quando o componente desmontar
+    return () => {
+        mm.revert();
+    };
+    }, []);
 
     useEffect(() => {
         if (!headerRef.current) return;
@@ -84,7 +161,7 @@ export default function Home() {
               opacity: 1,
               y: 0,
               duration: 1,
-              ease: 'power1.inOut',
+              ease: "expoScale(0.5,7, none)",
               stagger: 0,
               scrollTrigger: {
                   trigger: demoRef.current,
@@ -111,26 +188,36 @@ export default function Home() {
 
     useEffect(() => {
       if (!footerRef.current) return;
-
+ 
       const elements = footerRef.current.querySelectorAll('.animate-on-scroll-form');
 
-      gsap.fromTo(
-          elements,
-          { opacity: 0, y: 0 },
-          {
-              opacity: 1,
-              y: 0,
-              duration: 1,
-              ease: 'powe1.inOut',
-              stagger: 0,
-              scrollTrigger: {
-                  trigger: footerRef.current,
-                  start: 'top 50%',
-                  end: 'top top',
-                  scrub: 2,
-              },
-          }
-      )
+        mm.add(
+            {
+            isMobile: "(max-width: 768px)",
+            isDesktop: "(min-width: 769px)",
+            },
+            (context) => {
+            const { isMobile } = context.conditions as { isMobile: boolean };
+
+            const endM = isMobile ? "top 15%" : "top 8%";
+
+                gsap.fromTo(
+                    elements,
+                    { opacity: 0, y: 0 },
+                    {
+                        opacity: 1,
+                        y: 0,
+                        duration: 1,
+                        ease: 'powe1.inOut',
+                        stagger: 0,
+                        scrollTrigger: {
+                            trigger: footerRef.current,
+                            start: 'top 50%',
+                            end: endM,
+                            scrub: 3
+                        },
+                    }
+        )})
 
       const section = footerRef.current.querySelector('#footerS4') as HTMLElement | null
       let pinInstance: ScrollTrigger | undefined
@@ -254,38 +341,18 @@ export default function Home() {
                 <CircleText/>
             </div>
           </section>
-          <section ref={demoRef} className='flex flex-col items-center w-[100vw] pb-[100px] md:pb-[200px]' id='demo'>
-          <div className='hidden animate-on-scroll-demo md:flex flex-col w-[80vw]'>
-                    <div  className='flex items-center border-b-1 w-full h-[100px] px-[80px]'>
-                        <p className='text-[16px] font-extralight opacity-50'>Demonstração</p>
-                    </div>
-                        {Data.demo.map((d)=> (
-                            <a key={d.name} href={d.url} target="_blank" rel="noopener noreferrer" className={`flex justify-between items-center border-b-1 w-full h-[100px] px-[80px] transition-color duration-300 z-30`}
-                            onMouseEnter={() => setHovered(d.name)}
-                            onMouseOver={() => setVisible(true)}
-                            onMouseOut={()=> {
-                              setHovered(null)
-                              setVisible(false)
-                              }}>
-          
-                                <h3 className={`pointer-events-none text-[2vw] text-[var(--cor-font)] text-shadow-[0px_0px_10px_rgba(0,0,0,0.3)] cursor- ${hovered === d.name ? "translate-y-[4px] translate-x-[3px] transition-all duration-300 opacity-50" : ""}`}>{d.name}</h3>
-                                <img className={`w-[20px] h-[20px] ${hovered === d.name ? "translate-y-[-4px] translate-x-[3px] transition-all duration-300 animate-bounce" : ""}`} src="icons/up-right.png" alt="seta que indica direcionamento"/>
-                            </a>
-                        ))}</div>
-          
-                <div ref={cardRef} className={`fixed flex justify-center items-center w-[500px] h-[450px] rounded-[20px] z-50 transition-opacity duration-300 bg-[rgba(128,128,128,0.08)] backdrop-blur-md shadow-[inset_2.5px_2.5px_12px_rgba(255,255,255,0.18),2.5px_8px_10px_rgba(0,0,0,0.08)] ${visible ? "opacity-100" : "opacity-0"}`}>
-                    {hovered && (
-                        <img src={Data.demo.find((d) => d.name === hovered)?.img || ""} alt={hovered} className="w-[450px]"/>
-                    )}</div>
-                <div className='md:hidden animate-on-scroll-demo'>
+          <section ref={demoRef} className='flex flex-col items-center w-[100vw] pb-[100px] md:pb-[400px]' id='demo'>
+                <div className='animate-on-scroll-demo'>
                     <div className='flex flex-col gap-[30px]'>
                     <div  className='flex items-center w-full'>
                         <p className='text-[16px] font-extralight opacity-50'>Demonstração</p>
                     </div>
-                    {Data.demo.map((d) => (<a key={d.name} href={d.url} className={`flex flex-col justify-center items-center w-[90vw] p-[0px_0px_20px_0px] rounded-[20px] transition-opacity duration-300 bg-[rgba(128,128,128,0.08)] backdrop-blur-md shadow-[inset_2.5px_2.5px_12px_rgba(255,255,255,0.18),2.5px_8px_10px_rgba(0,0,0,0.08)]`} target='_blank'>
-                        <h1 className='text-[22px] text-shadow-[0px_0px_10px_rgba(0,0,0,0.3)] font-extralight opacity-50 self-start p-[20px]'>{d.name}</h1>
-                        <img src={d.img} alt={d.name} className="w-[80vw]"/>
-                    </a>))}
+                    {Data.demo.map((d, index) => (<div key={d.name} ref={(el) => { divRefs.current[index] = el }} data-name={d.name} className={`transition-all flex flex-col justify-start items-center w-[95vw] h-[10vh] md:h-[18vh] overflow-hidden rounded-[20px] duration-500 bg-[rgba(128,128,128,0.08)] backdrop-blur-md shadow-[inset_2.5px_2.5px_12px_rgba(255,255,255,0.18),2.5px_8px_10px_rgba(0,0,0,0.08)]`}>
+                        <div className='flex justify-start w-full items-center pl-[5%] min-h-[10vh] md:min-h-[18vh] contImg'>
+                            <h1 className={`text-[28px] md:text-[40px] text-shadow-[0px_0px_10px_rgba(0,0,0,0.3)] font-extralight opacity-70 transition-all duration-500`}>{d.name}</h1>
+                        </div>
+                        <img src={d.img} alt={d.name} className="w-[90%] md:w-[70%] img"/>
+                    </div>))}
                 </div>
                 </div>
           </section>
