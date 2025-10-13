@@ -52,7 +52,7 @@ useEffect(() => {
                 if (other && i !== index) {
                 gsap.to(other, {
                     height: alturaFechado,
-                    duration: 0.05,
+                    duration: 0.01,
                     ease: "power1.inOut",
                 });
                 }
@@ -61,7 +61,7 @@ useEffect(() => {
             // Abre o atual
             gsap.to(el, {
                 height: alturaAberto,
-                duration: 0.15,
+                duration: 0.1,
                 ease: "power1.out",
             });
             gsap.fromTo(el.querySelector(".img"), {
@@ -75,7 +75,7 @@ useEffect(() => {
             const fechar = () => {
             gsap.to(el, {
                 height: alturaFechado,
-                duration: 0.15,
+                duration: 0.1,
                 ease: "power1.inOut",
             });
             gsap.fromTo(el.querySelector(".img"), {
