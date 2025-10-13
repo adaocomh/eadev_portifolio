@@ -40,7 +40,7 @@ useEffect(() => {
     
         aRefs.current.forEach((el, index) => {
             if (!el) return;
-            const alturaFechado = isMobile ? "10vh" : "18vh";
+            const alturaFechado = isMobile ? "12vh" : "18vh";
             const alturaAberto = isMobile ? "42vh" : "95vh";
             const endM = isMobile ? "100% top" : "200% top";
             const startM = isMobile ? "-250% top" : "-100% top";
@@ -358,10 +358,10 @@ useEffect(() => {
                     <div  className='flex items-center w-full'>
                         <p className='text-[16px] font-extralight opacity-50'>Demonstração</p>
                     </div>
-                    {Data.demo.map((d, index) => (<a key={d.name} href={d.url} ref={(el) => { aRefs.current[index] = el }} data-name={d.name} className={`transition-all flex flex-col justify-start items-center w-[95vw] h-[10vh] md:h-[18vh] overflow-hidden rounded-[20px] duration-500 bg-[rgba(128,128,128,0.06)] backdrop-blur-md shadow-[inset_2.5px_2.5px_13px_rgba(255,255,255,0.20),2.5px_8px_10px_rgba(0,0,0,0.08)]`} target="_blank" rel="noopener">
-                        <div className='flex justify-between w-full items-center px-[5%] min-h-[10vh] md:min-h-[18vh] contImg'>
-                            <h1 className={`text-[28px] md:text-[40px] text-shadow-[0px_0px_10px_rgba(0,0,0,0.3)] font-extralight opacity-70 transition-all duration-500`}>{d.name}</h1>
-                            <img src="/icons/link.png" className='w-[40px] opacity-70' alt="icon de link" />
+                    {Data.demo.map((d, index) => (<a key={d.name} href={d.url} ref={(el) => { aRefs.current[index] = el }} data-name={d.name} className={`transition-all flex flex-col justify-start items-center w-[95vw] h-[12vh] md:h-[18vh] overflow-hidden rounded-[20px] duration-500 bg-[rgba(128,128,128,0.06)] backdrop-blur-md shadow-[inset_2.5px_2.5px_13px_rgba(255,255,255,0.20),2.5px_8px_10px_rgba(0,0,0,0.08)]`} target="_blank" rel="noopener">
+                        <div className='flex justify-between w-full items-center px-[5%] min-h-[12vh] md:min-h-[18vh] contImg'>
+                            <h1 className={`text-[26px] md:text-[40px] text-shadow-[0px_0px_10px_rgba(0,0,0,0.3)] font-extralight opacity-70 transition-all duration-500`}>{d.name}</h1>
+                            <img src="/icons/link.png" className='w-[22px] md:w-[40px] opacity-70' alt="icon de link" />
                         </div>
                         <img src={d.img} alt={d.name} className="w-[90%] md:w-[70%] img"/>
                     </a>))}
