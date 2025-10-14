@@ -5,7 +5,7 @@ export const metadata: Metadata = {
   title: "É. Adão Dev.",
   description: "É. Adão Dev. - Dev Front-end freelancer",
   icons: {
-    icon: "/imgs/self/logoPiscando.png"
+    icon: "/imgs/perfil/logoPiscando.png"
   }
 };
 

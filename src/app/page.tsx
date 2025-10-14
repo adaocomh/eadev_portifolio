@@ -8,7 +8,6 @@ import CircleText from '../components/circleTag/circleTag';
 import { SlideMemoji } from '../components/slideMemoji'
 import { ConteudoForm } from '../components/form'
 import Data from "../arquivoDemo/demo.json"
-import { TextW } from "../components/textW"
 
 gsap.registerPlugin(ScrollTrigger);
 const mm = gsap.matchMedia();
@@ -28,7 +27,7 @@ export default function Home() {
 
 
 
-useEffect(() => {
+    useEffect(() => {
     if (!aRefs.current.length) return;
     mm.add(
         {
@@ -251,7 +250,7 @@ useEffect(() => {
                 <img className="h-[300px] md:h-[330px]" src="/imgs/perfil/perfil.jpeg" alt="Foto do desenvolvedor"/>
                 <div className='flex flex-col gap-[10px]'>
                     <h2 className="text-start text-[35px] text-[var(--cor-font)] text-shadow-[0px_0px_10px_rgba(0,0,0,0.3)] md:text-[50px] lg:text-[60px]"> Dev.<br/> Front-end freelancer<br/></h2>
-                    <TextW/>
+                    <p className='text-[20px] font-extralight text-[var(--cor-font)] text-shadow-[0px_0px_10px_rgba(0,0,0,0.3)] md:text-[25px] lg:text-[30px]'>Construindo experiências interativas e intuitivas na web.</p>
                 </div>
             </div>
             <div className='flex justify-end items-center h-[25vh] font-[Barriecito] lg:h-[50vh] animate-on-scroll'>
