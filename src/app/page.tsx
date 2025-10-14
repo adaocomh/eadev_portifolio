@@ -18,18 +18,18 @@ export default function Home() {
   const headerRef = useRef<HTMLElement>(null);
   const containerRef = useRef<HTMLElement>(null);
   const demoRef = useRef<HTMLElement>(null);
-  const cardRef = useRef<HTMLDivElement>(null);
   const footerRef = useRef<HTMLElement>(null);
-  const [emailCopiadpo, setEmailCopiado] = useState<boolean>(false)
+  const [emailCopiado, setEmailCopiado] = useState<boolean>(false)
   const emailRef = useRef<HTMLAnchorElement | null>(null)
   const aRefs = useRef<(HTMLElement | null)[]>([]);
+
+  const slideShow = 'translate-y-[0%] transition-all duration-1200 opacity-100';
+  const slideHide = 'translate-y-[89%] transition-all duration-1200 opacity-0';
 
 
 
 useEffect(() => {
     if (!aRefs.current.length) return;
-
-        // Cria o contexto responsivo 
     mm.add(
         {
         isMobile: "(max-width: 768px)",
@@ -47,7 +47,6 @@ useEffect(() => {
 
     
             const abrir = () => {
-            // Fecha outros
             aRefs.current.forEach((other, i) => {
                 if (other && i !== index) {
                 gsap.to(other, {
@@ -58,7 +57,6 @@ useEffect(() => {
                 }
             });
             
-            // Abre o atual
             gsap.to(el, {
                 height: alturaAberto,
                 duration: 0.1,
@@ -90,23 +88,21 @@ useEffect(() => {
             trigger: el,
             start: startM,
             end: endM,
-            onEnter: abrir,      // Rola pra baixo
-            onEnterBack: abrir,  // Volta pra cima
-            onLeave: fechar,     // Sai pra baixo
-            onLeaveBack: fechar, // Sai pra cima
+            onEnter: abrir,
+            onEnterBack: abrir,
+            onLeave: fechar,     
+            onLeaveBack: fechar, 
             });
     
             triggers.push(trigger);
         });
     
-        // Cleanup dos triggers quando o breakpoint mudar
         return () => {
             triggers.forEach((t) => t.kill());
         };
         }
     );
     
-    // Cleanup geral quando o componente desmontar
     return () => {
         mm.revert();
     };
@@ -125,12 +121,12 @@ useEffect(() => {
                 y: 200,
                 duration: 0.5,
                 ease: 'power2.out',
-                stagger: 0, // cada elemento aparece com 0.3s de diferença
+                stagger: 0,
                 scrollTrigger: {
                     trigger: headerRef.current,
                     start: 'top 0%',
                     end: 'bottom 5%',
-                    scrub: 0, // suaviza o movimento com delay
+                    scrub: 0,
                 },
             }
         )
@@ -185,19 +181,6 @@ useEffect(() => {
   }, []);
 
     useEffect(() => {
-        const handleMouseMove = (e: MouseEvent) => {
-          if (cardRef.current) {
-            cardRef.current.style.left = e.clientX + 20 + "px";
-            cardRef.current.style.top = e.clientY - 200 + "px";
-          }
-        };
-    
-        window.addEventListener("mousemove", handleMouseMove);
-      }, []);
-
-      
-
-    useEffect(() => {
       if (!footerRef.current) return;
  
       const elements = footerRef.current.querySelectorAll('.animate-on-scroll-form');
@@ -219,7 +202,7 @@ useEffect(() => {
                         opacity: 1,
                         y: 0,
                         duration: 1,
-                        ease: 'powe1.inOut',
+                        ease: 'power1.inOut',
                         stagger: 0,
                         scrollTrigger: {
                             trigger: footerRef.current,
@@ -289,7 +272,7 @@ useEffect(() => {
                       "que você busca."].map((text, index) => (
                         <div key={index} className='overflow-hidden'>
                             <SlideEffect<HTMLDivElement>>{(ref, visivel) => (
-                            <div ref={ref} className={`${visivel ? 'translate-y-[0%] transition-all duration-1200 opacity-100' : 'translate-y-[89%] transition-all duration-1200 opacity-0'}`}>{text}</div>
+                            <div ref={ref} className={`${visivel ? slideShow : slideHide}`}>{text}</div>
                             )}</SlideEffect>
                         </div>
                     ))}
@@ -297,7 +280,7 @@ useEffect(() => {
                     <div className='flex flex-col'>
                         <div className='hidden md:block overflow-hidden mb-[10px]'>
                             <SlideEffect<HTMLDivElement>>{(ref, visivel) => (
-                            <div ref={ref} className={`${visivel ? 'w-[20vw] border-b-1 pb-[5px]  font-normal text-[1.6vw] text-[var(--cor-font)] translate-y-[0%] transition-all duration-1200 opacity-100' : 'w-[20vw] border-b-1 pb-[5px] font-normal text-[1.6vw] text-[var(--cor-font)] translate-y-[89%] transition-all duration-1200 opacity-0'}`}>Posso atuar...</div>)}</SlideEffect>
+                            <div ref={ref} className={`${visivel ? `w-[20vw] border-b-1 pb-[5px]  font-normal text-[1.6vw] text-[var(--cor-font)] ${slideShow}` : `w-[20vw] border-b-1 pb-[5px] font-normal text-[1.6vw] text-[var(--cor-font)] ${slideHide}`}`}>Posso atuar...</div>)}</SlideEffect>
                         </div>
                                     <div className='hidden
                                     md:block md:text-[1vw] md:font-extralight md:text-[var(--cor-font)]
@@ -308,7 +291,7 @@ useEffect(() => {
                           "desenvolvimento para uma solução completa."].map((text, index) => (
                             <div key={index} className='overflow-hidden'>
                                 <SlideEffect<HTMLDivElement>>{(ref, visivel) => (
-                                <div ref={ref} className={`${visivel ? 'translate-y-[0%] transition-all duration-1200 opacity-100' : 'translate-y-[89%] transition-all duration-1200 opacity-0'}`}>{text}</div>
+                                <div ref={ref} className={`${visivel ? slideShow : slideHide}`}>{text}</div>
                                 )}</SlideEffect>
                             </div>
                         ))}
@@ -323,14 +306,14 @@ useEffect(() => {
                       "você busca."].map((text, index) => (
                         <div key={index} className='overflow-hidden'>
                             <SlideEffect<HTMLDivElement>>{(ref, visivel) => (
-                            <div ref={ref} className={`${visivel ? 'translate-y-[0%] transition-all duration-1200 opacity-100' : 'translate-y-[89%] transition-all duration-1200 opacity-0'}`}>{text}</div>
+                            <div ref={ref} className={`${visivel ? slideShow : slideHide}`}>{text}</div>
                             )}</SlideEffect>
                         </div>
                     ))}
                 </div>
                     <div className='md:hidden w-full overflow-hidden m-[3vh_0]'>
                         <SlideEffect<HTMLDivElement>>{(ref, visivel) => (
-                        <div ref={ref} className={`${visivel ? 'w-[75vw] border-b border-[rgba(0, 0, 0, 0.6)] pb-[5px] font-normal text-[5vh] text-[var(--cor-font)] translate-y-[0%] transition-all duration-1200 opacity-100' : 'w-[75vw] border-b-1 pb-[5px] font-normal text-[5vh] text-[var(--cor-font)] translate-y-[89%] transition-all duration-1200 opacity-0'}`}>Posso atuar...</div>)}</SlideEffect>
+                        <div ref={ref} className={`${visivel ? `w-[75vw] border-b border-[rgba(0, 0, 0, 0.6)] pb-[5px] font-normal text-[5vh] text-[var(--cor-font)] ${slideShow}` : `w-[75vw] border-b-1 pb-[5px] font-normal text-[5vh] text-[var(--cor-font)] ${slideHide}`}`}>Posso atuar...</div>)}</SlideEffect>
                     </div>
                 <div className='md:hidden w-full font-extralight text-[5.5vw] text-[var(--cor-font)]'>
                     {["transformando layouts pré-",
@@ -341,7 +324,7 @@ useEffect(() => {
                       "completa."].map((text, index) => (
                         <div key={index} className='overflow-hidden'>
                             <SlideEffect<HTMLDivElement>>{(ref, visivel) => (
-                            <div ref={ref} className={`${visivel ? 'translate-y-[0%] transition-all duration-1200 opacity-100' : 'translate-y-[89%] transition-all duration-1200 opacity-0'}`}>{text}</div>
+                            <div ref={ref} className={`${visivel ? slideShow : slideHide}`}>{text}</div>
                             )}</SlideEffect>
                         </div>
                     ))}
@@ -358,13 +341,15 @@ useEffect(() => {
                     <div  className='flex items-center w-full'>
                         <p className='text-[16px] font-extralight opacity-50'>Demonstração</p>
                     </div>
-                    {Data.demo.map((d, index) => (<a key={d.name} href={d.url} ref={(el) => { aRefs.current[index] = el }} data-name={d.name} className={`transition-all flex flex-col justify-start items-center w-[95vw] h-[12vh] md:h-[18vh] overflow-hidden rounded-[20px] duration-500 bg-[rgba(128,128,128,0.06)] backdrop-blur-md shadow-[inset_2.5px_2.5px_13px_rgba(255,255,255,0.20),2.5px_8px_10px_rgba(0,0,0,0.08)]`} target="_blank" rel="noopener">
-                        <div className='flex justify-between w-full items-center px-[5%] min-h-[12vh] md:min-h-[18vh] contImg'>
-                            <h1 className={`text-[26px] md:text-[40px] text-shadow-[0px_0px_10px_rgba(0,0,0,0.3)] font-extralight opacity-70 transition-all duration-500`}>{d.name}</h1>
-                            <img src="/icons/link.png" className='w-[22px] md:w-[40px] opacity-70' alt="icon de link" />
-                        </div>
-                        <img src={d.img} alt={d.name} className="w-[90%] md:w-[70%] img"/>
-                    </a>))}
+                    <div className='flex flex-col gap-[5vh]'>
+                        {Data.demo.map((d, index) => (<a key={d.name} href={d.url} ref={(el) => { aRefs.current[index] = el }} data-name={d.name} className={`transition-all flex flex-col justify-start items-center w-[95vw] h-[12vh] md:h-[18vh] overflow-hidden rounded-[20px] duration-500 bg-[rgba(128,128,128,0.06)] backdrop-blur-md shadow-[inset_2.5px_2.5px_13px_rgba(255,255,255,0.20),2.5px_8px_10px_rgba(0,0,0,0.08)]`} target="_blank" rel="noopener">
+                            <div className='flex justify-between w-full items-center px-[5%] min-h-[12vh] md:min-h-[18vh] contImg'>
+                                <h1 className={`text-[26px] md:text-[40px] text-shadow-[0px_0px_10px_rgba(0,0,0,0.3)] font-extralight opacity-70 transition-all duration-500`}>{d.name}</h1>
+                                <img src="/icons/link.png" className='w-[22px] md:w-[40px] opacity-70' alt="icon de link" />
+                            </div>
+                            <img src={d.img} alt={d.name} className="w-[80%] md:w-[70%] img"/>
+                        </a>))}
+                    </div>
                 </div>
                 </div>
           </section>
@@ -384,8 +369,8 @@ useEffect(() => {
                         {(ref, visivel) => (
                     <div className='flex w-[100%] justify-between'>
                         <div ref={ref} className={`${visivel ? 'w-full flex flex-col items-center gap-[15px] md:gap-[2vw] translate-y-[0] transition-all duration-1000 opacity-100 md:flex-row' : 'flex flex-col items-center gap-[2vw] translate-y-[19%] transition-all duration-1000 opacity-0 md:flex-row'}`}>
-                            <a ref={emailRef} className='w-full md:w-max rounded-[50px] font-extralight text-[16px] p-[15px] md:p-[2vw] text-center text-shadow-[0px_0px_10px_rgba(0,0,0,0.3)] hover:translate-y-[-4px] hover:transition-all hover:duration-500 hover:shadow-[inset_2px_2px_8px_rgba(255,255,255,0.08),2px_8px_12px_rgba(0,0,0,0.15)] bg-[rgba(128,128,128,0.05)] backdrop-blur-xs text-(--cor-primaria) shadow-[inset_2px_2px_8px_rgba(255,255,255,0.08),2px_8px_10px_rgba(0,0,0,0.08)]' onClick={copiarEmail}>{emailCopiadpo ? 'E-mail copiado!' : 'eadevcontato@gmail.com'}</a>
-                            <a href='https://wa.me/48988325514?text=Olá,%20Éverton!%20Gostaria%20de%20falar%20mais%20sobre%20seus%20serviços%20oferecido.' target='_blank' rel='noopener noreferrer' className='w-full md:w-max rounded-[50px] font-extralight text-[16px] p-[15px] md:p-[2vw] text-center text-shadow-[0px_0px_10px_rgba(0,0,0,0.3)] hover:translate-y-[-4px] hover:transition-all hover:duration-500 hover:shadow-[inset_2px_2px_8px_rgba(255,255,255,0.08),2px_8px_12px_rgba(0,0,0,0.15)] bg-[rgba(128,128,128,0.05)] backdrop-blur-xs text-(--cor-primaria) shadow-[inset_2px_2px_8px_rgba(255,255,255,0.08),2px_8px_10px_rgba(0,0,0,0.08)]'>+55 (48) 98832-5514</a>
+                            <a ref={emailRef} className='w-full md:w-max rounded-[50px] font-extralight text-[16px] p-[15px] md:p-[2vw] text-center text-shadow-[0px_0px_10px_rgba(0,0,0,0.3)] hover:translate-y-[-4px] hover:transition-all hover:duration-500 hover:shadow-[inset_2px_2px_8px_rgba(255,255,255,0.08),2px_8px_12px_rgba(0,0,0,0.15)] bg-[rgba(128,128,128,0.05)] backdrop-blur-xs text-[var(--cor-primaria)] shadow-[inset_2px_2px_8px_rgba(255,255,255,0.08),2px_8px_10px_rgba(0,0,0,0.08)]' onClick={copiarEmail}>{emailCopiado ? 'E-mail copiado!' : 'eadevcontato@gmail.com'}</a>
+                            <a href='https://wa.me/48988325514?text=Olá,%20Éverton!%20Gostaria%20de%20falar%20mais%20sobre%20seus%20serviços%20oferecido.' target='_blank' rel='noopener noreferrer' className='w-full md:w-max rounded-[50px] font-extralight text-[16px] p-[15px] md:p-[2vw] text-center text-shadow-[0px_0px_10px_rgba(0,0,0,0.3)] hover:translate-y-[-4px] hover:transition-all hover:duration-500 hover:shadow-[inset_2px_2px_8px_rgba(255,255,255,0.08),2px_8px_12px_rgba(0,0,0,0.15)] bg-[rgba(128,128,128,0.05)] backdrop-blur-xs text-[var(--cor-primaria)] shadow-[inset_2px_2px_8px_rgba(255,255,255,0.08),2px_8px_10px_rgba(0,0,0,0.08)]'>+55 (48) 98832-5514</a>
                         </div>
                     </div>)}
                     </SlideEffect>
