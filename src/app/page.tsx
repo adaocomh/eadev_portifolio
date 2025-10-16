@@ -173,7 +173,7 @@ export default function Home() {
               stagger: 0,
               scrollTrigger: {
                   trigger: demoRef.current,
-                  start: 'top 60%',
+                  start: 'top 50%',
                   end: 'top center',
                   scrub: 3,
               },
@@ -183,36 +183,53 @@ export default function Home() {
 
   useEffect(() => {
     if (!footerRef.current) return;
-  
-    const curve = footerRef.current.querySelector('.curve');
-  
-    if (curve) {
-      gsap.fromTo(
-        curve,
-        {
-          borderRadius: '100%',
-          height: '100vh',
-          top: '-50vh'
-        },
-        {
-          borderRadius: '0%',
-          height: '0vh',
 
-          top: '0vh',
-          ease: 'none',
-          scrollTrigger: {
-            id: 'footerCurve',
-            trigger: footerRef.current,
-            start: 'top bottom',
-            end: 'top top',
-            scrub: true,
+    mm.add(
+      {
+        isMobile: "(max-width: 768px)",
+        isDesktop: "(min-width: 769px)",
+      },
+      (context) => {
+        const { isMobile } = context.conditions as { isMobile: boolean };
+        const curve = footerRef.current?.querySelector(".curve")
+
+        if (!curve) return;
+
+        // define valores diferentes se quiser para mobile/desktop
+        const initialTop = isMobile ? "-30vh" : "-50vh";
+        const initialHeight = isMobile ? "60vh" : "100vh";
+
+        gsap.fromTo(
+          curve,
+          {
+            borderRadius: "100%",
+            height: initialHeight,
+            top: initialTop,
           },
-        }
-      );
-    }
-  
+          {
+            borderRadius: "0%",
+            height: "0vh",
+            top: "0vh",
+            ease: "none",
+            scrollTrigger: {
+              id: "footerCurve",
+              trigger: footerRef.current,
+              start: "top bottom",
+              end: "top top",
+              scrub: true,
+            },
+          }
+        );
+
+        return () => {
+          // remove triggers ao desmontar
+          ScrollTrigger.getById("footerCurve")?.kill();
+        };
+      }
+    );
+
     return () => {
-      ScrollTrigger.getById('footerCurve')?.kill();
+      mm.revert(); // limpa tudo
     };
   }, []);
   
@@ -254,7 +271,7 @@ export default function Home() {
           </div>
         </header>
         <main  ref={containerRef} className='bg-[var(--cor-primaria)]'>
-          <section className='flex flex-col justify-center items-center gap-[50px] w-[100vw] overflow-hidden p-[100px_0px_0px_0px] md:p-[200px_0px_50px_0px]' id='sS2'>
+          <section className='flex flex-col justify-center items-center gap-[35px] md:gap-[50px] w-[100vw] h-[100vh] p-[100px_0px_0px_0px] md:p-[200px_0px_50px_0px]' id='sS2'>
           <div className='flex justify-center items-center'>
             <div className='flex flex-col items-center justify-center w-[90vw] md:flex-row md:justify-between md:items-start md:w-[70vw] text-shadow-[0px_0px_10px_rgba(0,0,0,0.3)]'>
                 <div className='hidden
@@ -309,11 +326,10 @@ export default function Home() {
                         <SlideEffect<HTMLDivElement>>{(ref, visivel) => (
                         <div ref={ref} className={`${visivel ? `w-[75vw] border-b border-[rgba(0, 0, 0, 0.6)] pb-[5px] font-normal text-[5vh] text-[var(--cor-font)] ${slideShow}` : `w-[75vw] border-b-1 pb-[5px] font-normal text-[5vh] text-[var(--cor-font)] ${slideHide}`}`}>Posso atuar...</div>)}</SlideEffect>
                     </div>
-                <div className='md:hidden w-full font-extralight text-[5.5vw] text-[var(--cor-font)]'>
-                    {["transformando layouts pré-",
-                      "definidos em código funcional ou",
-                      "colaborar na criação do projeto",
-                      "desde o início, unindo design e",
+                <div className='md:hidden w-full font-extralight text-[4.5vw] text-[var(--cor-font)]'>
+                    {["transformando layouts pré-definidos em",
+                      "código funcional ou colaborar na criação do",
+                      "projeto desde o início, unindo design e",
                       "desenvolvimento para uma solução",
                       "completa."].map((text, index) => (
                         <div key={index} className='overflow-hidden'>
@@ -329,7 +345,7 @@ export default function Home() {
                 <CircleText/>
             </div>
           </section>
-          <section ref={demoRef} className='flex flex-col justify-start items-center w-[100vw] h-[130vh]' id='demo'>
+          <section ref={demoRef} className='flex flex-col justify-start items-center w-[100vw] h-[70vh] md:h-[130vh]' id='demo'>
                 <div className='animate-on-scroll-demo'>
                     <div className='flex flex-col gap-[30px]'>
                     <div  className='flex items-center w-full'>
@@ -348,9 +364,9 @@ export default function Home() {
                 </div>
           </section>
         </main>
-        <footer ref={footerRef} className='relative flex flex-col h-[100vh] footerS4 overflow-hidden' id="footerS4">
+        <footer ref={footerRef} className='relative flex flex-col h-[105vh] md:h-[100vh] footerS4 overflow-hidden' id="footerS4">
             <div className='curve absolute left-1/2 -translate-x-1/2 w-[150vw] bg-[var(--cor-primaria)] shadow-[0px_10px_100px_rgba(0,0,0,0.6)]'/>
-        <div className='justify-self-center animate-on-scroll-form flex justify-center items-center bg-[var(--cor-terciario)] h-[100vh]'>
+        <div className='flex justify-center items-end md:items-center bg-[var(--cor-terciario)] h-[100vh]'>
                 <div className='flex flex-col justify-center gap-[15px] max-w-[80vw]'>
                     <ConteudoForm/>
                     <div className='flex items-center md:gap-[12%] m-[1.3vw_0_1.8vw_0]

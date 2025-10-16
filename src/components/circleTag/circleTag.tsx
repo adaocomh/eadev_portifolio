@@ -3,22 +3,29 @@ import { useEffect, useState } from "react";
 
 export default function TextCircle() {
   const [letters, setLetters] = useState<string[]>([]);
+  const [translateZ, setTranslateZ] = useState(80); // valor padrão (mobile)
   const content = "© code by É. Adão. ";
-  const radius = 120;
 
-  // Gerar letras apenas uma vez
   useEffect(() => {
     setLetters(content.split(""));
+
+    // Atualiza automaticamente quando muda o tamanho da tela
+    const handleResize = () => {
+      setTranslateZ(window.innerWidth >= 768 ? 120 : 80); // md: equivale a 768px
+    };
+
+    handleResize(); // executa na montagem
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  // Função para calcular a transformação de cada letra
+  // Função que aplica o transform baseado na tela
   const getTransform = (deg: number) => {
-    return `rotateY(${deg}deg) translateZ(${radius}px)`;
+    return `rotateY(${deg}deg) translateZ(${translateZ}px)`;
   };
 
   return (
     <div className="relative w-[300px] h-[300px] flex items-center justify-center">
-      {/* Cena 3D */}
       <div
         className="m-auto origin-center"
         style={{
@@ -27,18 +34,14 @@ export default function TextCircle() {
         }}
       >
         <div
-          className="uppercase font-medium text-[50px] text-[#555936D8] animate-[spinY_10s_linear_infinite]"
+          className="uppercase font-medium text-[30px] md:text-[50px] text-[#555936D8] animate-[spinY_10s_linear_infinite]"
           style={{ transformStyle: "preserve-3d" }}
         >
           {letters.map((l, i) => {
             const step = 360 / letters.length;
             const deg = step * i;
             return (
-              <span
-                key={i}
-                className="absolute"
-                style={{ transform: getTransform(deg) }}
-              >
+              <span key={i} className="absolute" style={{ transform: getTransform(deg) }}>
                 {l}
               </span>
             );
