@@ -334,7 +334,7 @@ export default function Home() {
                 <CircleText/>
             </div>
           </section>
-          <section ref={demoRef} className='flex flex-col items-center w-[100vw] pb-[100px] md:pb-[400px]' id='demo'>
+          <section ref={demoRef} className='flex flex-col justify-start items-center w-[100vw] h-[130vh]' id='demo'>
                 <div className='animate-on-scroll-demo'>
                     <div className='flex flex-col gap-[30px]'>
                     <div  className='flex items-center w-full'>
