@@ -370,8 +370,7 @@ export default function Home() {
                 <div className='flex flex-col justify-center gap-[15px] max-w-[80vw]'>
                     <ConteudoForm/>
                     <div className='flex items-center md:gap-[12%] m-[1.3vw_0_1.8vw_0]
-                    md:m-[1.3vw_0_0.8vw_0]
-                    xl:m-[2.3vw_0_2vw_0]'>
+                    md:m-[1vw_0_0.8vw_0]'>
                         <div className='hidden md:block w-[70%] border-b-[0.1px] border-[#F5ECDB50]'/>
                         <h1 className='md:hidden w-full text-[var(--cor-primaria)] text-[24px] font-medium text-start text-shadow-[0px_0px_10px_rgba(0,0,0,0.5)] my-[10px]'>Vamos trabalhar<br/> juntos?</h1>
                         <SlideMemoji/>
