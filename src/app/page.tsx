@@ -238,7 +238,7 @@ export default function Home() {
                     <h2 className="text-start text-[35px] text-[var(--cor-font)] text-shadow-[0px_0px_10px_rgba(0,0,0,0.3)] md:text-[50px] lg:text-[60px]"> Dev.<br/> Front-end freelancer<br/></h2>
                     <p className='text-[20px] font-extralight text-[var(--cor-font)] text-shadow-[0px_0px_10px_rgba(0,0,0,0.3)] md:text-[25px] lg:text-[30px]'>Construindo experiências interativas e intuitivas na web.</p>
                 </div>
-                <div className='absolute right-0 top-[45vh] flex justify-between items-center p-[10px] pr-[20px] bg-[rgba(0,0,0,0.82)] rounded-l-full w-[200px]'>
+                <div className='absolute right-0 top-[25vh] md:top-[45vh] flex justify-between items-center p-[10px] pr-[20px] bg-[rgba(0,0,0,0.82)] rounded-l-full w-[200px] animate-on-scroll'>
                     <div className='w-25 h-25 bg-[var(--cor-primaria)] rounded-full'>
                         <LottieWord/>
                     </div>
