@@ -8,6 +8,8 @@ import CircleText from '../components/circleTag/circleTag';
 import { SlideMemoji } from '../components/slideMemoji'
 import { ConteudoForm } from '../components/form'
 import Data from "../arquivoDemo/demo.json"
+import LottieWord from '@/components/lottieAnimate/lottieWord';
+import Clock from '@/components/relogio';
 
 gsap.registerPlugin(ScrollTrigger);
 const mm = gsap.matchMedia();
@@ -41,7 +43,7 @@ export default function Home() {
             if (!el) return;
             const alturaFechado = isMobile ? "12vh" : "18vh";
             const alturaAberto = isMobile ? "42vh" : "95vh";
-            const endM = isMobile ? "100% top" : "200% top";
+            const endM = isMobile ? "100% top" : "450% top";
             const startM = isMobile ? "-250% top" : "-100% top";
 
     
@@ -162,7 +164,7 @@ export default function Home() {
 
       gsap.fromTo(
           elements,
-          { opacity: 0, y: 100 },
+          { opacity: 0, y: 150 },
           {
               opacity: 1,
               y: 0,
@@ -171,63 +173,47 @@ export default function Home() {
               stagger: 0,
               scrollTrigger: {
                   trigger: demoRef.current,
-                  start: 'top 80%',
-                  end: 'center bottom',
+                  start: 'top 60%',
+                  end: 'top center',
                   scrub: 3,
               },
           }
       )
   }, []);
 
-    useEffect(() => {
-      if (!footerRef.current) return;
- 
-      const elements = footerRef.current.querySelectorAll('.animate-on-scroll-form');
+  useEffect(() => {
+    if (!footerRef.current) return;
+  
+    const curve = footerRef.current.querySelector('.curve');
+  
+    if (curve) {
+      gsap.fromTo(
+        curve,
+        {
+          borderRadius: '100%',
+          height: '100vh',
+          top: '-50vh'
+        },
+        {
+          borderRadius: '0%',
+          height: '0vh',
 
-        mm.add(
-            {
-            isMobile: "(max-width: 768px)",
-            isDesktop: "(min-width: 769px)",
-            },
-            (context) => {
-            const { isMobile } = context.conditions as { isMobile: boolean };
-
-            const endM = isMobile ? "top 15%" : "top 8%";
-
-                gsap.fromTo(
-                    elements,
-                    { opacity: 0, y: 0 },
-                    {
-                        opacity: 1,
-                        y: 0,
-                        duration: 1,
-                        ease: 'power1.inOut',
-                        stagger: 0,
-                        scrollTrigger: {
-                            trigger: footerRef.current,
-                            start: 'top 50%',
-                            end: endM,
-                            scrub: 3
-                        },
-                    }
-        )})
-
-      const section = footerRef.current.querySelector('#footerS4') as HTMLElement | null
-      let pinInstance: ScrollTrigger | undefined
-      if (section) {
-          pinInstance = ScrollTrigger.create({
-              trigger: section,
-              start: 'top 20%',
-              end: '+=150%',
-              scrub: 1,
-              pin: true,
-              pinSpacing: false,
-          })
-      }
-
-      return () => {
-          pinInstance?.kill()
-      }
+          top: '0vh',
+          ease: 'none',
+          scrollTrigger: {
+            id: 'footerCurve',
+            trigger: footerRef.current,
+            start: 'top bottom',
+            end: 'top top',
+            scrub: true,
+          },
+        }
+      );
+    }
+  
+    return () => {
+      ScrollTrigger.getById('footerCurve')?.kill();
+    };
   }, []);
   
   const copiarEmail = () => {
@@ -251,6 +237,15 @@ export default function Home() {
                 <div className='flex flex-col gap-[10px]'>
                     <h2 className="text-start text-[35px] text-[var(--cor-font)] text-shadow-[0px_0px_10px_rgba(0,0,0,0.3)] md:text-[50px] lg:text-[60px]"> Dev.<br/> Front-end freelancer<br/></h2>
                     <p className='text-[20px] font-extralight text-[var(--cor-font)] text-shadow-[0px_0px_10px_rgba(0,0,0,0.3)] md:text-[25px] lg:text-[30px]'>Construindo experiências interativas e intuitivas na web.</p>
+                </div>
+                <div className='absolute right-0 top-[45vh] flex justify-between items-center p-[10px] pr-[20px] bg-[rgba(0,0,0,0.82)] rounded-l-full w-[200px]'>
+                    <div className='w-25 h-25 bg-[var(--cor-primaria)] rounded-full'>
+                        <LottieWord/>
+                    </div>
+                    <div className='flex flex-col self-end items-end w-[100%]'>
+                        <Clock/>
+                        <p className='text-[22px] font-extralight text-end text-(--cor-primaria)'>Brasil</p>
+                    </div>
                 </div>
             </div>
             <div className='flex justify-end items-center h-[25vh] font-[Barriecito] lg:h-[50vh] animate-on-scroll'>
@@ -353,8 +348,9 @@ export default function Home() {
                 </div>
           </section>
         </main>
-        <footer ref={footerRef} className='bg-gradient-to-t from-[var(--cor-terciario)] to-[var(--cor-primaria)] h-[100vh] footerS4' id="footerS4">
-        <div className='animate-on-scroll-form sticky top-[0px] flex justify-center items-center bg-[var(--cor-terciario)] h-[100vh]'>
+        <footer ref={footerRef} className='relative flex flex-col h-[100vh] footerS4 overflow-hidden' id="footerS4">
+            <div className='curve absolute left-1/2 -translate-x-1/2 w-[150vw] bg-[var(--cor-primaria)] shadow-[0px_10px_100px_rgba(0,0,0,0.6)]'/>
+        <div className='justify-self-center animate-on-scroll-form flex justify-center items-center bg-[var(--cor-terciario)] h-[100vh]'>
                 <div className='flex flex-col justify-center gap-[15px] max-w-[80vw]'>
                     <ConteudoForm/>
                     <div className='flex items-center md:gap-[12%] m-[1.3vw_0_1.8vw_0]
