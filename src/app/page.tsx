@@ -255,7 +255,7 @@ export default function Home() {
                     <h2 className="text-start text-[35px] text-[var(--cor-font)] text-shadow-[0px_0px_10px_rgba(0,0,0,0.3)] md:text-[50px] lg:text-[60px]"> Dev.<br/> Front-end freelancer<br/></h2>
                     <p className='text-[20px] font-extralight text-[var(--cor-font)] text-shadow-[0px_0px_10px_rgba(0,0,0,0.3)] md:text-[25px] lg:text-[30px]'>Construindo experiências interativas e intuitivas na web.</p>
                 </div>
-                <div className='absolute right-0 top-[25vh] md:top-[45vh] flex justify-between items-center p-[10px] pr-[20px] bg-[rgba(0,0,0,0.82)] rounded-l-full w-[200px] animate-on-scroll'>
+                <div className='absolute right-0 top-[20vh] flex justify-between items-center p-[10px] pr-[20px] bg-[rgba(0,0,0,0.82)] rounded-l-full w-[200px] animate-on-scroll'>
                     <div className='w-25 h-25 bg-[var(--cor-primaria)] rounded-full'>
                         <LottieWord/>
                     </div>
@@ -271,7 +271,7 @@ export default function Home() {
           </div>
         </header>
         <main  ref={containerRef} className='bg-[var(--cor-primaria)]'>
-          <section className='flex flex-col justify-center items-center gap-[35px] md:gap-[50px] w-[100vw] h-[100vh] p-[100px_0px_0px_0px] md:p-[200px_0px_50px_0px]' id='sS2'>
+          <section className='flex flex-col justify-center items-center gap-[35px] md:gap-[50px] w-[100vw] h-[100vh] p-[100px_0px_0px_0px] md:p-[200px_0px_50px_0px]' id='meu-objetivo'>
           <div className='flex justify-center items-center'>
             <div className='flex flex-col items-center justify-center w-[90vw] md:flex-row md:justify-between md:items-start md:w-[70vw] text-shadow-[0px_0px_10px_rgba(0,0,0,0.3)]'>
                 <div className='hidden
