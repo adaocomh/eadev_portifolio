@@ -1,13 +1,14 @@
 {"demo":
 [
     {
-        "name": "Atlas API",
-        "img": "/imgs/imgsDemo/atlas-API.png",
-        "url": "https://atlas-api-drab.vercel.app"
-      },
-      {
         "name": "3XMEND",
         "img": "/imgs/imgsDemo/header-mend.png",
         "url": "https://3xmend.com"
-      }]
+      },
+      {
+        "name": "Atlas API",
+        "img": "/imgs/imgsDemo/atlas-API.png",
+        "url": "https://atlas-api-drab.vercel.app"
+      }
+      ]
 }
