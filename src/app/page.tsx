@@ -248,7 +248,7 @@ export default function Home() {
     <>
         <nav className='fixed w-[100vw] h-[100px] p-[20px_20px_0px_20px] z-50 md:p-[20px_80px_20px_80px]'><MenuSuspenso/></nav>
         <header ref={headerRef} className="flex flex-col h-[106vh] p-[20px_0px_0px_20px] bg-[var(--cor-primaria)] lg:h-[119vh] lg:p-[80px_0px_0px_80px]" id='header'>
-          <div className="flex flex-col justify-end h-[100%] md:gap-[10vh]">
+          <div className="flex flex-col justify-end h-[100%] md:gap-[8vh]">
             <div className="flex flex-col justify-center items-start pr-[20px] gap-[20px] md:flex-row md:justify-start md:items-end lg:gap-[80px]">
                 <img className="h-[300px] md:h-[330px]" src="/imgs/perfil/perfil.jpeg" alt="Foto do desenvolvedor"/>
                 <div className='flex flex-col gap-[10px]'>
