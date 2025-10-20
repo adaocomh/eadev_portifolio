@@ -294,7 +294,7 @@ return () => {
 
     gsap.fromTo(slideMemoji, {
         opacity: 0,
-        translateY: '150px'
+        translateY: '250px'
     }, {
         opacity: 1,
         translateY: '0px',
@@ -302,7 +302,7 @@ return () => {
         ease: 'power2.out',
         scrollTrigger: {
             trigger: footerRef.current,
-            start: 'top 15%',
+            start: 'top 10%',
             end: 'bottom bottom',
             scrub: 0,
         }
@@ -394,7 +394,7 @@ return () => {
                         <img src='/imgs/perfil/contato.png' className='slide-memoji w-[80px] md:w-[150px] rounded-b-[50%]'/>
                     </div>
                     <div className='flex w-[100%] justify-between'>
-                        <div className={`slide-contato w-full flex flex-col items-center gap-[15px] md:gap-[2vw] translate-y-[0] transition-all duration-1000 opacity-100 md:flex-row`}>
+                        <div className={`slide-contato w-full flex flex-col items-center gap-[15px] md:gap-[2vw] md:flex-row`}>
                             <a ref={emailRef} className='w-full md:w-max rounded-[50px] font-extralight text-[16px] p-[15px] md:p-[2vw] text-center text-shadow-[0px_0px_10px_rgba(0,0,0,0.3)] hover:translate-y-[-4px] hover:transition-all hover:duration-500 hover:shadow-[inset_2px_2px_8px_rgba(255,255,255,0.08),2px_8px_12px_rgba(0,0,0,0.15)] bg-[rgba(128,128,128,0.05)] backdrop-blur-xs text-[var(--cor-primaria)] shadow-[inset_2px_2px_8px_rgba(255,255,255,0.08),2px_8px_10px_rgba(0,0,0,0.08)]' onClick={copiarEmail}>{emailCopiado ? 'E-mail copiado!' : 'eadevcontato@gmail.com'}</a>
                             <a href='https://wa.me/48988325514?text=Olá,%20Éverton!%20Gostaria%20de%20falar%20mais%20sobre%20seus%20serviços%20oferecido.' target='_blank' rel='noopener noreferrer' className='w-full md:w-max rounded-[50px] font-extralight text-[16px] p-[15px] md:p-[2vw] text-center text-shadow-[0px_0px_10px_rgba(0,0,0,0.3)] hover:translate-y-[-4px] hover:transition-all hover:duration-500 hover:shadow-[inset_2px_2px_8px_rgba(255,255,255,0.08),2px_8px_12px_rgba(0,0,0,0.15)] bg-[rgba(128,128,128,0.05)] backdrop-blur-xs text-[var(--cor-primaria)] shadow-[inset_2px_2px_8px_rgba(255,255,255,0.08),2px_8px_10px_rgba(0,0,0,0.08)]'>+55 (48) 98832-5514</a>
                         </div>
