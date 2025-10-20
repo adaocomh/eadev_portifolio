@@ -4,17 +4,15 @@ import { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 import { SplitText } from 'gsap/all';
-import SlideEffect from '../components/slideEffect/slideEffect';
 import CircleText from '../components/circleTag/circleTag';
-import { SlideMemoji } from '../components/slideMemoji'
 import { ConteudoForm } from '../components/form'
 import Data from "../arquivoDemo/demo.json"
 import LottieWord from '@/components/lottieAnimate/lottieWord';
 import Clock from '@/components/relogio';
 
 gsap.registerPlugin(SplitText) 
-
 gsap.registerPlugin(ScrollTrigger);
+
 const mm = gsap.matchMedia();
 const triggers: ScrollTrigger[] = [];
 
@@ -27,16 +25,13 @@ export default function Home() {
   const emailRef = useRef<HTMLAnchorElement | null>(null)
   const aRefs = useRef<(HTMLElement | null)[]>([]);
 
-  const slideShow = 'translate-y-[0%] transition-all duration-1200 opacity-100';
-  const slideHide = 'translate-y-[89%] transition-all duration-1200 opacity-0';
-
-
+  //Text "meu objetivo"
   useEffect(() =>{
 
 document.fonts.ready.then(() => {
-  gsap.set(".text", { opacity: 1 });
+gsap.set(".text", { opacity: 1 });
 
-  const split = new SplitText(".text", {
+const split = new SplitText(".text", {
     type: "words,lines",
     linesClass: "line",
     autoSplit: true,
@@ -53,164 +48,143 @@ document.fonts.ready.then(() => {
             trigger: ".text",
             start: "top 70%",
             toggleActions: "play none none reverse", // anima ao entrar, reverte ao sair
-          }
-      });
-});
-}, [])
-
-
-    useEffect(() => {
-    if (!aRefs.current.length) return;
-    mm.add(
-        {
-        isMobile: "(max-width: 768px)",
-        isDesktop: "(min-width: 769px)",
-        },
-        (context) => {
-        const { isMobile } = context.conditions as { isMobile: boolean };
-    
-        aRefs.current.forEach((el, index) => {
-            if (!el) return;
-            const alturaFechado = isMobile ? "12vh" : "18vh";
-            const alturaAberto = isMobile ? "42vh" : "95vh";
-            const endM = isMobile ? "100% top" : "450% top";
-            const startM = isMobile ? "-250% top" : "-100% top";
-
-    
-            const abrir = () => {
-            aRefs.current.forEach((other, i) => {
-                if (other && i !== index) {
-                gsap.to(other, {
-                    height: alturaFechado,
-                    duration: 0.01,
-                    ease: "power1.inOut",
-                });
-                }
-            });
-            
-            gsap.to(el, {
-                height: alturaAberto,
-                duration: 0.1,
-                ease: "power1.out",
-            });
-            gsap.fromTo(el.querySelector(".img"), {
-                opacity: 0,
-            }, {
-                opacity: 1,
-                duration: 0.8,
-            })
-            };
-            
-            const fechar = () => {
-            gsap.to(el, {
-                height: alturaFechado,
-                duration: 0.1,
-                ease: "power1.inOut",
-            });
-            gsap.fromTo(el.querySelector(".img"), {
-                opacity: 1,
-            }, {
-                opacity: 0,
-                duration: 0.5,
-            })
-            };
-    
-            const trigger = ScrollTrigger.create({
-            trigger: el,
-            start: startM,
-            end: endM,
-            onEnter: abrir,
-            onEnterBack: abrir,
-            onLeave: fechar,     
-            onLeaveBack: fechar, 
-            });
-    
-            triggers.push(trigger);
-        });
-    
-        return () => {
-            triggers.forEach((t) => t.kill());
-        };
         }
-    );
-    
-    return () => {
-        mm.revert();
-    };
-    }, []);
+    });
+});
+  }, [])
 
-    useEffect(() => {
-        if (!headerRef.current) return;
+  //"circle-text"
+  useEffect(() => {
+    if (!headerRef.current) return;
 
-        const elements = headerRef.current.querySelectorAll('.animate-on-scroll');
+    const elements = headerRef.current.querySelectorAll('.circle-text');
 
-        gsap.fromTo(
-            elements,
-            { opacity: 1, y: 0 },
-            {
-                opacity: 0,
-                y: 200,
-                duration: 0.5,
-                ease: 'power2.out',
-                stagger: 0,
-                scrollTrigger: {
-                    trigger: headerRef.current,
-                    start: 'top 0%',
-                    end: 'bottom 5%',
-                    scrub: 0,
-                },
-            }
-        )
-    }, []);
-
-    useEffect(() => {
-        if (!containerRef.current) return;
-
-        const elements = containerRef.current.querySelectorAll('.animate-on-scroll-lottie');
-
-        gsap.fromTo(
-            elements,
-            { opacity: 1, y: 300 },
-            {
-                opacity: 1,
-                y:"-" + 225,
-                duration: 0.5,
-                ease: 'power2.out',
-                stagger: 0,
-                scrollTrigger: {
-                    trigger: containerRef.current,
-                    start: 'top 100%',
-                    end: 'bottom 0%',
-                    scrub: 1.5,
-                },
-            }
-        )
-    }, []);
-
-    useEffect(() => {
-      if (!demoRef.current) return;
-
-      const elements = demoRef.current.querySelectorAll('.animate-on-scroll-demo');
-
-      gsap.fromTo(
-          elements,
-          { opacity: 0, y: 150 },
-          {
-              opacity: 1,
-              y: 0,
-              duration: 1,
-              ease: "expoScale(0.5,7, none)",
-              stagger: 0,
-              scrollTrigger: {
-                  trigger: demoRef.current,
-                  start: 'top 50%',
-                  end: 'top center',
-                  scrub: 3,
-              },
-          }
-      )
+    gsap.fromTo(
+        elements,
+        { opacity: 1, y: 0 },
+        {
+            opacity: 0,
+            y: 200,
+            duration: 0.5,
+            ease: 'power2.out',
+            stagger: 0,
+            scrollTrigger: {
+                trigger: headerRef.current,
+                start: 'top 0%',
+                end: 'bottom 5%',
+                scrub: 0,
+            },
+        }
+    )
   }, []);
 
+  //conteúdo "demo"
+  useEffect(() => {
+    if (!demoRef.current) return;
+
+    const elements = demoRef.current.querySelectorAll('.animate-on-scroll-demo');
+
+    gsap.fromTo(
+        elements,
+        { opacity: 0, y: 150 },
+        {
+            opacity: 1,
+            y: 0,
+            duration: 1,
+            ease: "expoScale(0.5,7, none)",
+            stagger: 0,
+            scrollTrigger: {
+                trigger: demoRef.current,
+                start: 'top 50%',
+                end: 'top center',
+                scrub: 3,
+            },
+        }
+    )
+  }, []);
+
+  //cards "demo"
+  useEffect(() => {
+if (!aRefs.current.length) return;
+mm.add(
+    {
+    isMobile: "(max-width: 768px)",
+    isDesktop: "(min-width: 769px)",
+    },
+    (context) => {
+    const { isMobile } = context.conditions as { isMobile: boolean };
+
+    aRefs.current.forEach((el, index) => {
+        if (!el) return;
+        const alturaFechado = isMobile ? "12vh" : "18vh";
+        const alturaAberto = isMobile ? "42vh" : "95vh";
+        const endM = isMobile ? "100% top" : "450% top";
+        const startM = isMobile ? "-250% top" : "-100% top";
+
+
+        const abrir = () => {
+        aRefs.current.forEach((other, i) => {
+            if (other && i !== index) {
+            gsap.to(other, {
+                height: alturaFechado,
+                duration: 0.01,
+                ease: "power1.inOut",
+            });
+            }
+        });
+        
+        gsap.to(el, {
+            height: alturaAberto,
+            duration: 0.1,
+            ease: "power1.out",
+        });
+        gsap.fromTo(el.querySelector(".img"), {
+            opacity: 0,
+        }, {
+            opacity: 1,
+            duration: 0.8,
+        })
+        };
+        
+        const fechar = () => {
+        gsap.to(el, {
+            height: alturaFechado,
+            duration: 0.1,
+            ease: "power1.inOut",
+        });
+        gsap.fromTo(el.querySelector(".img"), {
+            opacity: 1,
+        }, {
+            opacity: 0,
+            duration: 0.5,
+        })
+        };
+
+        const trigger = ScrollTrigger.create({
+        trigger: el,
+        start: startM,
+        end: endM,
+        onEnter: abrir,
+        onEnterBack: abrir,
+        onLeave: fechar,     
+        onLeaveBack: fechar, 
+        });
+
+        triggers.push(trigger);
+    });
+
+    return () => {
+        triggers.forEach((t) => t.kill());
+    };
+    }
+);
+
+return () => {
+    mm.revert();
+};
+  }, []);
+
+  //"Borda" circular
   useEffect(() => {
     if (!footerRef.current) return;
 
@@ -262,6 +236,54 @@ document.fonts.ready.then(() => {
       mm.revert(); // limpa tudo
     };
   }, []);
+
+  //"sile-memoji"
+  useEffect(()=>{
+    if (!footerRef.current) return
+
+    const slideMemoji = footerRef.current.querySelector('.slide-memoji')
+
+    gsap.fromTo(slideMemoji, {
+        opacity: 0,
+        translateX: '-200px'
+    }, {
+        opacity: 1,
+        translateX: '0px',
+        duration: 0.5,
+        ease: 'power2.out',
+        scrollTrigger: {
+            trigger: footerRef.current,
+            start: 'top center',
+            end: 'bottom bottom',
+            scrub: 0,
+        }
+    }
+    )
+  })
+
+  //"slide-contato"
+  useEffect(()=>{
+    if (!footerRef.current) return
+
+    const slideMemoji = footerRef.current.querySelector('.slide-contato')
+
+    gsap.fromTo(slideMemoji, {
+        opacity: 0,
+        translateY: '150px'
+    }, {
+        opacity: 1,
+        translateY: '0px',
+        duration: 1,
+        ease: 'power2.out',
+        scrollTrigger: {
+            trigger: footerRef.current,
+            start: 'top 15%',
+            end: 'bottom bottom',
+            scrub: 0,
+        }
+    }
+    )
+  })
   
   const copiarEmail = () => {
         const email = emailRef.current?.innerText
@@ -278,7 +300,7 @@ document.fonts.ready.then(() => {
     <>
         <nav className='fixed w-[100vw] h-[100px] p-[20px_20px_0px_20px] z-50 md:p-[20px_80px_20px_80px]'><MenuSuspenso/></nav>
         <header ref={headerRef} className="flex flex-col h-[106vh] p-[20px_0px_0px_20px] bg-[var(--cor-primaria)] lg:h-[119vh] lg:p-[80px_0px_0px_80px]" id='header'>
-          <div className="flex flex-col justify-end h-[100%] md:gap-[8vh]">
+          <div className="flex flex-col justify-end h-[100%] md:gap-[5vh]">
             <div className="flex flex-col justify-center items-start pr-[20px] gap-[20px] md:flex-row md:justify-start md:items-end lg:gap-[80px]">
                 <img className="h-[300px] md:h-[330px]" src="/imgs/perfil/perfil.jpeg" alt="Foto do desenvolvedor"/>
                 <div className='flex flex-col gap-[10px]'>
@@ -312,7 +334,7 @@ document.fonts.ready.then(() => {
                     <p className='w-[100%] text text-[4vw] md:text-[1vw] md:font-extralight md:text-[var(--cor-font)]'>Transformando layouts pré-definidos em código funcional ou colaborar na criação do projeto desde o início, unindo design desenvolvimento para uma solução completa.</p>
                 </div>
             </div>
-            <div className='animate-on-scroll-lottie w-[50vw] flex justify-end'>
+            <div className='circle-text w-[50vw] flex justify-end'>
                 <CircleText/>
             </div>
           </section>
@@ -344,17 +366,14 @@ document.fonts.ready.then(() => {
                     md:m-[1vw_0_0.8vw_0]'>
                         <div className='hidden md:block w-[70%] border-b-[0.1px] border-[#F5ECDB50]'/>
                         <h1 className='md:hidden w-full text-[var(--cor-primaria)] text-[24px] font-medium text-start text-shadow-[0px_0px_10px_rgba(0,0,0,0.5)] my-[10px]'>Vamos trabalhar<br/> juntos?</h1>
-                        <SlideMemoji/>
+                        <img src='/imgs/perfil/contato.png' className='slide-memoji w-[80px] md:w-[150px] rounded-b-[50%]'/>
                     </div>
-                    <SlideEffect<HTMLDivElement>>
-                        {(ref, visivel) => (
                     <div className='flex w-[100%] justify-between'>
-                        <div ref={ref} className={`${visivel ? 'w-full flex flex-col items-center gap-[15px] md:gap-[2vw] translate-y-[0] transition-all duration-1000 opacity-100 md:flex-row' : 'flex flex-col items-center gap-[2vw] translate-y-[19%] transition-all duration-1000 opacity-0 md:flex-row'}`}>
+                        <div className={`slide-contato w-full flex flex-col items-center gap-[15px] md:gap-[2vw] translate-y-[0] transition-all duration-1000 opacity-100 md:flex-row`}>
                             <a ref={emailRef} className='w-full md:w-max rounded-[50px] font-extralight text-[16px] p-[15px] md:p-[2vw] text-center text-shadow-[0px_0px_10px_rgba(0,0,0,0.3)] hover:translate-y-[-4px] hover:transition-all hover:duration-500 hover:shadow-[inset_2px_2px_8px_rgba(255,255,255,0.08),2px_8px_12px_rgba(0,0,0,0.15)] bg-[rgba(128,128,128,0.05)] backdrop-blur-xs text-[var(--cor-primaria)] shadow-[inset_2px_2px_8px_rgba(255,255,255,0.08),2px_8px_10px_rgba(0,0,0,0.08)]' onClick={copiarEmail}>{emailCopiado ? 'E-mail copiado!' : 'eadevcontato@gmail.com'}</a>
                             <a href='https://wa.me/48988325514?text=Olá,%20Éverton!%20Gostaria%20de%20falar%20mais%20sobre%20seus%20serviços%20oferecido.' target='_blank' rel='noopener noreferrer' className='w-full md:w-max rounded-[50px] font-extralight text-[16px] p-[15px] md:p-[2vw] text-center text-shadow-[0px_0px_10px_rgba(0,0,0,0.3)] hover:translate-y-[-4px] hover:transition-all hover:duration-500 hover:shadow-[inset_2px_2px_8px_rgba(255,255,255,0.08),2px_8px_12px_rgba(0,0,0,0.15)] bg-[rgba(128,128,128,0.05)] backdrop-blur-xs text-[var(--cor-primaria)] shadow-[inset_2px_2px_8px_rgba(255,255,255,0.08),2px_8px_10px_rgba(0,0,0,0.08)]'>+55 (48) 98832-5514</a>
                         </div>
-                    </div>)}
-                    </SlideEffect>
+                    </div>
                 </div>
                 </div>
         </footer>
