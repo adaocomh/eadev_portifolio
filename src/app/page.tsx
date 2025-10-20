@@ -3,6 +3,7 @@ import MenuSuspenso from '../components/mnSuspenso'
 import { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
+import { SplitText } from 'gsap/all';
 import SlideEffect from '../components/slideEffect/slideEffect';
 import CircleText from '../components/circleTag/circleTag';
 import { SlideMemoji } from '../components/slideMemoji'
@@ -10,6 +11,8 @@ import { ConteudoForm } from '../components/form'
 import Data from "../arquivoDemo/demo.json"
 import LottieWord from '@/components/lottieAnimate/lottieWord';
 import Clock from '@/components/relogio';
+
+gsap.registerPlugin(SplitText) 
 
 gsap.registerPlugin(ScrollTrigger);
 const mm = gsap.matchMedia();
@@ -27,6 +30,33 @@ export default function Home() {
   const slideShow = 'translate-y-[0%] transition-all duration-1200 opacity-100';
   const slideHide = 'translate-y-[89%] transition-all duration-1200 opacity-0';
 
+
+  useEffect(() =>{
+
+document.fonts.ready.then(() => {
+  gsap.set(".text", { opacity: 1 });
+
+  const split = new SplitText(".text", {
+    type: "words,lines",
+    linesClass: "line",
+    autoSplit: true,
+    mask: "lines",
+    });
+    
+    gsap.from(split.lines, {
+        duration: 2,
+        yPercent: 100,
+        opacity: 0,
+        stagger: 0.1,
+        ease: "expo.out",
+        scrollTrigger: {
+            trigger: ".text",
+            start: "top 70%",
+            toggleActions: "play none none reverse", // anima ao entrar, reverte ao sair
+          }
+      });
+});
+}, [])
 
 
     useEffect(() => {
@@ -272,74 +302,15 @@ export default function Home() {
         </header>
         <main  ref={containerRef} className='bg-[var(--cor-primaria)]'>
           <section className='flex flex-col justify-center items-center gap-[35px] md:gap-[50px] w-[100vw] h-[100vh] p-[100px_0px_0px_0px] md:p-[200px_0px_50px_0px]' id='meu-objetivo'>
-          <div className='flex justify-center items-center'>
-            <div className='flex flex-col items-center justify-center w-[90vw] md:flex-row md:justify-between md:items-start md:w-[70vw] text-shadow-[0px_0px_10px_rgba(0,0,0,0.3)]'>
-                <div className='hidden
-                md:block md:text-[2vw] md:font-extralight md:text-[var(--cor-font)]
-                '>
-                    {["Buscando entregar projetos interativos e",
-                      "intuitivos; sem descartar suas intenções, tenho",
-                      "como objetivo oferecer a melhor solução para o",
-                      "que você busca."].map((text, index) => (
-                        <div key={index} className='overflow-hidden'>
-                            <SlideEffect<HTMLDivElement>>{(ref, visivel) => (
-                            <div ref={ref} className={`${visivel ? slideShow : slideHide}`}>{text}</div>
-                            )}</SlideEffect>
-                        </div>
-                    ))}
-                </div>
-                    <div className='flex flex-col'>
-                        <div className='hidden md:block overflow-hidden mb-[10px]'>
-                            <SlideEffect<HTMLDivElement>>{(ref, visivel) => (
-                            <div ref={ref} className={`${visivel ? `w-[20vw] border-b-1 pb-[5px]  font-normal text-[1.6vw] text-[var(--cor-font)] ${slideShow}` : `w-[20vw] border-b-1 pb-[5px] font-normal text-[1.6vw] text-[var(--cor-font)] ${slideHide}`}`}>Posso atuar...</div>)}</SlideEffect>
-                        </div>
-                                    <div className='hidden
-                                    md:block md:text-[1vw] md:font-extralight md:text-[var(--cor-font)]
-                                    '>
-                        {["transformando layouts pré-definidos em",
-                          "código funcional ou colaborar na criação do",
-                          "projeto desde o início, unindo design e ",
-                          "desenvolvimento para uma solução completa."].map((text, index) => (
-                            <div key={index} className='overflow-hidden'>
-                                <SlideEffect<HTMLDivElement>>{(ref, visivel) => (
-                                <div ref={ref} className={`${visivel ? slideShow : slideHide}`}>{text}</div>
-                                )}</SlideEffect>
-                            </div>
-                        ))}
-                        </div>
+            <div className='flex flex-col items-center justify-center gap-[20px] w-[90vw] md:flex-row md:justify-between md:items-start md:w-[70vw] text-shadow-[0px_0px_10px_rgba(0,0,0,0.3)]'>
+                <h3 className='md:w-[70%] w-[100%] text text-[7vw] md:text-[2vw] md:font-extralight md:text-[var(--cor-font)]
+                '>Buscando entregar projetos interativos e intuitivos; sem descartar suas intenções, tenho como objetivo oferecer a melhor solução para o que você busca.</h3>
+                <div className='flex flex-col md:w-[30%] w-[100%]'>
+                    <div className='mb-[12px] w-[100%]'>
+                        <div className='text w-[60vw] md:w-[20vw] border-b-1 pb-[5px]  font-normal text-[6vw] md:text-[1.6vw] text-[var(--cor-font)'>Posso atuar...</div>
                     </div>
-                <div className='md:hidden w-full font-extralight text-[6.5vw] text-[var(--cor-font)]'>
-                    {["Buscando entregar projetos",
-                      "interativos e intuitivos; sem",
-                      "descartar suas intenções,",
-                      "tenho como objetivo oferecer",
-                      "a melhor solução para o que",
-                      "você busca."].map((text, index) => (
-                        <div key={index} className='overflow-hidden'>
-                            <SlideEffect<HTMLDivElement>>{(ref, visivel) => (
-                            <div ref={ref} className={`${visivel ? slideShow : slideHide}`}>{text}</div>
-                            )}</SlideEffect>
-                        </div>
-                    ))}
+                    <p className='w-[100%] text text-[4vw] md:text-[1vw] md:font-extralight md:text-[var(--cor-font)]'>Transformando layouts pré-definidos em código funcional ou colaborar na criação do projeto desde o início, unindo design desenvolvimento para uma solução completa.</p>
                 </div>
-                    <div className='md:hidden w-full overflow-hidden m-[3vh_0]'>
-                        <SlideEffect<HTMLDivElement>>{(ref, visivel) => (
-                        <div ref={ref} className={`${visivel ? `w-[75vw] border-b border-[rgba(0, 0, 0, 0.6)] pb-[5px] font-normal text-[5vh] text-[var(--cor-font)] ${slideShow}` : `w-[75vw] border-b-1 pb-[5px] font-normal text-[5vh] text-[var(--cor-font)] ${slideHide}`}`}>Posso atuar...</div>)}</SlideEffect>
-                    </div>
-                <div className='md:hidden w-full font-extralight text-[4.5vw] text-[var(--cor-font)]'>
-                    {["transformando layouts pré-definidos em",
-                      "código funcional ou colaborar na criação do",
-                      "projeto desde o início, unindo design e",
-                      "desenvolvimento para uma solução",
-                      "completa."].map((text, index) => (
-                        <div key={index} className='overflow-hidden'>
-                            <SlideEffect<HTMLDivElement>>{(ref, visivel) => (
-                            <div ref={ref} className={`${visivel ? slideShow : slideHide}`}>{text}</div>
-                            )}</SlideEffect>
-                        </div>
-                    ))}
-                </div>
-            </div>
             </div>
             <div className='animate-on-scroll-lottie w-[50vw] flex justify-end'>
                 <CircleText/>
