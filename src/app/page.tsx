@@ -55,24 +55,24 @@ const split = new SplitText(".text", {
 
   //"circle-text"
   useEffect(() => {
-    if (!headerRef.current) return;
+    if (!containerRef.current) return;
 
-    const elements = headerRef.current.querySelectorAll('.circle-text');
+    const elements = containerRef.current.querySelector('.circle-text');
 
     gsap.fromTo(
         elements,
-        { opacity: 1, y: 0 },
+        { opacity: 1, y: 300 },
         {
-            opacity: 0,
-            y: 200,
+            opacity: 1,
+            y:"-" + 225,
             duration: 0.5,
             ease: 'power2.out',
             stagger: 0,
             scrollTrigger: {
-                trigger: headerRef.current,
-                start: 'top 0%',
-                end: 'bottom 5%',
-                scrub: 0,
+                trigger: containerRef.current,
+                start: 'top 100%',
+                end: 'bottom 0%',
+                scrub: 1.5,
             },
         }
     )
