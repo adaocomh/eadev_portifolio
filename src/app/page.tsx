@@ -25,6 +25,31 @@ export default function Home() {
   const emailRef = useRef<HTMLAnchorElement | null>(null)
   const aRefs = useRef<(HTMLElement | null)[]>([]);
 
+  //"title-name"
+  useEffect(() => {
+    if (!headerRef.current) return;
+
+    const elements = headerRef.current.querySelectorAll('.title-name');
+
+    gsap.fromTo(
+        elements,
+        { opacity: 1, y: 0 },
+        {
+            opacity: 0,
+            y: 200,
+            duration: 0.5,
+            ease: 'power2.out',
+            stagger: 0,
+            scrollTrigger: {
+                trigger: headerRef.current,
+                start: 'top 0%',
+                end: 'bottom 5%',
+                scrub: 0,
+            },
+        }
+    )
+}, []);
+
   //Text "meu objetivo"
   useEffect(() =>{
 
@@ -317,7 +342,7 @@ return () => {
                     </div>
                 </div>
             </div>
-            <div className='flex justify-end items-center h-[25vh] font-[Barriecito] lg:h-[50vh] animate-on-scroll'>
+            <div className='flex justify-end items-center h-[25vh] font-[Barriecito] lg:h-[50vh] title-name'>
             <h1 className='text-[28vw] text-[rgba(0,0,0,0.9)] text-shadow-[0px_0px_10px_rgba(0,0,0,0.3)]'>É<span className='text-[var(--cor-secundaria)]'>v</span>erton</h1>
             </div>
           </div>
