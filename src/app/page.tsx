@@ -3,6 +3,7 @@ import MenuSuspenso from '../components/mnSuspenso'
 import { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
+import { ScrollSmoother } from 'gsap/all';
 import { SplitText } from 'gsap/all';
 import CircleText from '../components/circleTag/circleTag';
 import { ConteudoForm } from '../components/form'
@@ -11,10 +12,9 @@ import LottieWord from '@/components/lottieAnimate/lottieWord';
 import Clock from '@/components/relogio';
 
 gsap.registerPlugin(SplitText) 
-gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 
 const mm = gsap.matchMedia();
-const triggers: ScrollTrigger[] = [];
 
 export default function Home() {
   const headerRef = useRef<HTMLElement>(null);
@@ -23,13 +23,54 @@ export default function Home() {
   const footerRef = useRef<HTMLElement>(null);
   const [emailCopiado, setEmailCopiado] = useState<boolean>(false)
   const emailRef = useRef<HTMLAnchorElement | null>(null)
-  const aRefs = useRef<(HTMLElement | null)[]>([]);
+  const containerCards = useRef<HTMLDivElement>(null)
 
-  //"title-name"
+  //ScrollSmoother global
+  useEffect(() => {
+    if (!containerCards.current) return;
+
+    const cards = containerCards.current.querySelectorAll(".card")
+
+    // Cria o scroll suave
+    const smoother = ScrollSmoother.create({
+      wrapper: "#smooth-wrapper",
+      content: "#smooth-content",
+      smooth: 1.6,
+      effects: true,
+    });
+
+    // Timeline de movimento horizontal
+    gsap.to(cards, {
+      xPercent: -100 * (cards.length - 1),
+      ease: "none",
+      scrollTrigger: {
+        trigger: containerCards.current,
+        pin: true,
+        scrub: 0.5,
+        start: "top 28%", 
+        end: () => "+=1000px",
+      },
+    });
+
+    const meuojt =  ScrollTrigger.create({
+    pin: '.meuObj',
+    start: 'top top',
+    end:'+=600px'
+    })
+
+    return () => {
+      smoother.kill();
+      ScrollTrigger.getAll().forEach((st) => st.kill());
+      meuojt.kill()
+    };
+  }, []);
+
+
+  //"title-name-e-clock"
   useEffect(() => {
     if (!headerRef.current) return;
 
-    const elements = headerRef.current.querySelectorAll('.title-name');
+    const elements = headerRef.current.querySelectorAll('.title-name-e-clock');
 
     gsap.fromTo(
         elements,
@@ -78,6 +119,50 @@ const split = new SplitText(".text", {
 });
   }, [])
 
+  useEffect(() => {
+    const el = document.querySelector('.titleMn')
+    if (!el) return
+
+    // Hover: troca de texto com transição suave
+    const handleEnter = () => {
+      const newText = el.textContent?.replace('É. Adão', 'Éverton Adão')
+      if (!newText) return
+
+      gsap.to(el, {
+        opacity: 0,
+        duration: 0.1,
+        onComplete: () => {
+          el.textContent = newText
+          gsap.to(el, { opacity: 1, duration: 0.1, ease: 'power2.out' })
+        },
+      })
+    }
+
+    // Volta ao texto original
+    const handleLeave = () => {
+      const originalText = el.textContent?.replace('Éverton Adão', 'É. Adão')
+      if (!originalText) return
+
+      gsap.to(el, {
+        opacity: 0,
+        duration: 0.1,
+        onComplete: () => {
+          el.textContent = originalText
+          gsap.to(el, { opacity: 1, duration: 0.1, ease: 'power2.out' })
+        },
+      })
+    }
+
+    el.addEventListener('mouseenter', handleEnter)
+    el.addEventListener('mouseleave', handleLeave)
+
+    // Cleanup
+    return () => {
+      el.removeEventListener('mouseenter', handleEnter)
+      el.removeEventListener('mouseleave', handleLeave)
+    }
+  }, [])
+
   //"circle-text"
   useEffect(() => {
     if (!containerRef.current) return;
@@ -103,11 +188,11 @@ const split = new SplitText(".text", {
     )
   }, []);
 
-  //conteúdo "demo"
+  //scroll "demo"
   useEffect(() => {
     if (!demoRef.current) return;
 
-    const elements = demoRef.current.querySelectorAll('.animate-on-scroll-demo');
+    const elements = demoRef.current.querySelectorAll('.scroll-demo');
 
     gsap.fromTo(
         elements,
@@ -120,93 +205,12 @@ const split = new SplitText(".text", {
             stagger: 0,
             scrollTrigger: {
                 trigger: demoRef.current,
-                start: 'top 50%',
+                start: 'top 70%',
                 end: 'top center',
                 scrub: 3,
             },
         }
     )
-  }, []);
-
-  //cards "demo"
-  useEffect(() => {
-if (!aRefs.current.length) return;
-mm.add(
-    {
-    isMobile: "(max-width: 768px)",
-    isDesktop: "(min-width: 769px)",
-    },
-    (context) => {
-    const { isMobile } = context.conditions as { isMobile: boolean };
-
-    aRefs.current.forEach((el, index) => {
-        if (!el) return;
-        const alturaFechado = isMobile ? "12vh" : "18vh";
-        const alturaAberto = isMobile ? "42vh" : "95vh";
-        const endM = isMobile ? "100% top" : "450% top";
-        const startM = isMobile ? "-250% top" : "-100% top";
-
-
-        const abrir = () => {
-        aRefs.current.forEach((other, i) => {
-            if (other && i !== index) {
-            gsap.to(other, {
-                height: alturaFechado,
-                duration: 0.01,
-                ease: "power1.inOut",
-            });
-            }
-        });
-        
-        gsap.to(el, {
-            height: alturaAberto,
-            duration: 0.1,
-            ease: "power1.out",
-        });
-        gsap.fromTo(el.querySelector(".img"), {
-            opacity: 0,
-        }, {
-            opacity: 1,
-            duration: 0.8,
-        })
-        };
-        
-        const fechar = () => {
-        gsap.to(el, {
-            height: alturaFechado,
-            duration: 0.1,
-            ease: "power1.inOut",
-        });
-        gsap.fromTo(el.querySelector(".img"), {
-            opacity: 1,
-        }, {
-            opacity: 0,
-            duration: 0.5,
-        })
-        };
-
-        const trigger = ScrollTrigger.create({
-        trigger: el,
-        start: startM,
-        end: endM,
-        onEnter: abrir,
-        onEnterBack: abrir,
-        onLeave: fechar,     
-        onLeaveBack: fechar, 
-        });
-
-        triggers.push(trigger);
-    });
-
-    return () => {
-        triggers.forEach((t) => t.kill());
-    };
-    }
-);
-
-return () => {
-    mm.revert();
-};
   }, []);
 
   //"Borda" circular
@@ -322,8 +326,10 @@ return () => {
     }
 
   return (
-    <>
-        <nav className='fixed w-[100vw] h-[100px] p-[20px_20px_0px_20px] z-50 md:p-[20px_80px_20px_80px]'><MenuSuspenso/></nav>
+  <>
+  <nav className='fixed w-[100vw] h-[100px] p-[20px_20px_0px_20px] z-50 md:p-[20px_80px_20px_80px]'><MenuSuspenso/></nav>
+    <div id="smooth-wrapper">
+        <div id="smooth-content">
         <header ref={headerRef} className="flex flex-col h-[106vh] p-[20px_0px_0px_20px] bg-[var(--cor-primaria)] lg:h-[119vh] lg:p-[80px_0px_0px_80px]" id='header'>
           <div className="flex flex-col justify-end h-[100%] md:gap-[5vh]">
             <div className="flex flex-col justify-center items-start pr-[20px] gap-[20px] md:flex-row md:justify-start md:items-end lg:gap-[80px]">
@@ -332,7 +338,7 @@ return () => {
                     <h2 className="text-start text-[35px] text-[var(--cor-font)] text-shadow-[0px_0px_10px_rgba(0,0,0,0.3)] md:text-[50px] lg:text-[60px]"> Dev.<br/> Front-end freelancer<br/></h2>
                     <p className='text-[20px] font-extralight text-[var(--cor-font)] text-shadow-[0px_0px_10px_rgba(0,0,0,0.3)] md:text-[25px] lg:text-[30px]'>Construindo experiências interativas e intuitivas na web.</p>
                 </div>
-                <div className='absolute right-0 top-[20vh] md:top-auto md:self-start flex justify-between items-center p-[10px] pr-[20px] bg-[rgba(0,0,0,0.82)] rounded-l-full w-[200px] animate-on-scroll'>
+                <div className='absolute right-0 top-[20vh] md:top-auto md:self-start flex justify-between items-center p-[10px] pr-[20px] bg-[rgba(0,0,0,0.82)] rounded-l-full w-[200px] title-name-e-clock'>
                     <div className='w-25 h-25 bg-[var(--cor-primaria)] rounded-full'>
                         <LottieWord/>
                     </div>
@@ -342,13 +348,13 @@ return () => {
                     </div>
                 </div>
             </div>
-            <div className='flex justify-end items-center h-[25vh] font-[Barriecito] lg:h-[50vh] title-name'>
+            <div className='flex justify-end items-center h-[25vh] font-[Barriecito] lg:h-[50vh] title-name-e-clock'>
             <h1 className='text-[28vw] text-[rgba(0,0,0,0.9)] text-shadow-[0px_0px_10px_rgba(0,0,0,0.3)]'>É<span className='text-[var(--cor-secundaria)]'>v</span>erton</h1>
             </div>
           </div>
         </header>
         <main  ref={containerRef} className='bg-[var(--cor-primaria)]'>
-          <section className='flex flex-col justify-center items-center gap-[35px] md:gap-[50px] w-[100vw] h-[100vh] p-[100px_0px_0px_0px] md:p-[200px_0px_50px_0px]' id='meu-objetivo'>
+          <section className='meuObj flex flex-col justify-center items-center gap-[35px] md:gap-[50px] w-[100vw] h-[100vh] p-[100px_0px_0px_0px] md:p-[200px_0px_50px_0px]' id='meu-objetivo'>
             <div className='flex flex-col items-center justify-center gap-[20px] w-[90vw] md:flex-row md:justify-between md:items-start md:w-[70vw] text-shadow-[0px_0px_10px_rgba(0,0,0,0.3)]'>
                 <h3 className='md:w-[70%] w-[100%] text text-[7vw] md:text-[2vw] md:font-extralight md:text-[var(--cor-font)]
                 '>Buscando entregar projetos interativos e intuitivos; sem descartar suas intenções, tenho como objetivo oferecer a melhor solução para o que você busca.</h3>
@@ -363,22 +369,29 @@ return () => {
                 <CircleText/>
             </div>
           </section>
-          <section ref={demoRef} className='flex flex-col justify-start items-center w-[100vw] h-[70vh] md:h-[130vh]' id='demo'>
-                <div className='animate-on-scroll-demo'>
-                    <div className='flex flex-col gap-[30px]'>
-                    <div  className='flex items-center w-full'>
-                        <p className='text-[16px] font-extralight opacity-50'>Demonstração</p>
+          <section ref={demoRef} className='flex flex-col justify-start items-start w-[100vw] h-[200vh] overflow-hidden' id='demo'>
+                    <div className='flex flex-col items-start pl-[80px] scroll-demo'>
+                    <div  className='flex items-center'>
+                        <p className='text-[16px] font-extralight opacity-50'>Demo.</p>
                     </div>
-                    <div className='flex flex-col gap-[5vh]'>
-                        {Data.demo.map((d, index) => (<a key={d.name} href={d.url} ref={(el) => { aRefs.current[index] = el }} data-name={d.name} className={`transition-all flex flex-col justify-start items-center w-[95vw] h-[12vh] md:h-[18vh] overflow-hidden rounded-[20px] duration-500 bg-[rgba(128,128,128,0.06)] backdrop-blur-md shadow-[inset_2.5px_2.5px_13px_rgba(255,255,255,0.20),2.5px_8px_10px_rgba(0,0,0,0.08)]`} target="_blank" rel="noopener">
-                            <div className='flex justify-between w-full items-center px-[5%] min-h-[12vh] md:min-h-[18vh] contImg'>
-                                <h1 className={`text-[26px] md:text-[40px] text-shadow-[0px_0px_10px_rgba(0,0,0,0.3)] font-extralight opacity-70 transition-all duration-500`}>{d.name}</h1>
-                                <img src="/icons/link.png" className='w-[22px] md:w-[40px] opacity-70' alt="icon de link" />
+                    <div ref={containerCards} className='self-start flex justify-start items-start gap-[40px] w-fit min-w-[100vw] overflow-visible'>
+                        <a href="" className={`card flex flex-col items-start w-[70vw] gap-[25px]`} target="_blank" rel="noopener">
+                            <div className='flex justify-between w-full items-center'>
+                                <div className='border-b-[0.1px] border-gray-400 w-[45%]'>
+                                    <h1 className={`text-[26px] md:text-[40px] text-shadow-[0px_0px_10px_rgba(0,0,0,0.3)] font-extralight opacity-90`}>3XMEND</h1>
+                                </div>
                             </div>
-                            <img src={d.img} alt={d.name} className="w-[80%] md:w-[70%] img"/>
-                        </a>))}
+                            <img src="/imgs/imgsDemo/header-mend.png" alt="" className="w-[100%] rounded-[20px]"/>
+                        </a>
+                        <a href="" className={`card flex flex-col items-start w-[70vw] gap-[25px]`} target="_blank" rel="noopener">
+                            <div className='flex justify-between w-full items-center'>
+                                <div className='border-b-[0.1px] border-(--cor-font) w-[40%]'>
+                                    <h1 className={`text-[26px] md:text-[40px] text-shadow-[0px_0px_10px_rgba(0,0,0,0.3)] font-extralight opacity-90`}>Atlas API</h1>
+                                </div>
+                            </div>
+                            <img src="/imgs/imgsDemo/atlas-API.png" alt="" className="w-[100%] rounded-[20px]"/>
+                        </a>
                     </div>
-                </div>
                 </div>
           </section>
         </main>
@@ -402,6 +415,8 @@ return () => {
                 </div>
                 </div>
         </footer>
+    </div>
+    </div>
     </>
   );
 }
