@@ -23,6 +23,21 @@ body {
   color: var(--cor-font);
 }
 
+html, body {
+  cursor:  url("/icons/maoDA.png") 8 8, auto !important;
+}
+
+a:hover,
+p:hover,
+li:hover,
+button:hover,
+[role="button"]:hover,
+input:hover,
+textarea:hover,
+*[onclick]:hover {
+  cursor: url("/icons/maoDD.png") 8 8, pointer !important;
+}
+
 .slideMenu1{
   animation: slide2 0.6s cubic-bezier(0, 0, 0.7, 0);
 }
