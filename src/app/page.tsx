@@ -362,7 +362,7 @@ const split = new SplitText(".text", {
                     <div className='mb-[12px] w-[60%] border-b-[0.1px] border-black/30'>
                         <h3 className='text font-normal text-[6vw] md:text-[1.6vw] text-[var(--cor-font)'>Posso atuar...</h3>
                     </div>
-                    <p className='w-[100%] text text-[4vw] md:text-[1vw] md:font-extralight md:text-[var(--cor-font)]'>Transformando layouts pré-definidos em código funcional ou colaborar na criação do projeto desde o início, unindo design desenvolvimento para uma solução completa.</p>
+                    <p className='w-[100%] text text-[4vw] md:text-[1vw] md:font-extralight md:text-[var(--cor-font)]'>Transformando layouts pré-definidos em código funcional ou colaborar na criação do projeto desde o início, unindo design e desenvolvimento para uma solução completa.</p>
                 </div>
             </div>
             <div className='circle-text w-[50vw] flex justify-end'>
