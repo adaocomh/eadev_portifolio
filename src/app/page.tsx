@@ -54,18 +54,7 @@ export default function Home() {
       })
     });
 
-    // Timeline de movimento horizontal
-    gsap.to(cards, {
-      xPercent: -100 * (cards.length - 1),
-      ease: "none",
-      scrollTrigger: {
-        trigger: containerCards.current,
-        pin: true,
-        scrub: 0.5,
-        start: "top 28%", 
-        end: () => "+=1000px",
-      },
-    });
+  
 
     return () => {
       smoother.kill();
@@ -73,6 +62,53 @@ export default function Home() {
     };
   }, []);
 
+  //Movimento horizontal responsivo
+  useEffect(() => {
+    if (!containerCards.current) return;
+
+    const cards = containerCards.current.querySelectorAll(".card");
+
+    mm.add(
+      {
+        isMobile: "(max-width: 767px)",
+        isDesktop: "(min-width: 768px)",
+      },
+      (context) => {
+        const { isMobile, isDesktop } = context.conditions as { isMobile: boolean; isDesktop: boolean };
+
+        if (isDesktop) {
+          // Animação horizontal para desktop
+          gsap.to(cards, {
+            xPercent: -100 * (cards.length - 1),
+            ease: "none",
+            scrollTrigger: {
+              trigger: containerCards.current,
+              pin: true,
+              scrub: 0.5,
+              start: "top 28%",
+              end: () => "+=1000px",
+            },
+          });
+        } else if (isMobile) {
+          // Reset para mobile
+          gsap.set(cards, { xPercent: 0 });
+        }
+
+        return () => {
+          // Cleanup específico para este matchMedia
+          ScrollTrigger.getAll().forEach(trigger => {
+            if (trigger.trigger === containerCards.current) {
+              trigger.kill();
+            }
+          });
+        };
+      }
+    );
+
+    return () => {
+      mm.revert();
+    };
+  }, []);
 
   //"title-name-e-clock"
   useEffect(() => {
@@ -333,20 +369,20 @@ const split = new SplitText(".text", {
                 <CircleText/>
             </div>
           </section>
-          <section ref={demoRef} className='flex flex-col justify-start items-start w-[100vw] h-[200vh] overflow-hidden' id='demo'>
-                    <div className='flex flex-col items-start pl-[80px] scroll-demo'>
-                    <div  className='pointer-events-none flex items-center'>
+          <section ref={demoRef} className='flex flex-col justify-start items-start w-[100vw] h-max pb-[20px] md:pb-0 md:h-[200vh] overflow-hidden' id='demo'>
+                    <div className='flex flex-col items-start md:pl-[80px] scroll-demo'>
+                    <div  className='pl-[20px] md:pl-[0px] pointer-events-none flex items-center'>
                         <p className='text-[16px] font-extralight opacity-50'>Demo.</p>
                     </div>
-                    <div ref={containerCards} className='self-start flex justify-start items-start gap-[60px] w-fit min-w-[100vw] overflow-visible'>
+                    <div ref={containerCards} className='self-start flex flex-col md:flex-row justify-start items-center md:items-start gap-[20px] md:gap-[60px] w-fit min-w-[100vw] overflow-visible'>
                       {Data.demo.map((card) => (
-                        <a key={card.name} href={card.url} className={`card flex flex-col items-start w-[70vw] gap-[25px]`} target="_blank" rel="noopener">
+                        <a key={card.name} href={card.url} className={`card flex flex-col items-start w-[90vw] md:w-[70vw] gap-[15px] md:gap-[25px]`} target="_blank" rel="noopener">
                             <div className='pointer-events-none flex justify-between w-full items-center'>
                                 <div className='border-b-[0.1px] border-black/30 w-[40%]'>
                                     <h1 className={`text-[26px] md:text-[40px] text-shadow-[0px_0px_10px_rgba(0,0,0,0.3)] font-extralight opacity-90`}>{card.name}</h1>
                                 </div>
                             </div>
-                            <img src={card.img} alt="" className="pointer-events-none w-[100%] rounded-[20px]"/>
+                            <img src={card.img} alt="" className="pointer-events-none w-[100%]"/>
                         </a>))}
                     </div>
                 </div>
