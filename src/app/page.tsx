@@ -118,7 +118,7 @@ const split = new SplitText(".text", {
     });
 });
   }, [])
-  
+
   //"circle-text"
   useEffect(() => {
     if (!containerRef.current) return;
@@ -315,8 +315,8 @@ const split = new SplitText(".text", {
                 <h3 className='md:w-[70%] w-[100%] text text-[7vw] md:text-[2vw] md:font-extralight md:text-[var(--cor-font)]
                 '>Buscando entregar projetos interativos e intuitivos; sem descartar suas intenções, tenho como objetivo oferecer a melhor solução para o que você busca.</h3>
                 <div className='flex flex-col md:w-[30%] w-[100%]'>
-                    <div className='mb-[12px] w-[100%]'>
-                        <div className='text w-[60vw] md:w-[20vw] border-b-1 pb-[5px]  font-normal text-[6vw] md:text-[1.6vw] text-[var(--cor-font)'>Posso atuar...</div>
+                    <div className='mb-[12px] w-[60%] border-b-[0.1px] border-black/30'>
+                        <h3 className='text font-normal text-[6vw] md:text-[1.6vw] text-[var(--cor-font)'>Posso atuar...</h3>
                     </div>
                     <p className='w-[100%] text text-[4vw] md:text-[1vw] md:font-extralight md:text-[var(--cor-font)]'>Transformando layouts pré-definidos em código funcional ou colaborar na criação do projeto desde o início, unindo design desenvolvimento para uma solução completa.</p>
                 </div>
@@ -330,23 +330,16 @@ const split = new SplitText(".text", {
                     <div  className='flex items-center'>
                         <p className='text-[16px] font-extralight opacity-50'>Demo.</p>
                     </div>
-                    <div ref={containerCards} className='self-start flex justify-start items-start gap-[40px] w-fit min-w-[100vw] overflow-visible'>
-                        <a href="" className={`card flex flex-col items-start w-[70vw] gap-[25px]`} target="_blank" rel="noopener">
+                    <div ref={containerCards} className='self-start flex justify-start items-start gap-[60px] w-fit min-w-[100vw] overflow-visible'>
+                      {Data.demo.map((card) => (
+                        <a key={card.name} href={card.url} className={`card flex flex-col items-start w-[70vw] gap-[25px]`} target="_blank" rel="noopener">
                             <div className='flex justify-between w-full items-center'>
-                                <div className='border-b-[0.1px] border-gray-400 w-[45%]'>
-                                    <h1 className={`text-[26px] md:text-[40px] text-shadow-[0px_0px_10px_rgba(0,0,0,0.3)] font-extralight opacity-90`}>3XMEND</h1>
+                                <div className='border-b-[0.1px] border-black/30 w-[40%]'>
+                                    <h1 className={`text-[26px] md:text-[40px] text-shadow-[0px_0px_10px_rgba(0,0,0,0.3)] font-extralight opacity-90`}>{card.name}</h1>
                                 </div>
                             </div>
-                            <img src="/imgs/imgsDemo/header-mend.png" alt="" className="w-[100%] rounded-[20px]"/>
-                        </a>
-                        <a href="" className={`card flex flex-col items-start w-[70vw] gap-[25px]`} target="_blank" rel="noopener">
-                            <div className='flex justify-between w-full items-center'>
-                                <div className='border-b-[0.1px] border-(--cor-font) w-[40%]'>
-                                    <h1 className={`text-[26px] md:text-[40px] text-shadow-[0px_0px_10px_rgba(0,0,0,0.3)] font-extralight opacity-90`}>Atlas API</h1>
-                                </div>
-                            </div>
-                            <img src="/imgs/imgsDemo/atlas-API.png" alt="" className="w-[100%] rounded-[20px]"/>
-                        </a>
+                            <img src={card.img} alt="" className="w-[100%] rounded-[20px]"/>
+                        </a>))}
                     </div>
                 </div>
           </section>
