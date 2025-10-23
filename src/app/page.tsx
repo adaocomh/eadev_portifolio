@@ -320,18 +320,18 @@ const split = new SplitText(".text", {
           </section>
           <section ref={demoRef} className='flex flex-col justify-start items-start w-[100vw] h-[200vh] overflow-hidden' id='demo'>
                     <div className='flex flex-col items-start pl-[80px] scroll-demo'>
-                    <div  className='flex items-center'>
+                    <div  className='pointer-events-none flex items-center'>
                         <p className='text-[16px] font-extralight opacity-50'>Demo.</p>
                     </div>
                     <div ref={containerCards} className='self-start flex justify-start items-start gap-[60px] w-fit min-w-[100vw] overflow-visible'>
                       {Data.demo.map((card) => (
                         <a key={card.name} href={card.url} className={`card flex flex-col items-start w-[70vw] gap-[25px]`} target="_blank" rel="noopener">
-                            <div className='flex justify-between w-full items-center'>
+                            <div className='pointer-events-none flex justify-between w-full items-center'>
                                 <div className='border-b-[0.1px] border-black/30 w-[40%]'>
                                     <h1 className={`text-[26px] md:text-[40px] text-shadow-[0px_0px_10px_rgba(0,0,0,0.3)] font-extralight opacity-90`}>{card.name}</h1>
                                 </div>
                             </div>
-                            <img src={card.img} alt="" className="w-[100%] rounded-[20px]"/>
+                            <img src={card.img} alt="" className="pointer-events-none w-[100%] rounded-[20px]"/>
                         </a>))}
                     </div>
                 </div>
