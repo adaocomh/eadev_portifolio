@@ -53,7 +53,7 @@ export default function MenuSuspenso() {
   return (
     <div className="flex justify-between items-center w-[100%] transition-all duration-500">
       <div className={`hover:translate-y-[-1px] hover:transition-all p-[18px] md:p-[20px] rounded-[50px] text-shadow-[0px_0px_10px_rgba(0,0,0,0.3)] transition-all duration-500 ${overFooter ? "bg-[rgba(128,128,128,0.05)] backdrop-blur-xs text-(--cor-primaria) shadow-[inset_2px_2px_8px_rgba(255,255,255,0.08),2px_8px_10px_rgba(0,0,0,0.08)] hover:shadow-[inset_2px_2px_8px_rgba(255,255,255,0.08),2px_8px_12px_rgba(0,0,0,0.15)]" : scrolled ? "bg-[rgba(128,128,128,0.05)] backdrop-blur-xs shadow-[inset_2px_2px_8px_rgba(255,255,255,0.1),2px_8px_10px_rgba(0,0,0,0.08)]" : ""}`} onClick={() => scrollSection("header")}>
-        <p className={`titleMn cursor-pointer font-light ${overImg ? "text-(--cor-primaria)": ""}`}>
+        <p className={`cursor-pointer font-light ${overImg ? "text-(--cor-primaria)": ""}`}>
           ⓒ Code by É. Adão
         </p>
       </div>

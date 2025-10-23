@@ -118,51 +118,7 @@ const split = new SplitText(".text", {
     });
 });
   }, [])
-
-  useEffect(() => {
-    const el = document.querySelector('.titleMn')
-    if (!el) return
-
-    // Hover: troca de texto com transição suave
-    const handleEnter = () => {
-      const newText = el.textContent?.replace('É. Adão', 'Éverton Adão')
-      if (!newText) return
-
-      gsap.to(el, {
-        opacity: 0,
-        duration: 0.1,
-        onComplete: () => {
-          el.textContent = newText
-          gsap.to(el, { opacity: 1, duration: 0.1, ease: 'power2.out' })
-        },
-      })
-    }
-
-    // Volta ao texto original
-    const handleLeave = () => {
-      const originalText = el.textContent?.replace('Éverton Adão', 'É. Adão')
-      if (!originalText) return
-
-      gsap.to(el, {
-        opacity: 0,
-        duration: 0.1,
-        onComplete: () => {
-          el.textContent = originalText
-          gsap.to(el, { opacity: 1, duration: 0.1, ease: 'power2.out' })
-        },
-      })
-    }
-
-    el.addEventListener('mouseenter', handleEnter)
-    el.addEventListener('mouseleave', handleLeave)
-
-    // Cleanup
-    return () => {
-      el.removeEventListener('mouseenter', handleEnter)
-      el.removeEventListener('mouseleave', handleLeave)
-    }
-  }, [])
-
+  
   //"circle-text"
   useEffect(() => {
     if (!containerRef.current) return;
