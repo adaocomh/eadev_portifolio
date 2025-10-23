@@ -24,6 +24,7 @@ export default function Home() {
   const [emailCopiado, setEmailCopiado] = useState<boolean>(false)
   const emailRef = useRef<HTMLAnchorElement | null>(null)
   const containerCards = useRef<HTMLDivElement>(null)
+  const [smoother, setSmoother] = useState<ScrollSmoother | null>(null)
 
   //ScrollSmoother global
   useEffect(() => {
@@ -37,6 +38,20 @@ export default function Home() {
       content: "#smooth-content",
       smooth: 1.6,
       effects: true,
+    });
+
+    document.querySelectorAll("a[href^='#']").forEach(link => {
+      link.addEventListener("click", (e) => {
+        e.preventDefault();
+    
+        const targetId = link.getAttribute("href");
+        if (targetId) {
+          const target = document.querySelector(targetId);
+          if (target) {
+            smoother.scrollTo(target, true, "top top"); // suave até o topo
+          }
+        }
+      })
     });
 
     // Timeline de movimento horizontal
