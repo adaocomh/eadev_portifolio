@@ -23,7 +23,7 @@ body {
   color: var(--cor-font);
 }
 
-html, body {
+*{
   cursor:  url("/icons/maoDA.png") 8 8, auto !important;
 }
 
