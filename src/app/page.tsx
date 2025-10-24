@@ -334,18 +334,17 @@ export default function Home() {
           </div>
         </header>
         <main  ref={containerRef} className='bg-[var(--cor-primaria)]'>
-          <section className='flex flex-col justify-center items-center gap-[30px] w-[100vw] h-[100vh] p-[100px_0px_0px_0px] md:p-[200px_0px_50px_0px]' id='meu-objetivo'>
-            <div className='flex flex-col items-center justify-center gap-[20px] w-[90vw] md:flex-row md:justify-between md:items-start md:w-[70vw] text-shadow-[0px_0px_10px_rgba(0,0,0,0.3)]'>
-                <h3 className='md:w-[70%] w-[100%] text text-[7vw] md:text-[2vw] md:font-extralight md:text-[var(--cor-font)]
-                '>Buscando entregar projetos interativos e intuitivos; sem descartar suas intenções, tenho como objetivo oferecer a melhor solução para o que você busca.</h3>
-                <div className='flex flex-col md:w-[30%] w-[100%]'>
-                    <div className='mb-[12px] w-[60%] border-b-[0.1px] border-black/30'>
-                        <h3 className='text font-normal text-[6vw] md:text-[1.6vw] text-[var(--cor-font)'>Posso atuar...</h3>
+          <section className='flex flex-col justify-center items-center gap-[30px] w-[100vw] h-[100vh] pt-[100px] md:p-[200px_0px_50px_0px]' id='meu-objetivo'>
+            <div className='flex flex-col items-center justify-center gap-[20px] w-[90vw] text-shadow-[0px_0px_10px_rgba(0,0,0,0.3)] md:flex-row md:justify-between md:w-[70vw]'>
+                <h3 className='w-[100%] text-[7vw] text-[var(--cor-font)] font-extralight md:text-[2vw] md:w-[70%] text'>Buscando entregar projetos interativos e intuitivos; sem descartar suas intenções, tenho como objetivo oferecer a melhor solução para o que você busca.</h3>
+                <div className='flex flex-col w-[100%] md:w-[30%]'>
+                    <div className='w-[60%] mb-[12px] border-b-[0.1px] border-black/30'>
+                        <h3 className='text font-normal text-[6vw] text-[var(--cor-font) md:text-[1.6vw]'>Posso atuar...</h3>
                     </div>
-                    <p className='w-[100%] text text-[4vw] md:text-[1vw] md:font-extralight md:text-[var(--cor-font)]'>Transformando layouts pré-definidos em código funcional ou colaborar na criação do projeto desde o início, unindo design e desenvolvimento para uma solução completa.</p>
+                    <p className='w-[100%] text-[4vw] text-[var(--cor-font)] font-extralight md:text-[1vw] text'>Transformando layouts pré-definidos em código funcional ou colaborar na criação do projeto desde o início, unindo design e desenvolvimento para uma solução completa.</p>
                 </div>
             </div>
-            <div className='circle-text w-[50vw] flex justify-end'>
+            <div className=' flex justify-end w-[50vw] circle-text'>
                 <CircleText/>
             </div>
           </section>
