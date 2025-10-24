@@ -307,29 +307,29 @@ export default function Home() {
 
   return (
   <>
-  <nav className='fixed w-[100vw] h-[100px] p-[20px_20px_0px_20px] z-50 md:p-[20px_80px_20px_80px]'><MenuSuspenso/></nav>
+  <nav className='fixed w-[100vw] p-[20px_20px_0px_20px] z-50 md:p-[20px_80px_20px_80px]'><MenuSuspenso/></nav>
     <div id="smooth-wrapper">
         <div id="smooth-content">
-        <header ref={headerRef} className="flex flex-col h-[106vh] p-[20px_0px_0px_20px] bg-[var(--cor-primaria)] lg:h-[119vh] lg:p-[80px_0px_0px_80px]" id='header'>
+        <header ref={headerRef} className="flex flex-col h-[106vh] pl-[20px] bg-[var(--cor-primaria)] lg:h-[119vh] lg:pl-[80px]" id='header'>
           <div className="flex flex-col justify-end h-[100%] md:gap-[5vh]">
-            <div className="flex flex-col justify-center items-start pr-[20px] gap-[20px] md:flex-row md:justify-start md:items-end lg:gap-[80px]">
-                <img className="h-[300px] md:h-[330px]" src="/imgs/perfil/perfil.jpeg" alt="Foto do desenvolvedor"/>
-                <div className='flex flex-col gap-[10px]'>
-                    <h2 className="text-start text-[35px] text-[var(--cor-font)] text-shadow-[0px_0px_10px_rgba(0,0,0,0.3)] md:text-[50px] lg:text-[60px]"> Dev.<br/> Front-end freelancer<br/></h2>
-                    <p className='text-[20px] font-extralight text-[var(--cor-font)] text-shadow-[0px_0px_10px_rgba(0,0,0,0.3)] md:text-[25px] lg:text-[30px]'>Construindo experiências interativas e intuitivas na web.</p>
+            <div className="flex flex-col justify-center items-start gap-[20px] pr-[20px] md:flex-row md:justify-start md:items-end lg:gap-[80px]">
+              <img className="h-[300px] md:h-[330px]" src="/imgs/perfil/perfil.jpeg" alt="Foto de perfil desenvolvedor"/>
+              <div className='flex flex-col gap-[10px]'>
+                <h2 className="text-start text-[35px] text-[var(--cor-font)] text-shadow-[0px_0px_10px_rgba(0,0,0,0.3)] md:text-[50px] lg:text-[60px]"> Dev.<br/> Front-end freelancer<br/></h2>
+                <p className='text-start text-[20px] font-extralight text-[var(--cor-font)] text-shadow-[0px_0px_10px_rgba(0,0,0,0.3)] md:text-[25px] lg:text-[30px]'>Construindo experiências interativas e intuitivas na web.</p>
+              </div>
+              <div className='absolute right-0 top-[20vh] flex justify-between items-center w-[200px] p-[10px] pr-[20px] bg-[rgba(0,0,0,0.9)] rounded-l-full md:top-auto md:self-start title-name-e-clock'>
+                <div className='w-25 h-25 bg-[var(--cor-primaria)] rounded-full'>
+                    <LottieWord/>
                 </div>
-                <div className='absolute right-0 top-[20vh] md:top-auto md:self-start flex justify-between items-center p-[10px] pr-[20px] bg-[rgba(0,0,0,0.82)] rounded-l-full w-[200px] title-name-e-clock'>
-                    <div className='w-25 h-25 bg-[var(--cor-primaria)] rounded-full'>
-                        <LottieWord/>
-                    </div>
-                    <div className='flex flex-col self-end items-end w-[100%]'>
-                        <Clock/>
-                        <p className='text-[22px] font-extralight text-end text-(--cor-primaria)'>Brasil</p>
-                    </div>
+                <div className='flex flex-col self-end items-end w-[100%]'>
+                    <Clock/>
+                    <p className='text-[22px] font-extralight text-end text-(--cor-primaria)'>Brasil</p>
                 </div>
+              </div>
             </div>
-            <div className='flex justify-end items-center h-[25vh] font-[Barriecito] lg:h-[50vh] title-name-e-clock'>
-            <h1 className='text-[28vw] text-[rgba(0,0,0,0.9)] text-shadow-[0px_0px_10px_rgba(0,0,0,0.3)]'>É<span className='text-[var(--cor-secundaria)]'>v</span>erton</h1>
+            <div className='flex justify-end items-center h-[25vh] lg:h-[50vh] title-name-e-clock'>
+              <h1 className='font-[Barriecito] text-[28vw] text-[rgba(0,0,0,0.9)] text-shadow-[0px_0px_10px_rgba(0,0,0,0.3)]'>É<span className='text-[var(--cor-secundaria)]'>v</span>erton</h1>
             </div>
           </div>
         </header>
