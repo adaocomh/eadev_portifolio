@@ -348,22 +348,19 @@ export default function Home() {
                 <CircleText/>
             </div>
           </section>
-          <section ref={demoRef} className='flex flex-col justify-start items-start w-[100vw] h-max pb-[20px] md:pb-0 md:h-[213vh] overflow-hidden' id='demo'>
+          <section ref={demoRef} className='flex w-[100vw] h-max pb-[20px] md:h-[213vh] md:pb-0 overflow-hidden' id='demo'>
                     <div className='flex flex-col items-start md:pl-[80px] scroll-demo'>
-                    <div  className='pl-[20px] md:pl-[0px] pointer-events-none flex items-center'>
-                        <p className='text-[16px] font-extralight opacity-50'>Demo.</p>
-                    </div>
-                    <div ref={containerCards} className='self-start flex flex-col md:flex-row justify-start items-center md:items-start gap-[20px] md:gap-[60px] w-fit min-w-[100vw] overflow-visible'>
-                      {Data.demo.map((card) => (
-                        <a key={card.name} href={card.url} className={`card flex flex-col items-start w-[90vw] md:w-[70vw] gap-[15px] md:gap-[25px]`} target="_blank" rel="noopener">
-                            <div className='pointer-events-none flex justify-between w-full items-center'>
-                                <div className='border-b-[0.1px] border-black/30 w-[40%]'>
-                                    <h1 className={`text-[26px] md:text-[40px] text-shadow-[0px_0px_10px_rgba(0,0,0,0.3)] font-extralight opacity-90`}>{card.name}</h1>
-                                </div>
-                            </div>
-                            <img src={card.img} alt="" className="pointer-events-none w-[100%]"/>
-                        </a>))}
-                    </div>
+                      <p className='pl-[20px] text-[16px] text-start font-extralight opacity-50 md:pl-[0px] pointer-events-none'>Demo.
+                      </p>
+                      <div ref={containerCards} className='flex flex-col items-center gap-[20px] w-fit min-w-[100vw] md:flex-row md:items-start md:gap-[60px] overflow-visible'>
+                        {Data.demo.map((card) => (
+                          <a key={card.name} href={card.url} className={`card flex flex-col items-start w-[90vw] md:w-[70vw] gap-[15px] md:gap-[25px]`} target="_blank" rel="noopener">
+                              <div className='pointer-events-none border-b-[0.1px] border-black/30 w-[40%]'>
+                                  <h1 className={`text-[26px] font-extralight text-shadow-[0px_0px_10px_rgba(0,0,0,0.3)] opacity-90  md:text-[40px]`}>{card.name}</h1>
+                              </div>
+                              <img src={card.img} alt="" className="pointer-events-none w-[100%]"/>
+                          </a>))}
+                      </div>
                 </div>
           </section>
         </main>
