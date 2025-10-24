@@ -229,7 +229,7 @@ const split = new SplitText(".text", {
         if (!curve) return;
 
         // define valores diferentes se quiser para mobile/desktop
-        const initialHeight = isMobile ? "30vh" : "50vh";
+        const initialHeight = isMobile ? "24vh" : "40vh";
 
         gsap.fromTo(
           curve,
@@ -364,7 +364,7 @@ const split = new SplitText(".text", {
                 <CircleText/>
             </div>
           </section>
-          <section ref={demoRef} className='flex flex-col justify-start items-start w-[100vw] h-max pb-[20px] md:pb-0 md:h-[200vh] overflow-hidden' id='demo'>
+          <section ref={demoRef} className='flex flex-col justify-start items-start w-[100vw] h-max pb-[20px] md:pb-0 md:h-[213vh] overflow-hidden' id='demo'>
                     <div className='flex flex-col items-start md:pl-[80px] scroll-demo'>
                     <div  className='pl-[20px] md:pl-[0px] pointer-events-none flex items-center'>
                         <p className='text-[16px] font-extralight opacity-50'>Demo.</p>
