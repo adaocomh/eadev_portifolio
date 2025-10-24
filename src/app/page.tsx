@@ -1,15 +1,15 @@
 'use client'
-import MenuSuspenso from '../components/mnSuspenso'
 import { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 import { ScrollSmoother } from 'gsap/all';
 import { SplitText } from 'gsap/all';
-import CircleText from '../components/circleTag/circleTag';
-import { ConteudoForm } from '../components/form'
 import Data from "../arquivoDemo/demo.json"
+import MenuSuspenso from '../components/mnSuspenso'
 import LottieWord from '@/components/lottieAnimate/lottieWord';
 import Clock from '@/components/relogio';
+import CircleText from '../components/circleTag/circleTag';
+import ConteudoForm from '../components/form'
 
 gsap.registerPlugin(SplitText) 
 gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
