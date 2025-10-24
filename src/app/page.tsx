@@ -208,6 +208,8 @@ export default function Home() {
     mm.add(
       {
         isMobile: "(max-width: 768px)",
+        isDesktop: "(min-width: 769px)",
+
       },
       (context) => {
         const { isMobile } = context.conditions as { isMobile: boolean };
