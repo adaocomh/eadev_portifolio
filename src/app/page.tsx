@@ -29,10 +29,7 @@ export default function Home() {
   //ScrollSmoother global
   useEffect(() => {
     if (!containerCards.current) return;
-
-    const cards = containerCards.current.querySelectorAll(".card")
-
-    // Cria o scroll suave
+    
     const smoother = ScrollSmoother.create({
       wrapper: "#smooth-wrapper",
       content: "#smooth-content",
@@ -48,17 +45,14 @@ export default function Home() {
         if (targetId) {
           const target = document.querySelector(targetId);
           if (target) {
-            smoother.scrollTo(target, true, "top top"); // suave até o topo
+            smoother.scrollTo(target, true, "top top");
           }
         }
       })
     });
 
-  
-
     return () => {
       smoother.kill();
-      ScrollTrigger.getAll().forEach((st) => st.kill());
     };
   }, []);
 
@@ -77,7 +71,6 @@ export default function Home() {
         const { isMobile, isDesktop } = context.conditions as { isMobile: boolean; isDesktop: boolean };
 
         if (isDesktop) {
-          // Animação horizontal para desktop
           gsap.to(cards, {
             xPercent: -100 * (cards.length - 1),
             ease: "none",
@@ -90,12 +83,10 @@ export default function Home() {
             },
           });
         } else if (isMobile) {
-          // Reset para mobile
           gsap.set(cards, { xPercent: 0 });
         }
 
         return () => {
-          // Cleanup específico para este matchMedia
           ScrollTrigger.getAll().forEach(trigger => {
             if (trigger.trigger === containerCards.current) {
               trigger.kill();
@@ -122,7 +113,6 @@ export default function Home() {
         {
             opacity: 0,
             y: 200,
-            duration: 0.5,
             ease: 'power2.out',
             stagger: 0,
             scrollTrigger: {
@@ -138,29 +128,29 @@ export default function Home() {
   //Text "meu objetivo"
   useEffect(() =>{
 
-document.fonts.ready.then(() => {
-gsap.set(".text", { opacity: 1 });
+    document.fonts.ready.then(() => {
+    gsap.set(".text", { opacity: 1 });
 
-const split = new SplitText(".text", {
-    type: "words,lines",
-    linesClass: "line",
-    autoSplit: true,
-    mask: "lines",
-    });
-    
-    gsap.from(split.lines, {
-        duration: 2,
-        yPercent: 100,
-        opacity: 0,
-        stagger: 0.1,
-        ease: "expo.out",
-        scrollTrigger: {
-            trigger: ".text",
-            start: "top 70%",
-            toggleActions: "play none none reverse", // anima ao entrar, reverte ao sair
-        }
-    });
-});
+      const split = new SplitText(".text", {
+          type: "words,lines",
+          linesClass: "line",
+          autoSplit: true,
+          mask: "lines",
+          });
+          
+          gsap.from(split.lines, {
+              duration: 2,
+              yPercent: 100,
+              opacity: 0,
+              stagger: 0.1,
+              ease: "expo.out",
+              scrollTrigger: {
+                  trigger: ".text",
+                  start: "top 70%",
+                  toggleActions: "play none none reverse",
+              }
+          });
+  });
   }, [])
 
   //"circle-text"
@@ -171,19 +161,18 @@ const split = new SplitText(".text", {
 
     gsap.fromTo(
         elements,
-        { opacity: 1, y: 300 },
+        {y: 300 },
         {
-            opacity: 1,
-            y:"-" + 225,
-            duration: 0.5,
-            ease: 'power2.out',
-            stagger: 0,
-            scrollTrigger: {
-                trigger: containerRef.current,
-                start: 'top 100%',
-                end: 'bottom 0%',
-                scrub: 1.5,
-            },
+          y:"-" + 225,
+          duration: 0.5,
+          ease: 'power2.out',
+          stagger: 0,
+          scrollTrigger: {
+              trigger: containerRef.current,
+              start: 'top 100%',
+              end: 'bottom 0%',
+              scrub: 1,
+          },
         }
     )
   }, []);
@@ -200,41 +189,38 @@ const split = new SplitText(".text", {
         {
             opacity: 1,
             y: 0,
-            duration: 1,
             ease: "expoScale(0.5,7, none)",
             stagger: 0,
             scrollTrigger: {
                 trigger: demoRef.current,
                 start: 'top 70%',
                 end: 'top center',
-                scrub: 3,
+                scrub: 1,
             },
         }
     )
   }, []);
 
-  //"Borda" circular
+  //Projetor de sobra...
   useEffect(() => {
     if (!footerRef.current) return;
 
     mm.add(
       {
         isMobile: "(max-width: 768px)",
-        isDesktop: "(min-width: 769px)",
       },
       (context) => {
         const { isMobile } = context.conditions as { isMobile: boolean };
-        const curve = footerRef.current?.querySelector(".projecao-sombra")
+        const projetorS = footerRef.current?.querySelector(".projecao-sombra")
 
-        if (!curve) return;
+        if (!projetorS) return;
 
-        // define valores diferentes se quiser para mobile/desktop
-        const initialHeight = isMobile ? "24vh" : "40vh";
+        const heightIni = isMobile ? "24vh" : "40vh";
 
         gsap.fromTo(
-          curve,
+          projetorS,
           {
-            height: initialHeight,
+            height: heightIni,
           },
           {
             height: "0vh",
@@ -250,7 +236,6 @@ const split = new SplitText(".text", {
         );
 
         return () => {
-          // remove triggers ao desmontar
           ScrollTrigger.getById("footerProjeao")?.kill();
         };
       }
@@ -273,7 +258,6 @@ const split = new SplitText(".text", {
     }, {
         opacity: 1,
         translateX: '0px',
-        duration: 0.5,
         ease: 'power2.out',
         scrollTrigger: {
             trigger: footerRef.current,
@@ -289,21 +273,20 @@ const split = new SplitText(".text", {
   useEffect(()=>{
     if (!footerRef.current) return
 
-    const slideMemoji = footerRef.current.querySelector('.slide-contato')
+    const contatos = footerRef.current.querySelector('.slide-contato')
 
-    gsap.fromTo(slideMemoji, {
+    gsap.fromTo(contatos, {
         opacity: 0,
         translateY: '250px'
     }, {
         opacity: 1,
         translateY: '0px',
-        duration: 1,
         ease: 'power2.out',
         scrollTrigger: {
             trigger: footerRef.current,
             start: 'top 10%',
             end: 'bottom bottom',
-            scrub: 0,
+            scrub: 0.2,
         }
     }
     )
