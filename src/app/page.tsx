@@ -224,28 +224,23 @@ const split = new SplitText(".text", {
       },
       (context) => {
         const { isMobile } = context.conditions as { isMobile: boolean };
-        const curve = footerRef.current?.querySelector(".curve")
+        const curve = footerRef.current?.querySelector(".projecao-sombra")
 
         if (!curve) return;
 
         // define valores diferentes se quiser para mobile/desktop
-        const initialTop = isMobile ? "-30vh" : "-50vh";
-        const initialHeight = isMobile ? "60vh" : "100vh";
+        const initialHeight = isMobile ? "30vh" : "50vh";
 
         gsap.fromTo(
           curve,
           {
-            borderRadius: "100%",
             height: initialHeight,
-            top: initialTop,
           },
           {
-            borderRadius: "0%",
             height: "0vh",
-            top: "0vh",
             ease: "none",
             scrollTrigger: {
-              id: "footerCurve",
+              id: "footerProjeao",
               trigger: footerRef.current,
               start: "top bottom",
               end: "top top",
@@ -256,7 +251,7 @@ const split = new SplitText(".text", {
 
         return () => {
           // remove triggers ao desmontar
-          ScrollTrigger.getById("footerCurve")?.kill();
+          ScrollTrigger.getById("footerProjeao")?.kill();
         };
       }
     );
@@ -389,7 +384,7 @@ const split = new SplitText(".text", {
           </section>
         </main>
         <footer ref={footerRef} className='relative flex flex-col h-[105vh] md:h-[100vh] footerS4 overflow-hidden' id="footer">
-            <div className='curve absolute left-1/2 -translate-x-1/2 w-[150vw] bg-[var(--cor-primaria)] shadow-[0px_10px_100px_rgba(0,0,0,0.6)]'/>
+            <div className='projecao-sombra absolute top-[-5px] w-[100vw] bg-[var(--cor-primaria)] shadow-[0px_25px_150px_rgba(0,0,0,1)]'/>
         <div className='flex justify-center items-end md:items-center bg-[var(--cor-terciario)] h-[100vh]'>
                 <div className='flex flex-col justify-center gap-[15px] max-w-[80vw]'>
                     <ConteudoForm/>
