@@ -8,7 +8,6 @@ const Clock: React.FC = () => {
   useEffect(() => {
     const updateTime = () => {
       const now = new Date();
-      // horário local do usuário
       const timeString = now.toLocaleTimeString('pt-BR', {
         hour: '2-digit',
         minute: '2-digit',
@@ -16,8 +15,8 @@ const Clock: React.FC = () => {
       setTime(timeString);
     };
 
-    updateTime(); // atualiza imediatamente
-    const interval = setInterval(updateTime, 1000); // atualiza a cada segundo
+    updateTime();
+    const interval = setInterval(updateTime, 1000);
 
     return () => clearInterval(interval);
   }, []);
