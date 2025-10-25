@@ -24,7 +24,7 @@ body {
 }
 
 *{
-  cursor:  url("/icons/maoDA.png") 8 8, auto;
+  cursor:  url("/icons/mao-d-a-cursor.png") 8 8, auto;
 }
 
 a:hover,
@@ -35,7 +35,7 @@ button:hover,
 input:hover,
 textarea:hover,
 *[onclick]:hover {
-  cursor: url("/icons/maoDD.png") 8 8, pointer !important;
+  cursor: url("/icons/mao-d-d-pointer.png") 8 8, pointer !important;
 }
 
 .slideMenu1{
