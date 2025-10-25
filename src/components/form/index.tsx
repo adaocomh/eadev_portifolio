@@ -26,8 +26,7 @@ export default function ConteudoForm(){
     }
     return(
         <div className='flex flex-col'>
-            <h1 className='hidden md:inline-block text-[var(--cor-primaria)] text-[5vh] font-medium text-center text-shadow-[0px_0px_10px_rgba(0,0,0,0.5)]
-            md:text-[3vw] md:mb-[3vh]'>Vamos trabalhar juntos?</h1>
+            <h1 className='hidden md:inline-block text-[var(--cor-primaria)] text-[3vw] font-medium text-center mb-[3vh] text-shadow-[0px_0px_10px_rgba(0,0,0,0.5)]'>Vamos trabalhar juntos?</h1>
             <form ref={form} onSubmit={enviarEmail} className='grid grid-rows-[1fr_1fr_1fr_1fr_1fr] grid-cols-[repeat(4,1fr)] gap-[2vh] md:gap-[1.3vw] xl:gap-[0.8vw]'>
                 <label htmlFor='name' className='hidden'></label>
                 <input type="text" id='name' name='name' className='w-[100%] h-[5vh] col-[1/3] row-[1/2] p-[10px] border-none bg-[#737156] text-[var(--cor-primaria)] rounded-[10px] placeholder:text-[#3F4030] font-extralight text-[15px]
