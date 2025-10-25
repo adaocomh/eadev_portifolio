@@ -17,6 +17,9 @@
            hover:transition-all hover:translate-y-[-4px] hover:duration-500 
            hover:shadow-[inset_2px_2px_8px_rgba(255,255,255,0.08),2px_8px_12px_rgba(0,0,0,0.15)];
   }
+  .links-mn-mobile {
+    @apply w-max text-[45px] font-black text-[var(--cor-terciario)] text-shadow-[0px_0px_10px_rgba(0,0,0,0.08)] rounded-[50px] hover:translate-y-[-4px] hover:transition-all  transition-all duration-500
+  }
 }
 
 :root {
