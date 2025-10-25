@@ -365,24 +365,22 @@ export default function Home() {
           </section>
         </main>
         <footer ref={footerRef} className='relative flex flex-col h-[105vh] md:h-[100vh] footerS4 overflow-hidden' id="footer">
-            <div className='projecao-sombra absolute top-[-5px] w-[100vw] bg-[var(--cor-primaria)] shadow-[0px_25px_150px_rgba(0,0,0,1)]'/>
-        <div className='flex justify-center items-end md:items-center bg-[var(--cor-terciario)] h-[100vh]'>
-                <div className='flex flex-col justify-center gap-[15px] max-w-[80vw]'>
-                    <ConteudoForm/>
-                    <div className='flex items-center md:gap-[12%] m-[1.3vw_0_1.8vw_0]
-                    md:m-[1vw_0_0.8vw_0]'>
-                        <div className='hidden md:block w-[70%] border-b-[0.1px] border-[#F5ECDB50]'/>
-                        <h1 className='md:hidden w-full text-[var(--cor-primaria)] text-[24px] font-medium text-start text-shadow-[0px_0px_10px_rgba(0,0,0,0.5)] my-[10px]'>Vamos trabalhar<br/> juntos?</h1>
-                        <img src='/imgs/perfil/contato.png' className='slide-memoji w-[80px] md:w-[150px] rounded-b-[50%]'/>
-                    </div>
-                    <div className='flex w-[100%] justify-between'>
-                        <div className={`slide-contato w-full flex flex-col items-center gap-[15px] md:gap-[2vw] md:flex-row`}>
-                            <a ref={emailRef} className='w-full md:w-max rounded-[50px] font-extralight text-[16px] p-[15px] md:p-[2vw] text-center text-shadow-[0px_0px_10px_rgba(0,0,0,0.3)] hover:translate-y-[-4px] hover:transition-all hover:duration-500 hover:shadow-[inset_2px_2px_8px_rgba(255,255,255,0.08),2px_8px_12px_rgba(0,0,0,0.15)] bg-[rgba(128,128,128,0.05)] backdrop-blur-xs text-[var(--cor-primaria)] shadow-[inset_2px_2px_8px_rgba(255,255,255,0.08),2px_8px_10px_rgba(0,0,0,0.08)]' onClick={copiarEmail}>{emailCopiado ? 'E-mail copiado!' : 'eadevcontato@gmail.com'}</a>
-                            <a href='https://wa.me/48988325514?text=Olá,%20Éverton!%20Gostaria%20de%20falar%20mais%20sobre%20seus%20serviços%20oferecido.' target='_blank' rel='noopener noreferrer' className='w-full md:w-max rounded-[50px] font-extralight text-[16px] p-[15px] md:p-[2vw] text-center text-shadow-[0px_0px_10px_rgba(0,0,0,0.3)] hover:translate-y-[-4px] hover:transition-all hover:duration-500 hover:shadow-[inset_2px_2px_8px_rgba(255,255,255,0.08),2px_8px_12px_rgba(0,0,0,0.15)] bg-[rgba(128,128,128,0.05)] backdrop-blur-xs text-[var(--cor-primaria)] shadow-[inset_2px_2px_8px_rgba(255,255,255,0.08),2px_8px_10px_rgba(0,0,0,0.08)]'>+55 (48) 98832-5514</a>
-                        </div>
-                    </div>
+          <div className='projecao-sombra absolute top-[-5px] w-[100vw] bg-[var(--cor-primaria)] shadow-[0px_25px_150px_rgba(0,0,0,1)]'/>
+          <div className='flex justify-center items-end h-[100vh] bg-[var(--cor-terciario)] md:items-center'>
+            <div className='flex flex-col justify-center gap-[15px] max-w-[80vw]'>
+                <ConteudoForm/>
+                <div className='flex items-center m-[1.3vw_0_1.8vw_0] md:gap-[12%]
+                md:m-[1vw_0_0.8vw_0]'>
+                  <div className='hidden w-[70%] border-b-[0.1px] border-[#F5ECDB50] md:block'/>
+                  <h1 className='md:hidden w-full text-[24px] text-[var(--cor-primaria)] font-medium text-start text-shadow-[0px_0px_10px_rgba(0,0,0,0.5)]'>Vamos trabalhar<br/> juntos?</h1>
+                  <img src='/imgs/perfil/contato.png' className=' w-[80px] rounded-b-[50%] md:w-[150px] slide-memoji'/>
                 </div>
+                <div className={`w-[100%] flex flex-col items-center gap-[15px] md:gap-[2vw] md:flex-row slide-contato`}>
+                  <a ref={emailRef} className='btn-custom' onClick={copiarEmail}>{emailCopiado ? 'E-mail copiado!' : 'eadevcontato@gmail.com'}</a>
+                  <a href='https://wa.me/48988325514?text=Olá,%20Éverton!%20Gostaria%20de%20falar%20mais%20sobre%20seus%20serviços%20oferecido.' target='_blank' rel='noopener noreferrer' className='btn-custom'>+55 (48) 98832-5514</a>
                 </div>
+            </div>
+          </div>
         </footer>
     </div>
     </div>

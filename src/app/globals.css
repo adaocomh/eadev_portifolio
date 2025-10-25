@@ -8,6 +8,17 @@
   src: url('../../public/fonts/Barriecito-Regular.otf') format('opentype');
 }
 
+@layer components {
+  .btn-custom {
+    @apply w-full p-[15px] text-[16px] font-extralight text-[var(--cor-primaria)] text-center 
+           rounded-[50px] bg-[rgba(128,128,128,0.05)] backdrop-blur-xs 
+           shadow-[inset_2px_2px_8px_rgba(255,255,255,0.08),2px_8px_10px_rgba(0,0,0,0.08)] 
+           md:w-max md:p-[2vw] 
+           hover:transition-all hover:translate-y-[-4px] hover:duration-500 
+           hover:shadow-[inset_2px_2px_8px_rgba(255,255,255,0.08),2px_8px_12px_rgba(0,0,0,0.15)];
+  }
+}
+
 :root {
   --background: #F5ECDB;
   --foreground: #171717;
