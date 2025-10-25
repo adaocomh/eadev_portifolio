@@ -8,11 +8,21 @@ export default function ConteudoForm(){
 
         if (!form.current) return
 
+        const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID
+        const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID
+        const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY
+
+        if (!serviceId || !templateId || !publicKey) {
+            alert('Configuração do EmailJS não encontrada. Entre em contato pelo WhatsApp ou email.')
+            console.error('EmailJS environment variables not configured')
+            return
+        }
+
         emailjs.sendForm(
-            process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!,
-            process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!,
+            serviceId,
+            templateId,
             form.current,
-            process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!
+            publicKey
         )
         .then((result) =>{
             alert('Mensagem enviada com sucesso!')
