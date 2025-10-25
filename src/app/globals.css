@@ -32,18 +32,18 @@
   --cor-terciario: #3F4030;
 }
 
+*{
+  cursor:  url("/icons/mao-d-a-cursor.png") 8 8, auto;
+}
+
 body {
   font-family: var(--font-primaria);
   color: var(--cor-font);
 }
 
-*{
-  cursor:  url("/icons/mao-d-a-cursor.png") 8 8, auto;
-}
-
 a:hover,
 p:hover,
-li:hover,
+ul:hover,
 button:hover,
 [role="button"]:hover,
 input:hover,
