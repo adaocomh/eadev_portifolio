@@ -377,7 +377,7 @@ export default function Home() {
                 </div>
                 <div className={`w-[100%] flex flex-col items-center gap-[15px] md:gap-[2vw] md:flex-row slide-contato`}>
                   <a ref={emailRef} className='btn-custom' onClick={copiarEmail}>{emailCopiado ? 'E-mail copiado!' : 'eadevcontato@gmail.com'}</a>
-                  <a href='https://wa.me/48988325514?text=Olá,%20Éverton!%20Gostaria%20de%20falar%20mais%20sobre%20seus%20serviços%20oferecido.' target='_blank' rel='noopener noreferrer' className='btn-custom'>+55 (48) 98832-5514</a>
+                  <a href='https://wa.me/48984229769?text=Olá,%20Éverton!%20Gostaria%20de%20falar%20mais%20sobre%20seus%20serviços%20oferecido.' target='_blank' rel='noopener noreferrer' className='btn-custom'>+55 (48) 98422-9769</a>
                 </div>
             </div>
           </div>
