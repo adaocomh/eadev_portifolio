@@ -32,8 +32,9 @@
   --cor-terciario: #3F4030;
 }
 
-*{
-  cursor:  url("/icons/mao-d-a-cursor.png") 8 8, auto;
+body,
+* {
+  cursor: url("/icons/mao-d-a-cursor.png") 8 8, auto;
 }
 
 body {
@@ -42,14 +43,18 @@ body {
 }
 
 a:hover,
-p:hover,
-ul:hover,
 button:hover,
 [role="button"]:hover,
 input:hover,
 textarea:hover,
-*[onclick]:hover {
-  cursor: url("/icons/mao-d-d-pointer.png") 8 8, pointer !important;
+button,
+a,
+input,
+textarea,
+label,
+ul,
+[role="button"] {
+  cursor: url("/icons/mao-d-d-pointer.png") 8 8, pointer;
 }
 
 .slideMenu1{
