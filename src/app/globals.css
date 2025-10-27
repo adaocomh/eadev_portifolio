@@ -15,10 +15,12 @@
            shadow-[inset_2px_2px_8px_rgba(255,255,255,0.08),2px_8px_10px_rgba(0,0,0,0.08)] 
            md:w-max md:p-[2vw] 
            hover:transition-all hover:translate-y-[-4px] hover:duration-500 
-           hover:shadow-[inset_2px_2px_8px_rgba(255,255,255,0.08),2px_8px_12px_rgba(0,0,0,0.15)];
+           hover:shadow-[inset_2px_2px_8px_rgba(255,255,255,0.08),2px_8px_12px_rgba(0,0,0,0.15)]
+           will-change-transform;
   }
   .links-mn-mobile {
     @apply w-max text-[45px] font-black text-[var(--cor-terciario)] text-shadow-[0px_0px_10px_rgba(0,0,0,0.08)] rounded-[50px] hover:translate-y-[-4px] hover:transition-all  transition-all duration-500
+           will-change-transform;
   }
 }
 
@@ -41,6 +43,8 @@ body {
   font-family: var(--font-primaria);
   color: var(--cor-font);
   font-display: swap;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 a:hover,
@@ -80,4 +84,18 @@ ul,
     transform: translateY(0);
     opacity: 100%;
   }
+}
+
+.slideMenu1,
+.slideMenu2,
+.slideMenu3,
+.slideMenu4 {
+  will-change: transform, opacity;
+}
+
+#smooth-wrapper,
+#smooth-content {
+  will-change: scroll-position;
+  transform: translateZ(0);
+  backface-visibility: hidden;
 }

@@ -1,18 +1,30 @@
 'use client'
 import MnSmobile from './mnSMobile'
-import { useState, useEffect} from 'react'
+import { useState, useEffect, useRef} from 'react'
 
 export default function MenuSuspenso() {
   const [overFooter, setOverFooter] = useState(false)
   const [scrolled, setScrolled] = useState(false);
+  const rafId = useRef<number | null>(null);
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
+      if (rafId.current !== null) {
+        cancelAnimationFrame(rafId.current);
+      }
+      
+      rafId.current = requestAnimationFrame(() => {
+        setScrolled(window.scrollY > 50);
+      });
     };
 
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      if (rafId.current !== null) {
+        cancelAnimationFrame(rafId.current);
+      }
+    };
   }, []);
 
   useEffect(() => {
