@@ -1,9 +1,14 @@
-import React, { useRef } from 'react'
+'use client'
+
+import React, { useRef, useState } from 'react'
 import emailjs from '@emailjs/browser'
 
 export default function ConteudoForm(){
     const form = useRef<HTMLFormElement>(null)
-    const enviarEmail = (e: React.FormEvent<HTMLFormElement>) => {
+    const [loading, setLoading] = useState(false)
+    const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
+    
+    const enviarEmail = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
 
         if (!form.current) return
@@ -13,26 +18,51 @@ export default function ConteudoForm(){
         const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY
 
         if (!serviceId || !templateId || !publicKey) {
-            alert('Configuração do EmailJS não encontrada. Entre em contato pelo WhatsApp ou email.')
-            console.error('EmailJS environment variables not configured')
+            alert('Configuração do formulario não encontrada. Entre em contato pelo WhatsApp +55 (48) 98422-9769 ou email eadevcontato@gmail.com')
+            console.error('EmailJS environment variables not configured:', {
+                serviceId: !!serviceId,
+                templateId: !!templateId,
+                publicKey: !!publicKey
+            })
             return
         }
 
-        emailjs.sendForm(
-            serviceId,
-            templateId,
-            form.current,
-            publicKey
-        )
-        .then((result) =>{
-            alert('Mensagem enviada com sucesso!')
-            console.log(result.text)
+        setLoading(true)
+        setSubmitStatus('idle')
+
+        try {
+            const result = await emailjs.sendForm(
+                serviceId,
+                templateId,
+                form.current,
+                publicKey
+            )
+            
+            setSubmitStatus('success')
+            alert('Mensagem enviada com sucesso! Entrarei em contato em breve.')
+            console.log('EmailJS sucesso:', result.text)
             form.current?.reset()
-        }, 
-    (error) => {
-        alert('Erro ao enviar, tente novamente.')
-        console.log(error.text)
-    })
+            
+        } catch (error: any) {
+            setSubmitStatus('error')
+            
+            if (error.status === 400) {
+                alert('Erro ao enviar: Dados inválidos. Verifique os campos.')
+            } else if (error.status === 429) {
+                alert('Muitas tentativas. Tente novamente em alguns minutos.')
+            } else if (error.status === 401) {
+                alert('Erro de autenticação. Entre em contato pelo WhatsApp +55 (48) 98422-9769.')
+            } else if (error.status === 0 || !navigator.onLine) {
+                alert('Sem conexão com a internet. Verifique sua conexão.')
+            } else {
+                alert('Erro ao enviar mensagem. Entre em contato pelo WhatsApp +55 (48) 98422-9769 ou email eadevcontato@gmail.com')
+            }
+            
+            console.error('EmailJS erro:', error.text || error)
+        } finally {
+            setLoading(false)
+            setTimeout(() => setSubmitStatus('idle'), 1500)
+        }
     }
     return(
         <div className='flex flex-col'>
@@ -49,10 +79,16 @@ export default function ConteudoForm(){
                 <label htmlFor='areatxt' className='font-extralight text-[var(--cor-primaria)] text-[18px] col-[1] row-[3]'></label>
                 <textarea id='areatxt' name='message' className='col-[1/5] row-[2/6] md:row-[2/7] p-[10px] border-none bg-[#737156] text-[var(--cor-primaria)] rounded-[10px] placeholder:text-[#3F4030] font-extralight text-[15px] shadow-[inset_2px_2px_8px_rgba(0,0,0,0.4)]' placeholder="Mensagem com seu intuito" required/>
 
-                <button type="submit" className='text-center hover:shadow-[inset_2px_2px_8px_rgba(255,255,255,0.08),2px_8px_12px_rgba(0,0,0,0.12)] bg-[rgba(128,128,128,0.05)] backdrop-blur-md shadow-[inset_2px_2px_8px_rgba(255,255,255,0.08),2px_8px_10px_rgba(0,0,0,0.08)] h-[5vh] col-[1/5] row-[6/8] md:row-[7/8] font-normal text-[2.3vh] p-[5px] border-none text-[var(--cor-primaria)] rounded-[10px]
-                md:font-extralight md:text-[15px] 
-                hover:translate-y-[-3px] hover:transition-all hover:duration-500 transition-all duration-500 
-                '>Enviar</button>
+                <button 
+                    type="submit" 
+                    disabled={loading}
+                    className={`text-center hover:shadow-[inset_2px_2px_8px_rgba(255,255,255,0.08),2px_8px_12px_rgba(0,0,0,0.12)] bg-[rgba(128,128,128,0.05)] backdrop-blur-md shadow-[inset_2px_2px_8px_rgba(255,255,255,0.08),2px_8px_10px_rgba(0,0,0,0.08)] h-[5vh] col-[1/5] row-[6/8] md:row-[7/8] font-normal text-[2.3vh] p-[5px] border-none text-[var(--cor-primaria)] rounded-[10px]
+                    md:font-extralight md:text-[15px] 
+                    hover:translate-y-[-3px] hover:transition-all hover:duration-500 transition-all duration-500 
+                    disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:translate-y-0`}
+                >
+                    {loading ? 'Enviando...' : submitStatus === 'success' ? 'Enviado!' : submitStatus === 'error' ? 'Erro' : 'Enviar'}
+                </button>
 
             </form>
         </div>
