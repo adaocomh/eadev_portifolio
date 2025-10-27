@@ -129,9 +129,9 @@ export default function Home() {
   useEffect(() =>{
 
     document.fonts.ready.then(() => {
-    gsap.set(".text", { opacity: 1 });
+    gsap.set(".textElement", { opacity: 1 });
 
-      const split = new SplitText(".text", {
+      const split = new SplitText(".textElement", {
           type: "words,lines",
           linesClass: "line",
           autoSplit: true,
@@ -145,7 +145,7 @@ export default function Home() {
               stagger: 0.1,
               ease: "expo.out",
               scrollTrigger: {
-                  trigger: ".text",
+                  trigger: ".textElement",
                   start: "top 70%",
                   toggleActions: "play none none reverse",
               }
@@ -336,12 +336,12 @@ export default function Home() {
         <main  ref={containerRef} className='bg-[var(--cor-primaria)]'>
           <section className='flex flex-col justify-center items-center gap-[30px] w-[100vw] h-[100vh] pt-[100px] md:p-[200px_0px_50px_0px]' id='meu-objetivo'>
             <div className='flex flex-col items-center justify-center gap-[20px] w-[90vw] text-shadow-[0px_0px_10px_rgba(0,0,0,0.3)] md:flex-row md:justify-between md:w-[70vw]'>
-                <h3 className='w-[100%] text-[7vw] text-[var(--cor-font)] font-extralight md:text-[2vw] md:w-[70%] text'>Buscando entregar projetos interativos e intuitivos; sem descartar suas intenções, tenho como objetivo oferecer a melhor solução para o que você busca.</h3>
+                <h3 className='w-[100%] text-[7vw] text-[var(--cor-font)] font-extralight md:text-[2vw] md:w-[70%] textElement'>Buscando entregar projetos interativos e intuitivos; sem descartar suas intenções, tenho como objetivo oferecer a melhor solução para o que você busca.</h3>
                 <div className='flex flex-col w-[100%] md:w-[30%]'>
                     <div className='w-[60%] mb-[12px] border-b-[0.1px] border-black/30'>
-                        <h3 className='text font-normal text-[6vw] text-[var(--cor-font) md:text-[1.6vw]'>Posso atuar...</h3>
+                        <h3 className='font-normal text-[6vw] text-[var(--cor-font) md:text-[1.6vw] textElement'>Posso atuar...</h3>
                     </div>
-                    <p className='w-[100%] text-[4vw] text-[var(--cor-font)] font-extralight md:text-[1vw] text'>Transformando layouts pré-definidos em código funcional ou colaborar na criação do projeto desde o início, unindo design e desenvolvimento para uma solução completa.</p>
+                    <p className='w-[100%] text-[4vw] text-[var(--cor-font)] font-extralight md:text-[1vw] textElement'>Transformando layouts pré-definidos em código funcional ou colaborar na criação do projeto desde o início, unindo design e desenvolvimento para uma solução completa.</p>
                 </div>
             </div>
             <div className=' flex justify-end w-[50vw] circle-text'>
@@ -373,11 +373,11 @@ export default function Home() {
                 md:m-[1vw_0_0.8vw_0]'>
                   <div className='hidden w-[70%] border-b-[0.1px] border-[#F5ECDB50] md:block'/>
                   <h1 className='md:hidden w-full text-[24px] text-[var(--cor-primaria)] font-medium text-start text-shadow-[0px_0px_10px_rgba(0,0,0,0.5)]'>Vamos trabalhar<br/> juntos?</h1>
-                  <img src='/imgs/perfil/contato.png' className=' w-[80px] rounded-b-[50%] md:w-[150px] slide-memoji'/>
+                  <img src='/imgs/perfil/contato.png' className=' w-[80px] rounded-b-[50%] md:w-[150px] slide-memoji' alt='Memoji apple do desenvolvedor'/>
                 </div>
                 <div className={`w-[100%] flex flex-col items-center gap-[15px] md:gap-[2vw] md:flex-row slide-contato`}>
                   <a ref={emailRef} className='btn-custom' onClick={copiarEmail}>{emailCopiado ? 'E-mail copiado!' : 'eadevcontato@gmail.com'}</a>
-                  <a href='https://wa.me/48984229769?text=Olá,%20Éverton!%20Gostaria%20de%20falar%20mais%20sobre%20seus%20serviços%20oferecido.' target='_blank' rel='noopener noreferrer' className='btn-custom'>+55 (48) 98422-9769</a>
+                  <a href='https://wa.me/48984229769?text=Olá,%20Éverton!%20Gostaria%20de%20falar%20mais%20sobre%20seus%20serviços%20oferecido.' target='_blank' className='btn-custom'>+55 (48) 98422-9769</a>
                 </div>
             </div>
           </div>
