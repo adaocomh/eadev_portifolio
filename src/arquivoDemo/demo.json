@@ -2,12 +2,12 @@
 [
     {
         "name": "3XMEND",
-        "img": "/imgs/imgsDemo/header-mend.png",
+        "img": "/imgs/imgsDemo/header-mend.webp",
         "url": "https://3xmend.com"
       },
       {
         "name": "Atlas API",
-        "img": "/imgs/imgsDemo/atlas-API.png",
+        "img": "/imgs/imgsDemo/atlas-API.webp",
         "url": "https://atlas-api-drab.vercel.app"
       }
       ]

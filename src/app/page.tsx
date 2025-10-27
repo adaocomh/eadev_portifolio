@@ -10,6 +10,7 @@ import LottieWord from '@/components/lottieAnimate/lottieWord';
 import Clock from '@/components/relogio';
 import CircleText from '../components/circleTag/circleTag';
 import ConteudoForm from '../components/form'
+import Image from 'next/image';
 
 gsap.registerPlugin(SplitText) 
 gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
@@ -328,7 +329,7 @@ export default function Home() {
         <header ref={headerRef} className="flex flex-col h-[106vh] pl-[20px] bg-[var(--cor-primaria)] lg:h-[119vh] lg:pl-[80px]" id='header'>
           <div className="flex flex-col justify-end h-[100%] md:gap-[5vh]">
             <div className="flex flex-col justify-center items-start gap-[20px] pr-[20px] md:flex-row md:justify-start md:items-end lg:gap-[80px]">
-              <img className="h-[300px] md:h-[330px]" src="/imgs/perfil/perfil.jpeg" alt="Foto de perfil desenvolvedor"/>
+              <Image src="/imgs/perfil/perfil.webp" alt="Foto de perfil do desenvolvedor" width={264} height={330}/>
               <div className='flex flex-col gap-[10px]'>
                 <h2 className="text-start text-[35px] text-[var(--cor-font)] text-shadow-[0px_0px_10px_rgba(0,0,0,0.3)] md:text-[50px] lg:text-[60px]"> Dev.<br/> Front-end freelancer<br/></h2>
                 <p className='text-start text-[20px] font-extralight text-[var(--cor-font)] text-shadow-[0px_0px_10px_rgba(0,0,0,0.3)] md:text-[25px] lg:text-[30px]'>Construindo experiências interativas e intuitivas na web.</p>
@@ -388,7 +389,7 @@ export default function Home() {
                 md:m-[1vw_0_0.8vw_0]'>
                   <div className='hidden w-[70%] border-b-[0.1px] border-[#F5ECDB50] md:block'/>
                   <h1 className='md:hidden w-full text-[24px] text-[var(--cor-primaria)] font-medium text-start text-shadow-[0px_0px_10px_rgba(0,0,0,0.5)]'>Vamos trabalhar<br/> juntos?</h1>
-                  <img src='/imgs/perfil/contato.png' className=' w-[80px] rounded-b-[50%] md:w-[150px] slide-memoji' alt='Memoji apple do desenvolvedor'/>
+                  <Image src='/imgs/perfil/contato.webp' width={150} height={157} className='rounded-b-[50%] slide-memoji' alt='Memoji apple do desenvolvedor'/>
                 </div>
                 <div className={`w-[100%] flex flex-col items-center gap-[15px] md:gap-[2vw] md:flex-row slide-contato`}>
                   <a ref={emailRef} className='btn-custom' onClick={copiarEmail}>{emailCopiado ? 'E-mail copiado!' : 'eadevcontato@gmail.com'}</a>
