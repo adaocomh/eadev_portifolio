@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
+import TelaDeCarregamentoIni from "@/components/telaDCarregamento";
 
 const radioCanada = localFont({
   src: "../../public/fonts/RadioCanadaBig-VariableFont_wght.ttf",
@@ -115,7 +116,9 @@ export default function RootLayout({
         cz-shortcut-listen="true"
         className={`antialiased ${radioCanada.className}`}
       >
-        {children}
+        <TelaDeCarregamentoIni>
+          {children}
+        </TelaDeCarregamentoIni>
       </body>
     </html>
   );

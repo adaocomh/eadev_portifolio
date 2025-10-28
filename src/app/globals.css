@@ -77,3 +77,13 @@ ul,
     opacity: 100%;
   }
 }
+
+.textLoading {
+  overflow: hidden;
+  display: inline-block;
+}
+
+.textLoading .char {
+  display: inline-block;
+  overflow: hidden;
+}

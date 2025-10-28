@@ -466,7 +466,7 @@ export default function Home() {
 
   return (
   <>
-  <nav className='fixed w-[100vw] p-[20px_20px_0px_20px] z-50 md:p-[20px_80px_20px_80px]'><MenuSuspenso/></nav>
+  <nav className='fixed w-[100vw] p-[20px_20px_0px_20px] z-45 md:p-[20px_80px_20px_80px]'><MenuSuspenso/></nav>
     <div id="smooth-wrapper">
         <div id="smooth-content">
         <header ref={headerRef} className="flex flex-col h-[106vh] pl-[20px] bg-[var(--cor-primaria)] lg:h-[119vh] lg:pl-[80px]" id='header'>
