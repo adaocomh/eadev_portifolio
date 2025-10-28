@@ -430,14 +430,14 @@ export default function Home() {
 
       animation = gsap.fromTo(contatos, {
         opacity: 0,
-        translateY: '250px'
+        translateY: '100%'
       }, {
         opacity: 1,
-        translateY: '0px',
+        translateY: '0%',
         ease: 'power2.out',
         scrollTrigger: {
           trigger: footerRef.current,
-          start: 'top 10%',
+          start: 'top 30%',
           end: 'bottom bottom',
           scrub: 0.2,
         }
@@ -523,16 +523,21 @@ export default function Home() {
                 </div>
           </section>
         </main>
-        <footer ref={footerRef} className='relative flex flex-col h-max md:h-[100vh] footerS4 overflow-hidden' id="footer">
+        <footer ref={footerRef} className='relative flex flex-col justify-end gap-[20px] md:gap-[40px] h-[110vh] md:h-[100vh] footerS4 overflow-hidden' id="footer">
           <div className='projecao-sombra absolute top-0 w-[100vw] bg-[var(--cor-primaria)] shadow-[0px_25px_150px_rgba(0,0,0,1)]'/>
-          <div className='flex justify-center items-end h-[100vh] bg-[var(--cor-terciario)] md:items-center'>
+          <div className='flex justify-center items-end bg-[var(--cor-terciario)] md:items-center'>
             <div className='flex flex-col justify-center gap-[15px] max-w-[80vw]'>
                 <ConteudoForm/>
-                <div className='flex items-center m-[1.3vw_0_1.8vw_0] md:gap-[12%]
+                <div className='flex items-center md:gap-[12%]
                 md:m-[1vw_0_0.8vw_0]'>
                   <div className='hidden w-[70%] border-b-[0.1px] border-[#F5ECDB50] md:block'/>
                   <h1 className='md:hidden w-full text-[24px] text-[var(--cor-primaria)] font-medium text-start text-shadow-[0px_0px_10px_rgba(0,0,0,0.5)]'>Vamos trabalhar<br/> juntos?</h1>
-                  <Image src='/imgs/perfil/contato.webp' width={150} height={157} className='rounded-b-[50%] slide-memoji' alt='Memoji apple do desenvolvedor'/>
+                  <div className='hidden md:block'>
+                    <Image src='/imgs/perfil/contato.webp' width={150} height={157} className='rounded-b-[50%] slide-memoji' alt='Memoji apple do desenvolvedor'/>
+                  </div>
+                  <div className='md:hidden'>
+                    <Image src='/imgs/perfil/contato.webp' width={80} height={93} className='rounded-b-[50%] slide-memoji' alt='Memoji apple do desenvolvedor'/>
+                  </div>
                 </div>
                 <div className={`w-[100%] flex flex-col items-center gap-[15px] md:gap-[2vw] md:flex-row slide-contato`}>
                   <button ref={emailRef} className='btn-custom' onClick={copiarEmail} type="button">{emailCopiado ? 'E-mail copiado!' : 'eadevcontato@gmail.com'}</button>
@@ -540,7 +545,7 @@ export default function Home() {
                 </div>
             </div>
           </div>
-          <div className='flex flex-col items-center p-[20px] md:flex-row md:justify-between md:px-[80px]'>
+          <div className='flex flex-col items-center mb-[20px] md:flex-row md:justify-between md:px-[80px]'>
             <p className='text-[15px] text-[var(--cor-primaria)] font-extralight'>2025 Todos os direitos reservados.</p>
             <p className='text-[12px] text-[var(--cor-primaria)] font-extralight opacity-70'>@ Code by Éverton Adão</p>
           </div>
