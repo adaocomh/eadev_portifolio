@@ -523,8 +523,8 @@ export default function Home() {
                 </div>
           </section>
         </main>
-        <footer ref={footerRef} className='relative flex flex-col h-[105vh] md:h-[100vh] footerS4 overflow-hidden' id="footer">
-          <div className='projecao-sombra absolute top-[-5px] w-[100vw] bg-[var(--cor-primaria)] shadow-[0px_25px_150px_rgba(0,0,0,1)]'/>
+        <footer ref={footerRef} className='relative flex flex-col h-max md:h-[100vh] footerS4 overflow-hidden' id="footer">
+          <div className='projecao-sombra absolute top-0 w-[100vw] bg-[var(--cor-primaria)] shadow-[0px_25px_150px_rgba(0,0,0,1)]'/>
           <div className='flex justify-center items-end h-[100vh] bg-[var(--cor-terciario)] md:items-center'>
             <div className='flex flex-col justify-center gap-[15px] max-w-[80vw]'>
                 <ConteudoForm/>
@@ -540,7 +540,7 @@ export default function Home() {
                 </div>
             </div>
           </div>
-          <div className='abdolute bottom-0 flex flex-col items-center p-[20px] md:flex-row md:justify-between md:px-[80px]'>
+          <div className='flex flex-col items-center p-[20px] md:flex-row md:justify-between md:px-[80px]'>
             <p className='text-[15px] text-[var(--cor-primaria)] font-extralight'>2025 Todos os direitos reservados.</p>
             <p className='text-[12px] text-[var(--cor-primaria)] font-extralight opacity-70'>@ Code by Éverton Adão</p>
           </div>
