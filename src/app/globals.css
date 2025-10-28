@@ -1,11 +1,15 @@
 @import "tailwindcss";
 @font-face {
   font-family: 'Radio Canada';
-  src: url('../../public/fonts/RadioCanadaBig-VariableFont_wght.ttf') format('opentype');
+  src: url('/fonts/RadioCanadaBig-VariableFont_wght.ttf') format('truetype');
+  font-weight: 100 900;
+  font-display: swap;
 }
 @font-face {
   font-family: 'Barriecito';
-  src: url('../../public/fonts/Barriecito-Regular.otf') format('opentype');
+  src: url('/fonts/Barriecito-Regular.otf') format('opentype');
+  font-weight: normal;
+  font-display: swap;
 }
 
 @layer components {
@@ -40,7 +44,6 @@ body,
 body {
   font-family: var(--font-primaria);
   color: var(--cor-font);
-  font-display: swap;
 }
 
 a:hover,
