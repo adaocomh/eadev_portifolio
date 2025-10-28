@@ -1,16 +1,4 @@
 @import "tailwindcss";
-@font-face {
-  font-family: 'Radio Canada';
-  src: url('/fonts/RadioCanadaBig-VariableFont_wght.ttf') format('truetype');
-  font-weight: 100 900;
-  font-display: swap;
-}
-@font-face {
-  font-family: 'Barriecito';
-  src: url('/fonts/Barriecito-Regular.otf') format('opentype');
-  font-weight: normal;
-  font-display: swap;
-}
 
 @layer components {
   .btn-custom {
@@ -29,7 +17,7 @@
 :root {
   --background: #F5ECDB;
   --foreground: #171717;
-  --font-primaria: 'Radio Canada', Arial, Helvetica, sans-serif;
+  --font-primaria: var(--font-radio-canada), Arial, Helvetica, sans-serif;
   --cor-font:rgba(0, 0, 0, 0.85);
   --cor-primaria: #F5ECDB;
   --cor-secundaria: rgba(85, 89, 54, 0.850);

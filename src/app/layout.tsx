@@ -1,5 +1,21 @@
 import type { Metadata } from "next";
+import localFont from "next/font/local";
 import "./globals.css";
+
+const radioCanada = localFont({
+  src: "../../public/fonts/RadioCanadaBig-VariableFont_wght.ttf",
+  variable: "--font-radio-canada",
+  weight: "100 900",
+  display: "swap",
+  preload: true,
+});
+
+const barriecito = localFont({
+  src: "../../public/fonts/Barriecito-Regular.otf",
+  variable: "--font-barriecito",
+  display: "swap",
+  preload: true,
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.eadaodev.com"),
@@ -81,10 +97,23 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="pt" className="translated-ltr bg-[var(--cor-terciario)]">
+    <html lang="pt" className={`translated-ltr bg-[var(--cor-terciario)] ${radioCanada.variable} ${barriecito.variable}`}>
+      <head>
+        {/* Preload de recursos críticos */}
+        <link rel="preload" href="/imgs/perfil/perfil.webp" as="image" type="image/webp" />
+        <link rel="preload" href="/icons/mao-d-a-cursor.png" as="image" />
+        <link rel="preload" href="/icons/mao-d-d-pointer.png" as="image" />
+        
+        {/* DNS Prefetch para domínios externos */}
+        <link rel="dns-prefetch" href="https://3xmend.com" />
+        <link rel="dns-prefetch" href="https://atlas-api-drab.vercel.app" />
+        
+        {/* Otimizações de viewport */}
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+      </head>
       <body
         cz-shortcut-listen="true"
-        className={'antialiased'}
+        className={`antialiased ${radioCanada.className}`}
       >
         {children}
       </body>

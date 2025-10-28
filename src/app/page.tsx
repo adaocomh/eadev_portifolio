@@ -1,21 +1,35 @@
 'use client'
 import { useEffect, useRef, useState } from 'react';
+import dynamic from 'next/dynamic';
 import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
-import { ScrollSmoother } from 'gsap/all';
-import { SplitText } from 'gsap/all';
 import Data from "../arquivoDemo/demo.json"
-import MenuSuspenso from '../components/mnSuspenso'
-import LottieWord from '@/components/lottieAnimate/lottieWord';
-import Clock from '@/components/relogio';
-import CircleText from '../components/circleTag/circleTag';
-import ConteudoForm from '../components/form'
 import Image from 'next/image';
+import MenuSuspenso from '../components/mnSuspenso'
 
-gsap.registerPlugin(SplitText) 
-gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
+// Lazy loading de componentes pesados
+const LottieWord = dynamic(() => import('@/components/lottieAnimate/lottieWord'), {
+  ssr: false,
+  loading: () => <div className="w-25 h-25 bg-[var(--cor-primaria)] rounded-full animate-pulse" />,
+});
 
-const mm = gsap.matchMedia();
+const Clock = dynamic(() => import('@/components/relogio'), {
+  ssr: false,
+});
+
+const CircleText = dynamic(() => import('../components/circleTag/circleTag'), {
+  ssr: false,
+  loading: () => <div className="w-[50vw] h-[100px]" />,
+});
+
+const ConteudoForm = dynamic(() => import('../components/form'), {
+  ssr: false,
+});
+
+// Lazy load dos plugins GSAP (serão carregados quando necessários)
+let ScrollTrigger: any;
+let ScrollSmoother: any;
+let SplitText: any;
+let mm: any;
 
 export default function Home() {
   const headerRef = useRef<HTMLElement>(null);
@@ -25,41 +39,58 @@ export default function Home() {
   const [emailCopiado, setEmailCopiado] = useState<boolean>(false)
   const emailRef = useRef<HTMLButtonElement | null>(null)
   const containerCards = useRef<HTMLDivElement>(null)
-  const [smoother, setSmoother] = useState<ScrollSmoother | null>(null)
 
   //ScrollSmoother global
   useEffect(() => {
     if (!containerCards.current) return;
     
-    const smoother = ScrollSmoother.create({
-      wrapper: "#smooth-wrapper",
-      content: "#smooth-content",
-      smooth: 1.6,
-      effects: true,
-    });
+    let smoother: any;
+    let cleanup: (() => void) | null = null;
 
-    const handleLinkClick = (e: Event) => {
-      e.preventDefault();
-      const link = e.currentTarget as HTMLAnchorElement;
-      const targetId = link.getAttribute("href");
-      if (targetId) {
-        const target = document.querySelector(targetId);
-        if (target) {
-          smoother.scrollTo(target, true, "top top");
+    // Carrega plugins GSAP de forma assíncrona
+    Promise.all([
+      import('gsap/dist/ScrollTrigger'),
+      import('gsap/all'),
+    ]).then(([ScrollTriggerModule, ScrollSmootherModule]) => {
+      ScrollTrigger = ScrollTriggerModule.ScrollTrigger;
+      ScrollSmoother = ScrollSmootherModule.ScrollSmoother;
+      
+      gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
+
+      smoother = ScrollSmoother.create({
+        wrapper: "#smooth-wrapper",
+        content: "#smooth-content",
+        smooth: 1.6,
+        effects: true,
+      });
+
+      const handleLinkClick = (e: Event) => {
+        e.preventDefault();
+        const link = e.currentTarget as HTMLAnchorElement;
+        const targetId = link.getAttribute("href");
+        if (targetId) {
+          const target = document.querySelector(targetId);
+          if (target) {
+            smoother.scrollTo(target, true, "top top");
+          }
         }
-      }
-    };
+      };
 
-    const links = document.querySelectorAll<HTMLAnchorElement>("a[href^='#']");
-    links.forEach(link => {
-      link.addEventListener("click", handleLinkClick);
+      const links = document.querySelectorAll<HTMLAnchorElement>("a[href^='#']");
+      links.forEach(link => {
+        link.addEventListener("click", handleLinkClick);
+      });
+
+      cleanup = () => {
+        links.forEach(link => {
+          link.removeEventListener("click", handleLinkClick);
+        });
+        smoother?.kill();
+      };
     });
 
     return () => {
-      links.forEach(link => {
-        link.removeEventListener("click", handleLinkClick);
-      });
-      smoother.kill();
+      cleanup?.();
     };
   }, []);
 
@@ -68,43 +99,57 @@ export default function Home() {
     if (!containerCards.current) return;
 
     const cards = containerCards.current.querySelectorAll(".card");
+    let cleanup: (() => void) | null = null;
 
-    mm.add(
-      {
-        isMobile: "(max-width: 767px)",
-        isDesktop: "(min-width: 768px)",
-      },
-      (context) => {
-        const { isMobile, isDesktop } = context.conditions as { isMobile: boolean; isDesktop: boolean };
-
-        if (isDesktop) {
-          gsap.to(cards, {
-            xPercent: -100 * (cards.length - 1),
-            ease: "none",
-            scrollTrigger: {
-              trigger: containerCards.current,
-              pin: true,
-              scrub: 0.5,
-              start: "top 28%",
-              end: () => "+=1000px",
-            },
-          });
-        } else if (isMobile) {
-          gsap.set(cards, { xPercent: 0 });
-        }
-
-        return () => {
-          ScrollTrigger.getAll().forEach(trigger => {
-            if (trigger.trigger === containerCards.current) {
-              trigger.kill();
-            }
-          });
-        };
+    import('gsap/dist/ScrollTrigger').then((ScrollTriggerModule) => {
+      if (!ScrollTrigger) {
+        ScrollTrigger = ScrollTriggerModule.ScrollTrigger;
+        gsap.registerPlugin(ScrollTrigger);
       }
-    );
+      
+      mm = gsap.matchMedia();
+
+      mm.add(
+        {
+          isMobile: "(max-width: 767px)",
+          isDesktop: "(min-width: 768px)",
+        },
+        (context: any) => {
+          const { isMobile, isDesktop } = context.conditions as { isMobile: boolean; isDesktop: boolean };
+
+          if (isDesktop) {
+            gsap.to(cards, {
+              xPercent: -100 * (cards.length - 1),
+              ease: "none",
+              scrollTrigger: {
+                trigger: containerCards.current,
+                pin: true,
+                scrub: 0.5,
+                start: "top 28%",
+                end: () => "+=1000px",
+              },
+            });
+          } else if (isMobile) {
+            gsap.set(cards, { xPercent: 0 });
+          }
+
+          return () => {
+            ScrollTrigger.getAll().forEach((trigger: any) => {
+              if (trigger.trigger === containerCards.current) {
+                trigger.kill();
+              }
+            });
+          };
+        }
+      );
+
+      cleanup = () => {
+        mm?.revert();
+      };
+    });
 
     return () => {
-      mm.revert();
+      cleanup?.();
     };
   }, []);
 
@@ -113,31 +158,55 @@ export default function Home() {
     if (!headerRef.current) return;
 
     const elements = headerRef.current.querySelectorAll('.title-name-e-clock');
+    let animation: any;
 
-    gsap.fromTo(
-        elements,
-        { opacity: 1, y: 0 },
-        {
-            opacity: 0,
-            y: 200,
-            ease: 'power2.out',
-            stagger: 0,
-            scrollTrigger: {
-                trigger: headerRef.current,
-                start: 'top 0%',
-                end: 'bottom 5%',
-                scrub: 0,
-            },
-        }
-    )
+    import('gsap/dist/ScrollTrigger').then((ScrollTriggerModule) => {
+      if (!ScrollTrigger) {
+        ScrollTrigger = ScrollTriggerModule.ScrollTrigger;
+        gsap.registerPlugin(ScrollTrigger);
+      }
+
+      animation = gsap.fromTo(
+          elements,
+          { opacity: 1, y: 0 },
+          {
+              opacity: 0,
+              y: 200,
+              ease: 'power2.out',
+              stagger: 0,
+              scrollTrigger: {
+                  trigger: headerRef.current,
+                  start: 'top 0%',
+                  end: 'bottom 5%',
+                  scrub: 0,
+              },
+          }
+      );
+    });
+
+    return () => {
+      animation?.kill();
+    };
 }, []);
 
   //Text "meu objetivo"
   useEffect(() => {
-    let split: SplitText | null = null;
+    let split: any = null;
 
     const initAnimation = async () => {
       try {
+        // Carrega SplitText e ScrollTrigger de forma assíncrona
+        const [SplitTextModule, ScrollTriggerModule] = await Promise.all([
+          import('gsap/all'),
+          import('gsap/dist/ScrollTrigger'),
+        ]);
+
+        SplitText = SplitTextModule.SplitText;
+        if (!ScrollTrigger) {
+          ScrollTrigger = ScrollTriggerModule.ScrollTrigger;
+        }
+        gsap.registerPlugin(SplitText, ScrollTrigger);
+
         await document.fonts.ready;
         gsap.set(".textElement", { opacity: 1 });
 
@@ -179,23 +248,35 @@ export default function Home() {
     if (!containerRef.current) return;
 
     const elements = containerRef.current.querySelector('.circle-text');
+    let animation: any;
 
-    gsap.fromTo(
-        elements,
-        {y: 300 },
-        {
-          y:"-" + 225,
-          duration: 0.5,
-          ease: 'power2.out',
-          stagger: 0,
-          scrollTrigger: {
-              trigger: containerRef.current,
-              start: 'top 100%',
-              end: 'bottom 0%',
-              scrub: 1,
-          },
-        }
-    )
+    import('gsap/dist/ScrollTrigger').then((ScrollTriggerModule) => {
+      if (!ScrollTrigger) {
+        ScrollTrigger = ScrollTriggerModule.ScrollTrigger;
+        gsap.registerPlugin(ScrollTrigger);
+      }
+
+      animation = gsap.fromTo(
+          elements,
+          {y: 300 },
+          {
+            y:"-" + 225,
+            duration: 0.5,
+            ease: 'power2.out',
+            stagger: 0,
+            scrollTrigger: {
+                trigger: containerRef.current,
+                start: 'top 100%',
+                end: 'bottom 0%',
+                scrub: 1,
+            },
+          }
+      );
+    });
+
+    return () => {
+      animation?.kill();
+    };
   }, []);
 
   //scroll "demo"
@@ -203,69 +284,96 @@ export default function Home() {
     if (!demoRef.current) return;
 
     const elements = demoRef.current.querySelectorAll('.scroll-demo');
+    let animation: any;
 
-    gsap.fromTo(
-        elements,
-        { opacity: 0, y: 150 },
-        {
-            opacity: 1,
-            y: 0,
-            ease: "expoScale(0.5,7, none)",
-            stagger: 0,
-            scrollTrigger: {
-                trigger: demoRef.current,
-                start: 'top 70%',
-                end: 'top center',
-                scrub: 1,
-            },
-        }
-    )
+    import('gsap/dist/ScrollTrigger').then((ScrollTriggerModule) => {
+      if (!ScrollTrigger) {
+        ScrollTrigger = ScrollTriggerModule.ScrollTrigger;
+        gsap.registerPlugin(ScrollTrigger);
+      }
+
+      animation = gsap.fromTo(
+          elements,
+          { opacity: 0, y: 150 },
+          {
+              opacity: 1,
+              y: 0,
+              ease: "expoScale(0.5,7, none)",
+              stagger: 0,
+              scrollTrigger: {
+                  trigger: demoRef.current,
+                  start: 'top 70%',
+                  end: 'top center',
+                  scrub: 1,
+              },
+          }
+      );
+    });
+
+    return () => {
+      animation?.kill();
+    };
   }, []);
 
   //Projetor de sobra...
   useEffect(() => {
     if (!footerRef.current) return;
 
-    mm.add(
-      {
-        isMobile: "(max-width: 768px)",
-        isDesktop: "(min-width: 769px)",
+    let cleanup: (() => void) | null = null;
 
-      },
-      (context) => {
-        const { isMobile } = context.conditions as { isMobile: boolean };
-        const projetorS = footerRef.current?.querySelector(".projecao-sombra")
-
-        if (!projetorS) return;
-
-        const heightIni = isMobile ? "24vh" : "40vh";
-
-        gsap.fromTo(
-          projetorS,
-          {
-            height: heightIni,
-          },
-          {
-            height: "0vh",
-            ease: "none",
-            scrollTrigger: {
-              id: "footerProjeao",
-              trigger: footerRef.current,
-              start: "top bottom",
-              end: "top top",
-              scrub: true,
-            },
-          }
-        );
-
-        return () => {
-          ScrollTrigger.getById("footerProjeao")?.kill();
-        };
+    import('gsap/dist/ScrollTrigger').then((ScrollTriggerModule) => {
+      if (!ScrollTrigger) {
+        ScrollTrigger = ScrollTriggerModule.ScrollTrigger;
+        gsap.registerPlugin(ScrollTrigger);
       }
-    );
+
+      mm = gsap.matchMedia();
+
+      mm.add(
+        {
+          isMobile: "(max-width: 768px)",
+          isDesktop: "(min-width: 769px)",
+
+        },
+        (context: any) => {
+          const { isMobile } = context.conditions as { isMobile: boolean };
+          const projetorS = footerRef.current?.querySelector(".projecao-sombra")
+
+          if (!projetorS) return;
+
+          const heightIni = isMobile ? "24vh" : "40vh";
+
+          gsap.fromTo(
+            projetorS,
+            {
+              height: heightIni,
+            },
+            {
+              height: "0vh",
+              ease: "none",
+              scrollTrigger: {
+                id: "footerProjeao",
+                trigger: footerRef.current,
+                start: "top bottom",
+                end: "top top",
+                scrub: true,
+              },
+            }
+          );
+
+          return () => {
+            ScrollTrigger.getById("footerProjeao")?.kill();
+          };
+        }
+      );
+
+      cleanup = () => {
+        mm?.revert();
+      };
+    });
 
     return () => {
-      mm.revert(); // limpa tudo
+      cleanup?.();
     };
   }, []);
 
@@ -276,23 +384,32 @@ export default function Home() {
     const slideMemoji = footerRef.current.querySelector('.slide-memoji');
     if (!slideMemoji) return;
 
-    const animation = gsap.fromTo(slideMemoji, {
-      opacity: 0,
-      translateX: '-200px'
-    }, {
-      opacity: 1,
-      translateX: '0px',
-      ease: 'power2.out',
-      scrollTrigger: {
-        trigger: footerRef.current,
-        start: 'top center',
-        end: 'bottom bottom',
-        scrub: 0,
+    let animation: any;
+
+    import('gsap/dist/ScrollTrigger').then((ScrollTriggerModule) => {
+      if (!ScrollTrigger) {
+        ScrollTrigger = ScrollTriggerModule.ScrollTrigger;
+        gsap.registerPlugin(ScrollTrigger);
       }
+
+      animation = gsap.fromTo(slideMemoji, {
+        opacity: 0,
+        translateX: '-200px'
+      }, {
+        opacity: 1,
+        translateX: '0px',
+        ease: 'power2.out',
+        scrollTrigger: {
+          trigger: footerRef.current,
+          start: 'top center',
+          end: 'bottom bottom',
+          scrub: 0,
+        }
+      });
     });
 
     return () => {
-      animation.kill();
+      animation?.kill();
     };
   }, [])
 
@@ -303,23 +420,32 @@ export default function Home() {
     const contatos = footerRef.current.querySelector('.slide-contato');
     if (!contatos) return;
 
-    const animation = gsap.fromTo(contatos, {
-      opacity: 0,
-      translateY: '250px'
-    }, {
-      opacity: 1,
-      translateY: '0px',
-      ease: 'power2.out',
-      scrollTrigger: {
-        trigger: footerRef.current,
-        start: 'top 10%',
-        end: 'bottom bottom',
-        scrub: 0.2,
+    let animation: any;
+
+    import('gsap/dist/ScrollTrigger').then((ScrollTriggerModule) => {
+      if (!ScrollTrigger) {
+        ScrollTrigger = ScrollTriggerModule.ScrollTrigger;
+        gsap.registerPlugin(ScrollTrigger);
       }
+
+      animation = gsap.fromTo(contatos, {
+        opacity: 0,
+        translateY: '250px'
+      }, {
+        opacity: 1,
+        translateY: '0px',
+        ease: 'power2.out',
+        scrollTrigger: {
+          trigger: footerRef.current,
+          start: 'top 10%',
+          end: 'bottom bottom',
+          scrub: 0.2,
+        }
+      });
     });
 
     return () => {
-      animation.kill();
+      animation?.kill();
     };
   }, [])
   
@@ -362,7 +488,7 @@ export default function Home() {
               </div>
             </div>
             <div className='flex justify-end items-center h-[25vh] lg:h-[50vh] title-name-e-clock'>
-              <h1 className='font-[Barriecito] text-[28vw] text-[rgba(0,0,0,0.9)] text-shadow-[0px_0px_10px_rgba(0,0,0,0.3)]'>É<span className='text-[var(--cor-secundaria)]'>v</span>erton</h1>
+              <h1 className='font-[var(--font-barriecito)] text-[28vw] text-[rgba(0,0,0,0.9)] text-shadow-[0px_0px_10px_rgba(0,0,0,0.3)]'>É<span className='text-[var(--cor-secundaria)]'>v</span>erton</h1>
             </div>
           </div>
         </header>
