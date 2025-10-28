@@ -1,44 +1,21 @@
 "use client";
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 
 export default function TextCircle() {
   const [letters, setLetters] = useState<string[]>([]);
   const [translateZ, setTranslateZ] = useState(80);
   const content = "© code by É. Adão. ";
-  const rafId = useRef<number | null>(null);
-  const resizeTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
     setLetters(content.split(""));
 
     const handleResize = () => {
-      if (resizeTimeoutRef.current) {
-        clearTimeout(resizeTimeoutRef.current);
-      }
-      
-      resizeTimeoutRef.current = setTimeout(() => {
-        if (rafId.current !== null) {
-          cancelAnimationFrame(rafId.current);
-        }
-        
-        rafId.current = requestAnimationFrame(() => {
-          setTranslateZ(window.innerWidth >= 768 ? 120 : 80);
-        });
-      }, 150);
+      setTranslateZ(window.innerWidth >= 768 ? 120 : 80);
     };
 
     handleResize();
-    window.addEventListener("resize", handleResize, { passive: true });
-    
-    return () => {
-      window.removeEventListener("resize", handleResize);
-      if (resizeTimeoutRef.current) {
-        clearTimeout(resizeTimeoutRef.current);
-      }
-      if (rafId.current !== null) {
-        cancelAnimationFrame(rafId.current);
-      }
-    };
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   const getTransform = (deg: number) => {

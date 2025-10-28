@@ -1,10 +1,9 @@
 'use client'
 
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState } from 'react';
 
 const Clock: React.FC = () => {
   const [time, setTime] = useState<string>('');
-  const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
     const updateTime = () => {
@@ -13,18 +12,13 @@ const Clock: React.FC = () => {
         hour: '2-digit',
         minute: '2-digit',
       });
-      setTime(prevTime => prevTime !== timeString ? timeString : prevTime);
+      setTime(timeString);
     };
 
     updateTime();
-    if (intervalRef.current) clearInterval(intervalRef.current);
-    intervalRef.current = setInterval(updateTime, 1000);
+    const interval = setInterval(updateTime, 1000);
 
-    return () => {
-      if (intervalRef.current) {
-        clearInterval(intervalRef.current);
-      }
-    };
+    return () => clearInterval(interval);
   }, []);
 
   return (

@@ -128,12 +128,11 @@ export default function Home() {
 
   //Text "meu objetivo"
   useEffect(() =>{
-    let split: SplitText | null = null;
 
     document.fonts.ready.then(() => {
     gsap.set(".textElement", { opacity: 1 });
 
-      split = new SplitText(".textElement", {
+      const split = new SplitText(".textElement", {
           type: "words,lines",
           linesClass: "line",
           autoSplit: true,
@@ -153,12 +152,6 @@ export default function Home() {
               }
           });
   });
-
-    return () => {
-      if (split) {
-        split.revert();
-      }
-    };
   }, [])
 
   //"circle-text"
@@ -252,7 +245,7 @@ export default function Home() {
     );
 
     return () => {
-      mm.revert();
+      mm.revert(); // limpa tudo
     };
   }, []);
 
@@ -262,7 +255,7 @@ export default function Home() {
 
     const slideMemoji = footerRef.current.querySelector('.slide-memoji')
 
-    const animation = gsap.fromTo(slideMemoji, {
+    gsap.fromTo(slideMemoji, {
         opacity: 0,
         translateX: '-200px'
     }, {
@@ -277,11 +270,7 @@ export default function Home() {
         }
     }
     )
-
-    return () => {
-      animation.kill();
-    };
-  }, [])
+  })
 
   //"slide-contato"
   useEffect(()=>{
@@ -289,7 +278,7 @@ export default function Home() {
 
     const contatos = footerRef.current.querySelector('.slide-contato')
 
-    const animation = gsap.fromTo(contatos, {
+    gsap.fromTo(contatos, {
         opacity: 0,
         translateY: '250px'
     }, {
@@ -304,11 +293,7 @@ export default function Home() {
         }
     }
     )
-
-    return () => {
-      animation.kill();
-    };
-  }, [])
+  })
   
   const copiarEmail = () => {
         const email = emailRef.current?.innerText

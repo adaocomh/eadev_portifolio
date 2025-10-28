@@ -1,42 +1,27 @@
 'use client'
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect } from 'react'
 export default function MnSmobile() {
         const [aberto, setAberto] = useState<boolean>(false)
         const [scrolled, setScrolled] = useState(false);
         const [overFooter, setOverFooter] = useState(false)
-        const rafId = useRef<number | null>(null);
 
         useEffect(() => {
             const handleScroll = () => {
-              if (rafId.current !== null) {
-                cancelAnimationFrame(rafId.current);
-              }
-              
-              rafId.current = requestAnimationFrame(() => {
-                setScrolled(window.scrollY > 50);
-              });
+              setScrolled(window.scrollY > 50);
             };
         
-            window.addEventListener("scroll", handleScroll, { passive: true });
-            return () => {
-              window.removeEventListener("scroll", handleScroll);
-              if (rafId.current !== null) {
-                cancelAnimationFrame(rafId.current);
-              }
-            };
+            window.addEventListener("scroll", handleScroll);
+            return () => window.removeEventListener("scroll", handleScroll);
           }, []);
 
           useEffect(() => {
-            const rafId = requestAnimationFrame(() => {
-              if (aberto) {
-                document.body.style.overflow = "hidden";
-              } else {
-                document.body.style.overflow = "auto";
-              }
-            });
+            if (aberto) {
+              document.body.style.overflow = "hidden";
+            } else {
+              document.body.style.overflow = "auto";
+            }
         
             return () => {
-              cancelAnimationFrame(rafId);
               document.body.style.overflow = "auto";
             };
           }, [aberto]);
