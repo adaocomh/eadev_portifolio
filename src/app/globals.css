@@ -18,10 +18,15 @@
   --background: #F5ECDB;
   --foreground: #171717;
   --font-primaria: var(--font-radio-canada), Arial, Helvetica, sans-serif;
+  --font-secundaria: var(--font-barriecito), cursive;
   --cor-font:rgba(0, 0, 0, 0.85);
   --cor-primaria: #F5ECDB;
   --cor-secundaria: rgba(85, 89, 54, 0.850);
   --cor-terciario: #3F4030;
+}
+
+.font-barriecito {
+  font-family: var(--font-barriecito), cursive;
 }
 
 body,

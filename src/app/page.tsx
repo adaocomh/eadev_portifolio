@@ -488,7 +488,7 @@ export default function Home() {
               </div>
             </div>
             <div className='flex justify-end items-center h-[25vh] lg:h-[50vh] title-name-e-clock'>
-              <h1 className='font-[var(--font-barriecito)] text-[28vw] text-[rgba(0,0,0,0.9)] text-shadow-[0px_0px_10px_rgba(0,0,0,0.3)]'>É<span className='text-[var(--cor-secundaria)]'>v</span>erton</h1>
+              <h1 className='font-barriecito text-[28vw] text-[rgba(0,0,0,0.9)] text-shadow-[0px_0px_10px_rgba(0,0,0,0.3)]'>É<span className='text-[var(--cor-secundaria)]'>v</span>erton</h1>
             </div>
           </div>
         </header>
