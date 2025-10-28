@@ -23,7 +23,7 @@ export default function Home() {
   const demoRef = useRef<HTMLElement>(null);
   const footerRef = useRef<HTMLElement>(null);
   const [emailCopiado, setEmailCopiado] = useState<boolean>(false)
-  const emailRef = useRef<HTMLAnchorElement | null>(null)
+  const emailRef = useRef<HTMLButtonElement | null>(null)
   const containerCards = useRef<HTMLDivElement>(null)
   const [smoother, setSmoother] = useState<ScrollSmoother | null>(null)
 
@@ -38,21 +38,27 @@ export default function Home() {
       effects: true,
     });
 
-    document.querySelectorAll("a[href^='#']").forEach(link => {
-      link.addEventListener("click", (e) => {
-        e.preventDefault();
-    
-        const targetId = link.getAttribute("href");
-        if (targetId) {
-          const target = document.querySelector(targetId);
-          if (target) {
-            smoother.scrollTo(target, true, "top top");
-          }
+    const handleLinkClick = (e: Event) => {
+      e.preventDefault();
+      const link = e.currentTarget as HTMLAnchorElement;
+      const targetId = link.getAttribute("href");
+      if (targetId) {
+        const target = document.querySelector(targetId);
+        if (target) {
+          smoother.scrollTo(target, true, "top top");
         }
-      })
+      }
+    };
+
+    const links = document.querySelectorAll<HTMLAnchorElement>("a[href^='#']");
+    links.forEach(link => {
+      link.addEventListener("click", handleLinkClick);
     });
 
     return () => {
+      links.forEach(link => {
+        link.removeEventListener("click", handleLinkClick);
+      });
       smoother.kill();
     };
   }, []);
@@ -127,31 +133,45 @@ export default function Home() {
 }, []);
 
   //Text "meu objetivo"
-  useEffect(() =>{
+  useEffect(() => {
+    let split: SplitText | null = null;
 
-    document.fonts.ready.then(() => {
-    gsap.set(".textElement", { opacity: 1 });
+    const initAnimation = async () => {
+      try {
+        await document.fonts.ready;
+        gsap.set(".textElement", { opacity: 1 });
 
-      const split = new SplitText(".textElement", {
+        split = new SplitText(".textElement", {
           type: "words,lines",
           linesClass: "line",
           autoSplit: true,
           mask: "lines",
-          });
-          
-          gsap.from(split.lines, {
-              duration: 2,
-              yPercent: 100,
-              opacity: 0,
-              stagger: 0.1,
-              ease: "expo.out",
-              scrollTrigger: {
-                  trigger: ".textElement",
-                  start: "top 70%",
-                  toggleActions: "play none none reverse",
-              }
-          });
-  });
+        });
+        
+        gsap.from(split.lines, {
+          duration: 2,
+          yPercent: 100,
+          opacity: 0,
+          stagger: 0.1,
+          ease: "expo.out",
+          scrollTrigger: {
+            trigger: ".textElement",
+            start: "top 70%",
+            toggleActions: "play none none reverse",
+          }
+        });
+      } catch (error) {
+        console.error("Erro ao inicializar animação de texto:", error);
+      }
+    };
+
+    initAnimation();
+
+    return () => {
+      if (split) {
+        split.revert();
+      }
+    };
   }, [])
 
   //"circle-text"
@@ -250,61 +270,73 @@ export default function Home() {
   }, []);
 
   //"sile-memoji"
-  useEffect(()=>{
-    if (!footerRef.current) return
+  useEffect(() => {
+    if (!footerRef.current) return;
 
-    const slideMemoji = footerRef.current.querySelector('.slide-memoji')
+    const slideMemoji = footerRef.current.querySelector('.slide-memoji');
+    if (!slideMemoji) return;
 
-    gsap.fromTo(slideMemoji, {
-        opacity: 0,
-        translateX: '-200px'
+    const animation = gsap.fromTo(slideMemoji, {
+      opacity: 0,
+      translateX: '-200px'
     }, {
-        opacity: 1,
-        translateX: '0px',
-        ease: 'power2.out',
-        scrollTrigger: {
-            trigger: footerRef.current,
-            start: 'top center',
-            end: 'bottom bottom',
-            scrub: 0,
-        }
-    }
-    )
-  })
+      opacity: 1,
+      translateX: '0px',
+      ease: 'power2.out',
+      scrollTrigger: {
+        trigger: footerRef.current,
+        start: 'top center',
+        end: 'bottom bottom',
+        scrub: 0,
+      }
+    });
+
+    return () => {
+      animation.kill();
+    };
+  }, [])
 
   //"slide-contato"
-  useEffect(()=>{
-    if (!footerRef.current) return
+  useEffect(() => {
+    if (!footerRef.current) return;
 
-    const contatos = footerRef.current.querySelector('.slide-contato')
+    const contatos = footerRef.current.querySelector('.slide-contato');
+    if (!contatos) return;
 
-    gsap.fromTo(contatos, {
-        opacity: 0,
-        translateY: '250px'
+    const animation = gsap.fromTo(contatos, {
+      opacity: 0,
+      translateY: '250px'
     }, {
-        opacity: 1,
-        translateY: '0px',
-        ease: 'power2.out',
-        scrollTrigger: {
-            trigger: footerRef.current,
-            start: 'top 10%',
-            end: 'bottom bottom',
-            scrub: 0.2,
-        }
-    }
-    )
-  })
+      opacity: 1,
+      translateY: '0px',
+      ease: 'power2.out',
+      scrollTrigger: {
+        trigger: footerRef.current,
+        start: 'top 10%',
+        end: 'bottom bottom',
+        scrub: 0.2,
+      }
+    });
+
+    return () => {
+      animation.kill();
+    };
+  }, [])
   
-  const copiarEmail = () => {
-        const email = emailRef.current?.innerText
-        if(email){
-        navigator.clipboard.writeText(email)
-        setEmailCopiado(true)
-        setTimeout(() => {
-            setEmailCopiado(false)
-        }, 1500)
+  const copiarEmail = async () => {
+    const email = emailRef.current?.innerText;
+    if (!email) return;
+    
+    try {
+      await navigator.clipboard.writeText(email);
+      setEmailCopiado(true);
+      setTimeout(() => {
+        setEmailCopiado(false);
+      }, 1500);
+    } catch (error) {
+      console.error("Erro ao copiar email:", error);
     }
-    }
+  }
 
   return (
   <>
@@ -355,11 +387,11 @@ export default function Home() {
                       </p>
                       <div ref={containerCards} className='flex flex-col items-center gap-[20px] w-fit min-w-[100vw] md:flex-row md:items-start md:gap-[60px] overflow-visible'>
                         {Data.demo.map((card) => (
-                          <a key={card.name} href={card.url} className={`card flex flex-col items-start w-[90vw] md:w-[70vw] gap-[15px] md:gap-[25px]`} target="_blank" rel="noopener">
+                          <a key={card.name} href={card.url} className={`card flex flex-col items-start w-[90vw] md:w-[70vw] gap-[15px] md:gap-[25px]`} target="_blank" rel="noopener noreferrer">
                               <div className='pointer-events-none border-b-[0.1px] border-black/30 w-[40%]'>
                                   <h1 className={`text-[26px] font-extralight text-shadow-[0px_0px_10px_rgba(0,0,0,0.3)] opacity-90  md:text-[40px]`}>{card.name}</h1>
                               </div>
-                              <img src={card.img} alt={card.name} className="pointer-events-none w-[100%]"/>
+                              <Image src={card.img} alt={card.name} width={1200} height={800} className="pointer-events-none w-[100%]" />
                           </a>))}
                       </div>
                 </div>
@@ -377,8 +409,8 @@ export default function Home() {
                   <Image src='/imgs/perfil/contato.webp' width={150} height={157} className='rounded-b-[50%] slide-memoji' alt='Memoji apple do desenvolvedor'/>
                 </div>
                 <div className={`w-[100%] flex flex-col items-center gap-[15px] md:gap-[2vw] md:flex-row slide-contato`}>
-                  <a ref={emailRef} className='btn-custom' onClick={copiarEmail}>{emailCopiado ? 'E-mail copiado!' : 'eadevcontato@gmail.com'}</a>
-                  <a href='https://wa.me/48984229769?text=Olá,%20Éverton!%20Gostaria%20de%20falar%20mais%20sobre%20seus%20serviços%20oferecido.' target='_blank' className='btn-custom'>+55 (48) 98422-9769</a>
+                  <button ref={emailRef} className='btn-custom' onClick={copiarEmail} type="button">{emailCopiado ? 'E-mail copiado!' : 'eadevcontato@gmail.com'}</button>
+                  <a href='https://wa.me/48984229769?text=Olá,%20Éverton!%20Gostaria%20de%20falar%20mais%20sobre%20seus%20serviços%20oferecido.' target='_blank' rel='noopener noreferrer' className='btn-custom'>+55 (48) 98422-9769</a>
                 </div>
             </div>
           </div>
