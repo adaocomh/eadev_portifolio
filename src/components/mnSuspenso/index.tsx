@@ -1,18 +1,26 @@
 'use client'
 import MnSmobile from './mnSMobile'
 import { useState, useEffect} from 'react'
+import { gsap } from 'gsap'
+import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
+
+gsap.registerPlugin(ScrollTrigger)
 
 export default function MenuSuspenso() {
   const [overFooter, setOverFooter] = useState(false)
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
-    };
+    const scrollTrigger = ScrollTrigger.create({
+      start: 50,
+      onUpdate: (self) => {
+        setScrolled(self.scroll() > 50);
+      },
+    });
 
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    return () => {
+      scrollTrigger.kill();
+    };
   }, []);
 
   useEffect(() => {
