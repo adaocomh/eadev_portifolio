@@ -37,7 +37,7 @@ export default function TelaDeCarregamentoIni({ children }: { children: React.Re
         
         gsap.from(split.chars, {
           duration: 0.7,
-          yPercent: 100,
+          yPercent: 50,
           opacity: 0,
           stagger: 0.1,
           ease: "power2.out"

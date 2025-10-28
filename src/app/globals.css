@@ -78,11 +78,6 @@ ul,
   }
 }
 
-.textLoading {
-  overflow: hidden;
-  display: inline-block;
-}
-
 .textLoading .char {
   display: inline-block;
   overflow: hidden;
