@@ -495,10 +495,10 @@ export default function Home() {
         <main  ref={containerRef} className='bg-[var(--cor-primaria)]'>
           <section className='flex flex-col justify-center items-center gap-[30px] w-[100vw] h-[100vh] pt-[100px] md:p-[200px_0px_50px_0px]' id='meu-objetivo'>
             <div className='flex flex-col items-center justify-center gap-[20px] w-[90vw] text-shadow-[0px_0px_10px_rgba(0,0,0,0.3)] md:flex-row md:justify-between md:w-[70vw]'>
-                <h3 className='w-[100%] text-[7vw] text-[var(--cor-font)] font-extralight md:text-[2vw] md:w-[70%] textElement'>Buscando entregar projetos interativos e intuitivos; sem descartar suas intenções, tenho como objetivo oferecer a melhor solução para o que você busca.</h3>
+                <p className='w-[100%] text-[7vw] text-[var(--cor-font)] font-extralight md:text-[2vw] md:w-[70%] textElement'>Buscando entregar projetos interativos e intuitivos; sem descartar suas intenções, tenho como objetivo oferecer a melhor solução para o que você busca.</p>
                 <div className='flex flex-col w-[100%] md:w-[30%]'>
                     <div className='w-[60%] mb-[12px] border-b-[0.1px] border-black/30'>
-                        <h3 className='font-normal text-[6vw] text-[var(--cor-font) md:text-[1.6vw] textElement'>Posso atuar...</h3>
+                        <h4 className='font-normal text-[6vw] text-[var(--cor-font) md:text-[1.6vw] textElement'>Posso atuar...</h4>
                     </div>
                     <p className='w-[100%] text-[4vw] text-[var(--cor-font)] font-extralight md:text-[1vw] textElement'>Transformando layouts pré-definidos em código funcional ou colaborar na criação do projeto desde o início, unindo design e desenvolvimento para uma solução completa.</p>
                 </div>
