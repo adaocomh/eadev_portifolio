@@ -211,10 +211,8 @@ export default function Home() {
         gsap.set(".textElement", { opacity: 1 });
 
         split = new SplitText(".textElement", {
-          type: "words,lines",
-          linesClass: "line",
-          autoSplit: true,
-          mask: "lines",
+          type: "lines",
+          linesClass: "line"
         });
         
         gsap.from(split.lines, {
@@ -472,7 +470,12 @@ export default function Home() {
         <header ref={headerRef} className="flex flex-col h-[106vh] pl-[20px] bg-[var(--cor-primaria)] lg:h-[119vh] lg:pl-[80px]" id='header'>
           <div className="flex flex-col justify-end h-[100%] md:gap-[5vh]">
             <div className="flex flex-col justify-center items-start gap-[20px] pr-[20px] md:flex-row md:justify-start md:items-end lg:gap-[80px]">
-              <Image src="/imgs/perfil/perfil.webp" alt="Foto de perfil do desenvolvedor" width={264} height={330}/>
+              <div className='hidden md:block'>
+                <Image src="/imgs/perfil/perfil.webp" alt="Foto de perfil do desenvolvedor" width={264} height={330}/>
+              </div>
+              <div className='block md:hidden'>
+                <Image src="/imgs/perfil/perfil.webp" alt="Foto de perfil do desenvolvedor" width={240} height={300}/>
+              </div>
               <div className='flex flex-col gap-[10px]'>
                 <h2 className="text-start text-[35px] text-[var(--cor-font)] text-shadow-[0px_0px_10px_rgba(0,0,0,0.3)] md:text-[50px] lg:text-[60px]"> Dev.<br/> Front-end freelancer<br/></h2>
                 <p className='text-start text-[20px] font-extralight text-[var(--cor-font)] text-shadow-[0px_0px_10px_rgba(0,0,0,0.3)] md:text-[25px] lg:text-[30px]'>Construindo experiências interativas e intuitivas na web.</p>

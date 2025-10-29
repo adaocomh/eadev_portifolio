@@ -77,8 +77,3 @@ ul,
     opacity: 100%;
   }
 }
-
-.textLoading .char {
-  display: inline-block;
-  overflow: hidden;
-}

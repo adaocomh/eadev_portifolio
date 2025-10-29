@@ -31,16 +31,16 @@ export default function TelaDeCarregamentoIni({ children }: { children: React.Re
         gsap.set(".textLoading", { opacity: 1 });
 
         split = new SplitText(".textLoading", {
-          type: "chars",
-          charsClass: "char"
+          type: "words",
+          wordsClass: "word"
         });
         
-        gsap.from(split.chars, {
-          duration: 0.7,
+        gsap.from(split.words, {
+          duration: 0.8,
           yPercent: 50,
           opacity: 0,
-          stagger: 0.1,
-          ease: "power2.out"
+          stagger: 0.2,
+          ease: "expo.out"
         });
       } catch (error) {
         console.error("Erro ao inicializar animação de texto:", error);
