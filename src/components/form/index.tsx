@@ -77,7 +77,7 @@ export default function ConteudoForm(){
                 md:w-[25vw] shadow-[inset_2px_2px_8px_rgba(0,0,0,0.4)]' placeholder="E-mail" required/>
 
                 <label htmlFor='areatxt' className='font-extralight text-[var(--cor-primaria)] text-[18px] col-[1] row-[3]'></label>
-                <textarea id='areatxt' name='message' className='col-[1/5] row-[2/6] md:row-[2/7] p-[10px] border-none bg-[#737156] text-[var(--cor-primaria)] rounded-[10px] placeholder:text-[#3F4030] font-extralight text-[15px] shadow-[inset_2px_2px_8px_rgba(0,0,0,0.4)]' placeholder="Mensagem com seu intuito" required/>
+                <textarea id='areatxt' name='message' className='col-[1/5] row-[2/6] md:row-[2/7] p-[10px] border-none bg-[#737156] text-[var(--cor-primaria)] rounded-[10px] placeholder:text-[#3F4030] font-extralight text-[15px] shadow-[inset_2px_2px_8px_rgba(0,0,0,0.4)]' placeholder="Por favor, especifique seu intuito" required/>
 
                 <button 
                     type="submit" 
