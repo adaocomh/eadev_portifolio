@@ -21,10 +21,10 @@ const barriecito = localFont({
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.eadaodev.com"),
   title: {
-    default: "É. Adão Dev. - Desenvolvedor Front-end Freelancer",
+    default: "É. Adão Dev. Front-end Freelancer",
     template: "%s | É. Adão Dev."
   },
-  description: "É. Adão Dev. - Desenvolvedor Front-end especializado em JavaScript, React, Next.js, TypeScript, HTML5, CSS3 e TailwindCSS. Experiência em criar sites responsivos e interativos.",
+  description: "É. Adão Dev. Front-end especializado em JavaScript, React, Next.js, TypeScript, HTML5, CSS3 e TailwindCSS. Experiência em criar sites responsivos e interativos.",
   keywords: [
     "desenvolvedor front-end",
     "freelancer",
@@ -60,21 +60,21 @@ export const metadata: Metadata = {
     locale: "pt_BR",
     url: "https://www.eadaodev.com",
     siteName: "É. Adão Dev.",
-    title: "É. Adão Dev. - Desenvolvedor Front-end Freelancer",
-    description: "Portfolio de É. Adão Dev. - Desenvolvedor Front-end especializado em React, Next.js e interfaces modernas.",
+    title: "É. Adão Dev. Front-end Freelancer",
+    description: "Portfolio de É. Adão Dev. Front-end especializado em React, Next.js e interfaces modernas.",
     images: [
       {
         url: "/imgs/imgPortfolio/eadaodev.jpeg",
         width: 3844,
         height: 1932,
-        alt: "É. Adão Dev. - Desenvolvedor Front-end",
+        alt: "É. Adão Dev. Front-end",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "É. Adão Dev. - Desenvolvedor Front-end Freelancer",
-    description: "É. Adão Dev. - Desenvolvedor Front-end especializado em JavaScript, React, Next.js, TypeScript, HTML5, CSS3 e TailwindCSS",
+    title: "É. Adão Dev. Front-end Freelancer",
+    description: "É. Adão Dev. Front-end especializado em JavaScript, React, Next.js, TypeScript, HTML5, CSS3 e TailwindCSS",
     images: ["/imgs/imgPortfolio/eadaodev.jpeg"],
     creator: "",
   },
