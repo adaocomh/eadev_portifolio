@@ -10,7 +10,7 @@ export default function TelaDeCarregamentoIni({ children }: { children: React.Re
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const timer = setTimeout(() => setLoading(false), 2000);
+    const timer = setTimeout(() => setLoading(false), 1600);
     return () => clearTimeout(timer);
   }, []);
 
