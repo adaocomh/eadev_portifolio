@@ -10,7 +10,7 @@ export default function TelaDeCarregamentoIni({ children }: { children: React.Re
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const timer = setTimeout(() => setLoading(false), 1600);
+    const timer = setTimeout(() => setLoading(false), 1300);
     return () => clearTimeout(timer);
   }, []);
 
@@ -31,16 +31,15 @@ export default function TelaDeCarregamentoIni({ children }: { children: React.Re
         gsap.set(".textLoading", { opacity: 1 });
 
         split = new SplitText(".textLoading", {
-          type: "words",
-          wordsClass: "word"
+          type: "lines",
+          linesClass: "line"
         });
         
-        gsap.from(split.words, {
-          duration: 0.8,
-          yPercent: 50,
+        gsap.from(split.lines, {
+          duration: 1.2,
+          yPercent: 150,
           opacity: 0,
-          stagger: 0.2,
-          ease: "expo.out"
+          ease: "power2.out"
         });
       } catch (error) {
         console.error("Erro ao inicializar animação de texto:", error);

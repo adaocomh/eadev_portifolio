@@ -520,7 +520,7 @@ export default function Home() {
                               <div className='pointer-events-none border-b-[0.1px] border-black/30 w-[40%]'>
                                   <h1 className={`text-[26px] font-extralight text-shadow-[0px_0px_10px_rgba(0,0,0,0.3)] opacity-90  md:text-[40px]`}>{card.name}</h1>
                               </div>
-                              <Image src={card.img} alt={card.name} width={1200} height={800} className="pointer-events-none w-[100%]" />
+                              <Image src={card.img} alt={card.name} width={1917} height={965} className="pointer-events-none w-[100%]"/>
                           </a>))}
                       </div>
                 </div>
