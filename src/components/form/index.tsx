@@ -79,14 +79,10 @@ export default function ConteudoForm(){
                 <label htmlFor='areatxt' className='font-extralight text-[var(--cor-primaria)] text-[18px] col-[1] row-[3]'></label>
                 <textarea id='areatxt' name='message' className='col-[1/5] row-[2/6] md:row-[2/7] p-[10px] border-none bg-[#737156] text-[var(--cor-primaria)] rounded-[10px] placeholder:text-[#3F4030] font-extralight text-[15px] shadow-[inset_2px_2px_8px_rgba(0,0,0,0.4)]' placeholder="Por favor, especifique seu intuito" required/>
 
-                <button 
-                    type="submit" 
-                    disabled={loading}
-                    className={`text-center hover:shadow-[inset_2px_2px_8px_rgba(255,255,255,0.08),2px_8px_12px_rgba(0,0,0,0.12)] bg-[rgba(128,128,128,0.05)] backdrop-blur-md shadow-[inset_2px_2px_8px_rgba(255,255,255,0.08),2px_8px_10px_rgba(0,0,0,0.08)] h-[5vh] col-[1/5] row-[6/8] md:row-[7/8] font-normal text-[2.3vh] p-[5px] border-none text-[var(--cor-primaria)] rounded-[10px]
-                    md:font-extralight md:text-[15px] 
-                    hover:translate-y-[-3px] hover:transition-all hover:duration-500 transition-all duration-500 
-                    disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:translate-y-0`}
-                >
+                <button type="submit" disabled={loading} className={`text-center hover:shadow-[inset_2px_2px_8px_rgba(255,255,255,0.08),2px_8px_12px_rgba(0,0,0,0.12)] bg-[rgba(128,128,128,0.05)] backdrop-blur-md shadow-[inset_2px_2px_8px_rgba(255,255,255,0.08),2px_8px_10px_rgba(0,0,0,0.08)] h-[5vh] col-[1/5] row-[6/8] md:row-[7/8] font-normal text-[2.3vh] p-[5px] border-none text-[var(--cor-primaria)] rounded-[10px]
+                md:font-extralight md:text-[15px] 
+                hover:translate-y-[-3px] hover:transition-all hover:duration-500 transition-all duration-500 
+                disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:translate-y-0`}>
                     {loading ? 'Enviando...' : submitStatus === 'success' ? 'Enviado!' : submitStatus === 'error' ? 'Erro' : 'Enviar'}
                 </button>
 
