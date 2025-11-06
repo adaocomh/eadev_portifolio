@@ -550,7 +550,7 @@ export default function Home() {
           </div>
           <div className='flex flex-col items-center mb-[20px] md:flex-row md:justify-between md:px-[80px]'>
             <p className='text-[15px] text-[var(--cor-primaria)] font-extralight'>2025 Todos os direitos reservados.</p>
-            <p className='text-[12px] text-[var(--cor-primaria)] font-extralight opacity-70'>@ Code by Éverton Adão</p>
+            <p className='text-[12px] text-[var(--cor-primaria)] font-extralight opacity-70'>© Code by Éverton Adão</p>
           </div>
         </footer>
     </div>
