@@ -1,0 +1,27 @@
+{
+  "name": "É. Adão Dev. Front-end Freelancer",
+  "short_name": "É. Adão Dev",
+  "description": "É. Adão Dev. Front-end especializado em JavaScript, React, Next.js, TypeScript, HTML5, CSS3 e TailwindCSS. Experiência em criar sites responsivos e interativos.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#000000",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/imgs/perfil/logoPiscando.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/imgs/perfil/logoPiscando.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["portfolio", "development", "business"],
+  "lang": "pt-BR",
+  "dir": "ltr"
+}
