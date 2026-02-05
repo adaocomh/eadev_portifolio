@@ -466,7 +466,7 @@ export default function Home() {
   <>
   <nav className='fixed w-[100vw] p-[20px_20px_0px_20px] z-45 md:p-[20px_80px_20px_80px]'><MenuSuspenso/></nav>
     <div id="smooth-wrapper">
-        <div id="smooth-content">
+        <div id="smooth-content" className='bg-[var(--cor-primaria)]'>
         <header ref={headerRef} className="flex flex-col h-[106vh] pl-[20px] bg-[var(--cor-primaria)] lg:h-[119vh] lg:pl-[80px]" id='header'>
           <div className="flex flex-col justify-end h-[100%] md:gap-[5vh]">
             <div className="flex flex-col justify-center items-start gap-[20px] pr-[20px] md:flex-row md:justify-start md:items-end lg:gap-[80px]">
@@ -496,7 +496,7 @@ export default function Home() {
           </div>
         </header>
         <main  ref={containerRef} className='bg-[var(--cor-primaria)]'>
-          <section className='flex flex-col justify-center items-center gap-[30px] w-[100vw] h-[100vh] pt-[100px] md:p-[200px_0px_50px_0px]' id='meu-objetivo'>
+          <section className='flex flex-col justify-center items-center gap-[30px] bg-transparent w-[100vw] h-[100vh] pt-[100px] md:p-[200px_0px_50px_0px]' id='meu-objetivo'>
             <div className='flex flex-col items-center justify-center gap-[20px] w-[90vw] text-shadow-[0px_0px_10px_rgba(0,0,0,0.3)] md:flex-row md:justify-between md:w-[70vw]'>
                 <p className='w-[100%] text-[7vw] text-[var(--cor-font)] font-extralight md:text-[2vw] md:w-[70%] textElement'>Buscando entregar projetos interativos e intuitivos; sem descartar suas intenções, tenho como objetivo oferecer a melhor solução para o que você busca.</p>
                 <div className='flex flex-col w-[100%] md:w-[30%]'>
@@ -526,7 +526,7 @@ export default function Home() {
                 </div>
           </section>
         </main>
-        <footer ref={footerRef} className='relative flex flex-col justify-end gap-[20px] md:gap-[40px] h-[110vh] md:h-[100vh] footerS4 overflow-hidden' id="footer">
+        <footer ref={footerRef} className='relative flex flex-col justify-end gap-[20px] bg-[var(--cor-terciario)] md:gap-[40px] h-[110vh] md:h-[100vh] footerS4 overflow-hidden' id="footer">
           <div className='projecao-sombra absolute top-0 w-[100vw] bg-[var(--cor-primaria)] shadow-[0px_25px_150px_rgba(0,0,0,1)]'/>
           <div className='flex justify-center items-end bg-[var(--cor-terciario)] md:items-center'>
             <div className='flex flex-col justify-center gap-[15px] max-w-[80vw]'>
