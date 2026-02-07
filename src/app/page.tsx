@@ -209,6 +209,18 @@ export default function Home() {
 
         await document.fonts.ready;
         gsap.set(".textElement", { opacity: 1 });
+        gsap.set(".divTextElement", { opacity: 0 });
+
+        gsap.to(".divTextElement", {
+          opacity: 1,
+          duration: 3,
+          ease: "expoScale(0.5.7,none)",
+          scrollTrigger: {
+            trigger: ".divTextElement .textElement",
+            start: "top 70%",
+            toggleActions: "play none none reverse",
+          },
+        });
 
         split = new SplitText(".textElement", {
           type: "lines",
@@ -500,7 +512,7 @@ export default function Home() {
             <div className='flex flex-col items-center justify-center gap-[20px] w-[90vw] text-shadow-[0px_0px_10px_rgba(0,0,0,0.3)] md:flex-row md:justify-between md:w-[70vw]'>
                 <p className='w-[100%] text-[7vw] text-[var(--cor-font)] font-extralight md:text-[2vw] md:w-[70%] textElement'>Buscando entregar projetos interativos e intuitivos; sem descartar suas intenções, tenho como objetivo oferecer a melhor solução para o que você busca.</p>
                 <div className='flex flex-col w-[100%] md:w-[30%]'>
-                    <div className='w-[60%] mb-[12px] border-b-[0.1px] border-black/30'>
+                    <div className='w-[60%] mb-[12px] border-b-[0.1px] border-black/50 divTextElement'>
                         <h4 className='font-normal text-[6vw] text-[var(--cor-font) md:text-[1.6vw] textElement'>Posso atuar...</h4>
                     </div>
                     <p className='w-[100%] text-[4vw] text-[var(--cor-font)] font-extralight md:text-[1vw] textElement'>Transformando layouts pré-definidos em código funcional ou colaborar na criação do projeto desde o início, unindo design e desenvolvimento para uma solução completa.</p>
